@@ -47,6 +47,22 @@ def DFS(maze, coords=(0,0)):
                 DFS(maze, new_coords)
     return maze
 
-size=30
 
-pretty_print(DFS(make_empty_maze(size,size)))
+size=8
+
+# pretty_print(DFS(make_empty_maze(size,size)))
+
+
+#################################################
+# Understanding the code
+#################################################
+def display_maze(maze):
+    for row in maze:
+        print(row)
+
+maze_empty = make_empty_maze(size,size)
+maze_coords = DFS(maze_empty)
+maze_converted = convert(maze_coords)
+
+display_maze(maze_coords)
+display_maze(maze_converted)
