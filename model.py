@@ -48,34 +48,47 @@ class Maze():
 
 
 class Stats():
+
     def __init__(self):
-        self._steps = []
-        self._route = []
-        self._times = []
+        self.solutions = list()  # list of dictionaries with solution stats
 
-    def steps(self):
-        return self._steps
+    def add_solution(self, algo, route, steps, time):
+        self.solutions.append({'algo': algo,    # strig - algorithm used to solve maze
+                               'route': route,  # list - route (solution) through maze
+                               'steps': steps,  # list - steps taken to achieve solution
+                               'time': time     # decimal - solution time
+                               })
 
-    def steps_num(self):
-        steps_num = []
-        for s in self._steps:
-            steps_num.append(len(s))
-        return steps_num
+    def get_solutions(self, algo='all'):
+        if algo == 'all':
+            if self.solutions:
+                return self.solutions
+        else:
+            # lambda function filters the list based on the algo input
+            # algo = 'dfs' will return all solutions for DFS solver
+            result = list(filter(lambda x: algo in x['algo'], self.solutions))
+            return result
 
-    def route(self):
-        return self._route
+    def get_times(self, algo='all'):
+        if algo == 'all':
+            if self.solutions:
+                times = []
+                for item in self.solutions:
+                    # print(item['time'])
+                    times.append(item['time'])
+                return times
+        else:
+            # second lambda func filters the list of dicts based on algo input
+            # filtered list is passed to the first map lambda function
+            # which returns all the values of the time key
+            result = list(map(lambda x: x['time'], filter(lambda x: algo in x['algo'], self.solutions)))
+            return result
 
-    def route_len(self):
-        return len(self._route)
+    def solution_time_avg(self, algo='all'):
+        return sum(self.get_times(algo)) / len(self.get_times(algo))
 
-    def times(self):
-        return self._times
+    def solution_time_max(self, algo='all'):
+        return max(self.get_times(algo))
 
-    def time_max(self):
-        return max(self._times)
-
-    def time_min(self):
-        return min(self._times)
-
-    def time_avg(self):
-        return sum(self._times) / len(self._times)
+    def solution_time_min(self, algo='all'):
+        return min(self.get_times(algo))
