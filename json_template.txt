@@ -1,0 +1,38 @@
+{
+    "maze": 
+        [[0, 0, 0, 0, 0, 1], 
+        [1, 1, 0, 0, 0, 1], 
+        [0, 0, 0, 1, 0, 0], 
+        [0, 1, 1, 0, 0, 1], 
+        [0, 1, 0, 0, 1, 0],
+        [0, 1, 0, 0, 0, 2]],
+    "width": 10,
+    "height": 10,
+    "start_coord": (x,y),
+    "end_coord": (x, y),
+    "stats":
+        {
+                "algo": algo,  # strig - algorithm used to solve maze
+                "route": route,  # list - route (solution) through maze
+                "steps": steps,  # list - steps taken to achieve solution
+                "time": time,  # decimal - solution time
+        },
+        {
+                "algo": algo,  # strig - algorithm used to solve maze
+                "route": route,  # list - route (solution) through maze
+                "steps": steps,  # list - steps taken to achieve solution
+                "time": time,  # decimal - solution time
+        },
+        {
+                "algo": algo,  # strig - algorithm used to solve maze
+                "route": route,  # list - route (solution) through maze
+                "steps": steps,  # list - steps taken to achieve solution
+                "time": time,  # decimal - solution time
+        },
+        {
+                "algo": algo,  # strig - algorithm used to solve maze
+                "route": route,  # list - route (solution) through maze
+                "steps": steps,  # list - steps taken to achieve solution
+                "time": time,  # decimal - solution time
+        }
+}
