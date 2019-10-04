@@ -59,6 +59,17 @@ class Maze():
     def set_exit(self):
         self.pretty_maze[self.end_coord[0]][self.end_coord[1]] = "2"
 
+    def convert_data_to_json(self):
+        data = { 
+            'maze': self.pretty_maze,
+            'width': len(self.pretty_maze[0]),
+            'height': len(self.pretty_maze),
+            'start_coord': self.start_coord,
+            'end_coord': self.end_coord,
+            'stats': self.Stats.get_solutions(),
+            }
+        return data
+
 
 class Stats():
 

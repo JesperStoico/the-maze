@@ -1,14 +1,16 @@
 from model import Maze, Resolver
 import view
+from file_creation import create_csv_files
 
 
 def start():
-    size = 8
+    size = 40
     maze1 = Maze(size, size)
     view.pretty_print(maze1)
 
     resolver = Resolver(maze1)
-    resolver.solve(100)
+    resolver.solve(8)
+    create_csv_files(maze1.convert_data_to_json())
 
     # print(maze1.Stats.get_solutions())
     print('Times:', maze1.Stats.get_times())
