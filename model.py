@@ -1,5 +1,6 @@
 from random import shuffle
 from time import process_time
+import os
 import sys
 import copy
 import json
@@ -20,10 +21,11 @@ class Maze:
         self.Stats = Stats()
 
     def __str__(self):
-        ms = MazeSerializer()
-        data = json.dumps(ms.serialize(self, datatype="dict"))
+        ms = MazeSerializer(self, datatype="dict")
+        data = ms.get_output()
+        data = json.dumps(data)
         data = jsbeautifier.beautify(data)
-        return str(data)
+        return data
 
 
 class MazeGenerator:
@@ -149,6 +151,35 @@ class MazeDeserializer:
         return maze
 
     def _deserialize_from_csv(self, data):
+        pass
+
+    def load(self, filename, datatype) -> Maze:
+        self.loader = self._get_loader(datatype)
+        return self.loader(filename)
+
+    def _get_loader(self, datatype):
+        if datatype == 'json':
+            return self._load_from_json
+        elif datatype == 'csv':
+            return self._load_from_json
+        else:
+            raise Exception
+
+    def _load_from_json(self, filename):
+        maze_dir = "mazes/"
+        maze_base_name = "maze"
+        stat_base_name = "stats"
+
+        if os.path.isfile(maze_dir + filename):
+            with open(maze_dir + filename, "r") as file:
+                data = json.load(file) # returns dict
+
+            return self.deserialize(data, datatype='dict') # returns Maze
+        else:
+            raise Exception
+
+    def _load_from_csv(self, filename):
+        # TODO implement this method
         pass
 
 
