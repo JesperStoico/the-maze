@@ -12,7 +12,10 @@ sys.setrecursionlimit(10000)
 
 class Maze:
     def __init__(self, maze, width, height, start_coords, end_coords):
-        self.maze = maze
+        self.maze = maze  # this used to be pretty_maze
+        # holds a clean copy of maze
+        # needed for DFS recursive method when
+        # generating multiple solutions
         self.maze_copy = copy.deepcopy(maze)
         self.width = width
         self.height = height
@@ -20,6 +23,8 @@ class Maze:
         self.end_coords = end_coords
         self.Stats = Stats()
 
+    # Overloaded __str__ method so we can use print(maze)
+    # outputs json version of maze
     def __str__(self):
         ms = MazeSerializer(self, datatype="dict")
         data = ms.get_output()
@@ -27,7 +32,7 @@ class Maze:
         data = jsbeautifier.beautify(data)
         return data
 
-
+# MazeGenerator outputs new mazes based on width/height input
 class MazeGenerator:
     def __init__(self):
         pass
@@ -100,63 +105,20 @@ class MazeGenerator:
         return data
 
 
+# MazeDeserializer converts data to Maze objects
+# Call .load() method to retrieve data from disk
 class MazeDeserializer:
     def __init__(self):
+        # we don't need anything to be initialized
+        # as we use class methods
         pass
 
-    def deserialize(self, data, datatype) -> Maze:
-        self.deserializer = self._get_deserializer(
-            datatype
-        )  # determines which deserilizer to use
-        return self.deserializer(data)  # returns a deserialized Maze object
-
-    def _get_deserializer(self, datatype):
-        if datatype.lower() == "json":
-            return self._deserialize_from_json
-        elif datatype.lower() == "csv":
-            return self._deserialize_from_csv
-        elif datatype.lower() == "dict":
-            return self._deserialize_from_dict
-
-    def _deserialize_from_json(self, data):
-        payload = json.loads(data)
-        maze = Maze(
-            payload["maze"],
-            payload["width"],
-            payload["height"],
-            payload["start_coords"],
-            payload["end_coords"],
-        )
-        if payload["stats"]:
-            # maze.stats = payload["stats"]
-            maze.Stats = Stats()
-            for stat in payload["stats"]:
-                maze.Stats.solutions.append(stat)
-        return maze
-
-    def _deserialize_from_dict(self, data):
-        maze = Maze(
-            data["maze"],
-            data["width"],
-            data["height"],
-            data["start_coords"],
-            data["end_coords"],
-        )
-        if "stats" in data:
-            print("creating stats object")
-            # maze.stats = data["stats"]
-            maze.Stats = Stats()
-            for stat in data["stats"]:
-                maze.Stats.solutions.append(stat)
-        return maze
-
-    def _deserialize_from_csv(self, data):
-        pass
-
+    # open filename from disk - must provide datatype
     def load(self, filename, datatype) -> Maze:
         self.loader = self._get_loader(datatype)
-        return self.loader(filename)
+        return self.loader(filename) # returns maze
 
+    # returns loader method based on datatype
     def _get_loader(self, datatype):
         if datatype == 'json':
             return self._load_from_json
@@ -172,9 +134,9 @@ class MazeDeserializer:
 
         if os.path.isfile(maze_dir + filename):
             with open(maze_dir + filename, "r") as file:
-                data = json.load(file) # returns dict
+                data = json.load(file)  # returns dict
 
-            return self.deserialize(data, datatype='dict') # returns Maze
+            return self.deserialize(data, datatype='dict')  # returns Maze
         else:
             raise Exception
 
@@ -182,24 +144,73 @@ class MazeDeserializer:
         # TODO implement this method
         pass
 
+    def deserialize(self, data, datatype) -> Maze:
+        # determines which deserilizer to use
+        self.deserializer = self._get_deserializer(datatype)  
+        return self.deserializer(data)  # returns a Maze object
 
+    # returns deserializer method based on datatype
+    def _get_deserializer(self, datatype):
+        if datatype.lower() == "json":
+            return self._deserialize_from_json
+        elif datatype.lower() == "csv":
+            return self._deserialize_from_csv
+        elif datatype.lower() == "dict":
+            return self._deserialize_from_dict
+
+    # returns maze from json data
+    def _deserialize_from_json(self, data):
+        payload = json.loads(data)
+        maze = Maze(
+            payload["maze"],
+            payload["width"],
+            payload["height"],
+            payload["start_coords"],
+            payload["end_coords"],
+        )
+        if payload["stats"]:  # if maze has stats, add Stats() object
+            maze.Stats = Stats()
+            for stat in payload["stats"]:
+                maze.Stats.solutions.append(stat)
+        return maze
+
+    def _deserialize_from_dict(self, data):
+        maze = Maze(
+            data["maze"],
+            data["width"],
+            data["height"],
+            data["start_coords"],
+            data["end_coords"],
+        )
+        if "stats" in data:  # if maze has stats, add Stats() object
+            maze.Stats = Stats()
+            for stat in data["stats"]:
+                maze.Stats.solutions.append(stat)
+        return maze
+
+    def _deserialize_from_csv(self, data):
+        pass
+
+
+# MazeSerializer converts Maze Object to flat versions in dict, json, csv
+# Call .save() method to store on disk
 class MazeSerializer:
-    def __init__(self, maze, datatype):
+    def __init__(self, maze, datatype='dict'):
         self.maze = maze
         self.datatype = datatype
-        self.serializer = self._get_serializer(
-            datatype
-        )  # determines which deserilizer to use
-        self.output = self.serializer(maze)
-        # return self.output
+        # determines which deserilizer to use
+        self.serializer = self._get_serializer(datatype)
+        self.output = self.serializer(maze)  # holds dict version of maze
 
     def get_output(self):
         return self.output
 
+    # save self.output to disk in datatype format
     def save(self):
         self.saver = self._get_saver()
         self.saver()
 
+    # returns saver method based on datatype
     def _get_saver(self):
         if self.datatype == "json":
             return self._save_as_json
@@ -215,8 +226,10 @@ class MazeSerializer:
             file.writelines(data)
 
     def _save_as_csv(self):
+        # TODO implement this method
         pass
 
+    # returns serializer method based on datatype
     def _get_serializer(self, datatype):
         if datatype.lower() == "json":
             return self._serialize_to_json
@@ -225,15 +238,18 @@ class MazeSerializer:
         elif datatype.lower() == "dict":
             return self._serialize_to_dict
 
+    # returns json version of maze
     def _serialize_to_json(self, maze):
         data = json.dumps(self._serialize_to_dict(maze))
         data = jsbeautifier.beautify(data)
         return data
 
+    # returns csv version of maze
     def _serialize_to_csv(self, maze):
         # TODO implement this method
         pass
 
+    # returns dict version of maze (default)
     def _serialize_to_dict(self, maze):
         data = {
             "maze": maze.maze,
@@ -242,7 +258,7 @@ class MazeSerializer:
             "start_coords": maze.start_coords,
             "end_coords": maze.end_coords,
         }
-        if maze.Stats:
+        if maze.Stats:  # if maze has stats - add them
             data["stats"] = []
             for solution in maze.Stats.solutions:
                 data["stats"].append(solution)
