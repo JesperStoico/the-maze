@@ -10,6 +10,7 @@ def start():
     mg = MazeGenerator()
     maze1 = mg.generate(size, size)
 
+    view.display(maze1)
     print(maze1)
 
     view.pretty_print(maze1)

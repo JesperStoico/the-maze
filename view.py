@@ -1,4 +1,4 @@
-# import controller
+import controller
 
 # Takes a converted (pretty) maze and pretty prints it
 def pretty_print(maze):

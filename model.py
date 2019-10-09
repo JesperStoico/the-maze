@@ -32,6 +32,7 @@ class Maze:
         data = jsbeautifier.beautify(data)
         return data
 
+
 # MazeGenerator outputs new mazes based on width/height input
 class MazeGenerator:
     def __init__(self):
@@ -116,14 +117,14 @@ class MazeDeserializer:
     # open filename from disk - must provide datatype
     def load(self, filename, datatype) -> Maze:
         self.loader = self._get_loader(datatype)
-        return self.loader(filename) # returns maze
+        return self.loader(filename)  # returns maze
 
     # returns loader method based on datatype
     def _get_loader(self, datatype):
-        if datatype == 'json':
+        if datatype == "json":
             return self._load_from_json
-        elif datatype == 'csv':
-            return self._load_from_json
+        elif datatype == "csv":
+            return self._load_from_csv
         else:
             raise Exception
 
@@ -136,7 +137,7 @@ class MazeDeserializer:
             with open(maze_dir + filename, "r") as file:
                 data = json.load(file)  # returns dict
 
-            return self.deserialize(data, datatype='dict')  # returns Maze
+            return self.deserialize(data, datatype="dict")  # returns Maze
         else:
             raise Exception
 
@@ -146,7 +147,7 @@ class MazeDeserializer:
 
     def deserialize(self, data, datatype) -> Maze:
         # determines which deserilizer to use
-        self.deserializer = self._get_deserializer(datatype)  
+        self.deserializer = self._get_deserializer(datatype)
         return self.deserializer(data)  # returns a Maze object
 
     # returns deserializer method based on datatype
@@ -195,7 +196,7 @@ class MazeDeserializer:
 # MazeSerializer converts Maze Object to flat versions in dict, json, csv
 # Call .save() method to store on disk
 class MazeSerializer:
-    def __init__(self, maze, datatype='dict'):
+    def __init__(self, maze, datatype="dict"):
         self.maze = maze
         self.datatype = datatype
         # determines which deserilizer to use

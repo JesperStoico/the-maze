@@ -10,13 +10,12 @@ def start():
 
     resolver = Resolver(maze1)
     resolver.solve(8)
-    create_csv_files(maze1.convert_data_to_json())
 
     # print(maze1.Stats.get_solutions())
-    print('Times:', maze1.Stats.get_times())
-    print('Min time: {}'.format(maze1.Stats.time_min()))
-    print('Max time: {}'.format(maze1.Stats.time_max()))
-    print('Avg time: {}'.format(maze1.Stats.time_avg()))
+    print("Times:", maze1.Stats.get_times())
+    print("Min time: {}".format(maze1.Stats.time_min()))
+    print("Max time: {}".format(maze1.Stats.time_max()))
+    print("Avg time: {}".format(maze1.Stats.time_avg()))
 
 
 if __name__ == "__main__":
