@@ -3,10 +3,13 @@
 
 This repo contains a python code to generate and solve random mazes using various algorithms.
 
-### TODO Oct. 8th 2019
-* Write comments in model.py
+### TODO
+* ~~Write comments in model.py~~
 * Implement CSV methods for se-/deserializing mazes
 * Test se-/deserializing mazes with stats
+* Refactor timing method in Resolver to output more readable numbers
+
+### Optional
 * Extend file save/load methods to allow for other filenames than maze.json
 * Extend file IO to automatically find appropriate filename for saving
 * Thoughts: should mazes have an ID or hash value to make them unique so we can save a maze again under the same name
