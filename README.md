@@ -3,6 +3,8 @@
 
 This repo contains a python code to generate and solve random mazes using various algorithms.
 
+******
+
 ### TODO
 * ~~Write comments in model.py~~
 * Implement CSV methods for se-/deserializing mazes
