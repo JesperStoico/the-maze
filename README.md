@@ -10,6 +10,12 @@ This repo contains a python code to generate and solve random mazes using variou
 * Implement CSV methods for se-/deserializing mazes
 * Test se-/deserializing mazes with stats
 * Refactor timing method in Resolver to output more readable numbers
+* Refactor resolver class to method
+* Implement AStar resolver
+* Controller functions
+  * get list of files
+  * load maze and stats from file 
+  * generate new maze
 
 ### Optional
 * Extend file save/load methods to allow for other filenames than maze.json
