@@ -10,7 +10,8 @@ This repo contains a python code to generate and solve random mazes using variou
 * Implement CSV methods for se-/deserializing mazes
 * Test se-/deserializing mazes with stats
 * Refactor timing method in Resolver to output more readable numbers
-* Refactor resolver class to method
+* Refactor resolver class to methods in separate file
+* refactor MazeGenerator to facade pattern
 * Implement AStar resolver
 * Controller functions
   * get list of files
