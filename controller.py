@@ -1,6 +1,7 @@
-from model import Maze, Resolver
-import view
+from model import Maze
+import view,  resolver
 from file_creation import create_csv_files
+
 
 
 def start():
