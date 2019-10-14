@@ -10,19 +10,19 @@ def start():
     mg = MazeGenerator()
     maze1 = mg.generate(size, size)
 
-    view.display(maze1)
-    print(maze1)
+    # view.display(maze1)
+    # print(maze1)
 
-    view.pretty_print(maze1)
+    # view.pretty_print(maze1)
 
     maze1_export = MazeSerializer(maze1, datatype="json")
 
-    print(maze1_export.get_output())
+    # print(maze1_export.get_output())
     maze1_export.save()
 
-    md = MazeDeserializer()
-    maze2 = md.load("maze.json", datatype="json")
-    print(type(maze2))
+    # md = MazeDeserializer()
+    # maze2 = md.load("maze.json", datatype="json")
+    # print(type(maze2))
 
 
 if __name__ == "__main__":
