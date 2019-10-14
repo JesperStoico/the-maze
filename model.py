@@ -1,9 +1,11 @@
 from random import shuffle
 from time import process_time
 import os
+import re
 import sys
 import copy
 import json
+import glob
 import jsbeautifier
 
 # needed for dfg...
@@ -206,6 +208,24 @@ class MazeSerializer:
     def get_output(self):
         return self.output
 
+    def _new_file_num(self, path: str) -> int:
+        path = path
+        # returns a list of files in mazes folder
+        files = [f for f in glob.glob(path + "*.*", recursive=False)]
+        # lambda function splits the files string by dot and slash returning just the filename
+        filenames = list(map(lambda x: x.split('.')[0].split('/')[1], files))
+        # lambda function returns just the digits after 'maze' in the filename
+        numbers = list(filter(lambda x: x.isdigit(), map(lambda x: x.split('maze')[1].split('_')[0], filenames)))
+
+        if numbers:
+            # find the highest number in the list
+            highest_num = max(int(num) for num in numbers)
+        else:
+            highest_num = 0
+        new_file_num = highest_num+1
+
+        return new_file_num
+
     # save self.output to disk in datatype format
     def save(self):
         self.saver = self._get_saver()
@@ -222,8 +242,15 @@ class MazeSerializer:
 
     def _save_as_json(self):
         data = self.output
+        path = 'mazes/'
+        filename = '{}maze{}_{}x{}.{}'.format(path,
+                                              self._new_file_num(path),
+                                              (self.maze.width-1)//2,
+                                              (self.maze.height-1)//2,
+                                              self.datatype
+        )
 
-        with open("mazes/maze.json", "w") as file:
+        with open(filename, "w") as file:
             file.writelines(data)
 
     def _save_as_csv(self):
@@ -264,6 +291,8 @@ class MazeSerializer:
             for solution in maze.Stats.solutions:
                 data["stats"].append(solution)
         return data
+
+
 
 
 class Stats:
