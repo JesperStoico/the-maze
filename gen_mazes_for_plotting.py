@@ -25,3 +25,7 @@ def save_mazes(mazes: list):
         maze_export = MazeSerializer(maze, datatype="json")
         maze_export.save()
 
+
+mazes = generate_mazes(10, 10)
+mazes = solve_mazes(mazes, 10)
+save_mazes(mazes)
