@@ -6,11 +6,11 @@ This repo contains a python code to generate and solve random mazes using variou
 ******
 
 ### TODO
-* ~~Write comments in model.py~~
+* ~~Write comments in model.py~~ __done!__
 * Implement CSV methods for se-/deserializing mazes
-* ~~Test se-/deserializing mazes with stats~~ done!
+* ~~Test se-/deserializing mazes with stats~~ __done!__
 * Refactor timing method in Resolver to output more readable numbers
-* ~~Refactor resolver class to methods in separate file~~ done!
+* ~~Refactor resolver class to methods in separate file~~ __done!__
 * refactor MazeGenerator to facade pattern
 * Implement AStar resolver
 * Controller functions
@@ -19,8 +19,8 @@ This repo contains a python code to generate and solve random mazes using variou
   * generate new maze
 
 ### Optional
-* ~~Extend file save/load methods to allow for other filenames than maze.json~~ done!
-* ~~Extend file IO to automatically find appropriate filename for saving~~ done!
+* ~~Extend file save/load methods to allow for other filenames than maze.json~~ __done!__
+* ~~Extend file IO to automatically find appropriate filename for saving~~ __done!__
 * Thoughts: should mazes have an ID or hash value to make them unique so we can save a maze again under the same name
 
 ******
