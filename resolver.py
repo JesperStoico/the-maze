@@ -52,7 +52,7 @@ def dfs(maze, route, steps, x=1, y=1, first_run=0):
     return solution
 
 
-def resolve_maze(maze_obj, amount=1, solver=dfs):
+def resolve_maze(maze_obj, amount=1, solver="dfs"):
     """
     Resolves a maze\n
     maze: maze object\n 

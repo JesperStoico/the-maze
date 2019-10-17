@@ -1,6 +1,8 @@
 import model
 import view
 import get_files_in_dir
+from resolver import resolve_maze
+
 # from file_creation import create_csv_files
 
 current_maze = []
@@ -30,7 +32,8 @@ def get_current_maze():
 def run_DFS_on_maze(run_X_times):
     """Used to run a resolver x amunt of times on the current maze"""
     global current_maze
-    model.Resolver(current_maze).solve(run_X_times)
+    # model.Resolver(current_maze).solve(run_X_times)
+    resolve_maze(current_maze, amount=run_X_times, solver="dfs")
 
 
 def save_maze():
