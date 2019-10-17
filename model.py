@@ -17,7 +17,7 @@ class Maze:
         # holds a clean copy of maze
         # needed for DFS recursive method when
         # generating multiple solutions
-        self.maze_copy = copy.deepcopy(maze)
+
         self.width = width
         self.height = height
         self.start_coords = start_coords
@@ -212,16 +212,21 @@ class MazeSerializer:
         # returns a list of files in mazes folder
         files = [f for f in glob.glob(path + "*.*", recursive=False)]
         # lambda function splits the files string by dot and slash returning just the filename
-        filenames = list(map(lambda x: x.split('.')[0].split('/')[1], files))
+        filenames = list(map(lambda x: x.split(".")[0].split("/")[1], files))
         # lambda function returns just the digits after 'maze' in the filename
-        numbers = list(filter(lambda x: x.isdigit(), map(lambda x: x.split('maze')[1].split('_')[0], filenames)))
+        numbers = list(
+            filter(
+                lambda x: x.isdigit(),
+                map(lambda x: x.split("maze")[1].split("_")[0], filenames),
+            )
+        )
 
         if numbers:
             # find the highest number in the list
             highest_num = max(int(num) for num in numbers)
         else:
             highest_num = 0
-        new_file_num = highest_num+1
+        new_file_num = highest_num + 1
 
         return new_file_num
 
@@ -241,12 +246,13 @@ class MazeSerializer:
 
     def _save_as_json(self):
         data = self.output
-        path = 'mazes/'
-        filename = '{}maze{}_{}x{}.{}'.format(path,
-                                              self._new_file_num(path),
-                                              (self.maze.width-1)//2,
-                                              (self.maze.height-1)//2,
-                                              self.datatype
+        path = "mazes/"
+        filename = "{}maze{}_{}x{}.{}".format(
+            path,
+            self._new_file_num(path),
+            (self.maze.width - 1) // 2,
+            (self.maze.height - 1) // 2,
+            self.datatype,
         )
 
         with open(filename, "w") as file:
@@ -254,48 +260,54 @@ class MazeSerializer:
 
     def _save_as_csv(self):
         data = self.output
-        path = 'mazes/'
+        path = "mazes/"
         filenumber = self._new_file_num(path)
-        filename = '{}maze{}_{}x{}.{}'.format(path,
-                                              filenumber,
-                                              (self.maze.width-1)//2,
-                                              (self.maze.height-1)//2,
-                                              self.datatype
+        filename = "{}maze{}_{}x{}.{}".format(
+            path,
+            filenumber,
+            (self.maze.width - 1) // 2,
+            (self.maze.height - 1) // 2,
+            self.datatype,
         )
-        with open(filename, mode='w') as maze_file:
-            fieldnames = ['width', 'height', 'start_coord', 'end_coord', 'maze']
+        with open(filename, mode="w") as maze_file:
+            fieldnames = ["width", "height", "start_coord", "end_coord", "maze"]
             writer = csv.DictWriter(maze_file, fieldnames=fieldnames)
 
             writer.writeheader()
-            writer.writerow({
-                'width': data['width'],
-                'height': data['height'],
-                'start_coord': data['start_coord'],
-                'end_coord': data['end_coord'],
-                'maze': data['maze']
-                })
+            writer.writerow(
+                {
+                    "width": data["width"],
+                    "height": data["height"],
+                    "start_coord": data["start_coord"],
+                    "end_coord": data["end_coord"],
+                    "maze": data["maze"],
+                }
+            )
         maze_file.close()
 
-        filename = '{}maze_stats{}_{}x{}.{}'.format(path,
-                                              filenumber,
-                                              (self.maze.width-1)//2,
-                                              (self.maze.height-1)//2,
-                                              self.datatype
+        filename = "{}maze_stats{}_{}x{}.{}".format(
+            path,
+            filenumber,
+            (self.maze.width - 1) // 2,
+            (self.maze.height - 1) // 2,
+            self.datatype,
         )
-        with open(filename, mode='w') as stats_file:
-            fieldnames = ['algo', 'route', 'steps', 'time']
+        with open(filename, mode="w") as stats_file:
+            fieldnames = ["algo", "route", "steps", "time"]
             writer = csv.DictWriter(stats_file, fieldnames=fieldnames)
-            stat_data = data['stats']
+            stat_data = data["stats"]
 
             writer.writeheader()
             for row, data in enumerate(stat_data):
-                writer.writerow({
-                    'algo': stat_data[row]['algo'],
-                    'route': stat_data[row]['route'],
-                    'steps': stat_data[row]['steps'],
-                    'time': stat_data[row]['time']
-                    })
-        stats_file.close()        
+                writer.writerow(
+                    {
+                        "algo": stat_data[row]["algo"],
+                        "route": stat_data[row]["route"],
+                        "steps": stat_data[row]["steps"],
+                        "time": stat_data[row]["time"],
+                    }
+                )
+        stats_file.close()
 
     # returns serializer method based on datatype
     def _get_serializer(self, datatype):
@@ -331,8 +343,6 @@ class MazeSerializer:
             for solution in maze.Stats.solutions:
                 data["stats"].append(solution)
         return data
-
-
 
 
 class Stats:
@@ -387,3 +397,25 @@ class Stats:
 
     def time_min(self, algo="all"):
         return min(self.get_times(algo))
+
+
+class Cell:
+    """
+    Represent X,Y cordinate in the maze (used in astar)
+    Contains:\n
+    x, y = Own cords\n
+    prex_x, prex_y = previus cell cords\n
+    end_y, end_x = goal\n
+    g = distance from previus to current cell\n
+    h = Length from cell to goal if there was no walls\n
+    f = Weight value on this cell for selcetion(g+h)
+    """
+
+    def __init__(self, x, y, prev_x, prev_y, end_x, end_y, g):
+        self.x = x
+        self.y = y
+        self.prev_x = prev_x
+        self.prev_y = prev_y
+        self.g = g
+        self.h = ((x + y) - (end_x + end_y)) * -1
+        self.f = self.g + self.h
