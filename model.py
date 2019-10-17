@@ -253,8 +253,49 @@ class MazeSerializer:
             file.writelines(data)
 
     def _save_as_csv(self):
-        # TODO implement this method
-        pass
+        data = self.output
+        path = 'mazes/'
+        filenumber = self._new_file_num(path)
+        filename = '{}maze{}_{}x{}.{}'.format(path,
+                                              filenumber,
+                                              (self.maze.width-1)//2,
+                                              (self.maze.height-1)//2,
+                                              self.datatype
+        )
+        with open(filename, mode='w') as maze_file:
+            fieldnames = ['width', 'height', 'start_coord', 'end_coord', 'maze']
+            writer = csv.DictWriter(maze_file, fieldnames=fieldnames)
+
+            writer.writeheader()
+            writer.writerow({
+                'width': data['width'],
+                'height': data['height'],
+                'start_coord': data['start_coord'],
+                'end_coord': data['end_coord'],
+                'maze': data['maze']
+                })
+        maze_file.close()
+
+        filename = '{}maze_stats{}_{}x{}.{}'.format(path,
+                                              filenumber,
+                                              (self.maze.width-1)//2,
+                                              (self.maze.height-1)//2,
+                                              self.datatype
+        )
+        with open(filename, mode='w') as stats_file:
+            fieldnames = ['algo', 'route', 'steps', 'time']
+            writer = csv.DictWriter(stats_file, fieldnames=fieldnames)
+            stat_data = data['stats']
+
+            writer.writeheader()
+            for row, data in enumerate(stat_data):
+                writer.writerow({
+                    'algo': stat_data[row]['algo'],
+                    'route': stat_data[row]['route'],
+                    'steps': stat_data[row]['steps'],
+                    'time': stat_data[row]['time']
+                    })
+        stats_file.close()        
 
     # returns serializer method based on datatype
     def _get_serializer(self, datatype):
