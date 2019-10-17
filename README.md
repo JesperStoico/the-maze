@@ -12,11 +12,15 @@ This repo contains a python code to generate and solve random mazes using variou
 * Refactor timing method in Resolver to output more readable numbers
 * ~~Refactor resolver class to methods in separate file~~ __done!__
 * refactor MazeGenerator to facade pattern
-* Implement AStar resolver
+* ~~Implement AStar resolver~~ __done!__
 * Controller functions
   * get list of files
   * load maze and stats from file 
   * generate new maze
+* Refactor A-start to return tuples instead of cells to solution
+* Rewrite overloading of __str__, so we can see what object it is
+* MazeGenerator - generate - User typed start/finish?
+* Simplify MazeSerializer/Deserializer
 
 ### Optional
 * ~~Extend file save/load methods to allow for other filenames than maze.json~~ __done!__
