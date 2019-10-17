@@ -33,7 +33,7 @@ def run_DFS_on_maze(run_X_times):
     """Used to run a resolver x amunt of times on the current maze"""
     global current_maze
     # model.Resolver(current_maze).solve(run_X_times)
-    resolve_maze(current_maze, amount=run_X_times, solver="astar")
+    resolve_maze(current_maze, amount=run_X_times, solver="dfs")
 
 
 def save_maze():

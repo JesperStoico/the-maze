@@ -40,12 +40,14 @@ class MazeGenerator:
         pass
 
     def generate(self, width: int, height: int) -> Maze:
-        self.start_coords = (1, 1)
-        self.end_coords = ((width * 2) - 1, (height * 2) - 1)
 
         self.empty_maze = [[[] for b in range(width)] for a in range(height)]
         self.raw_maze = self._dfg(self.empty_maze)
         self.pretty_maze = self._convert(self.raw_maze)
+        self.start_coords = (1, 1)
+        # self.end_coords = ((width * 2) - 1, (height * 2) - 1)
+        self.end_coords = (len(self.pretty_maze) - 2, len(self.pretty_maze[0]) - 2)
+
         self._set_entrance()
         self._set_exit()
 
