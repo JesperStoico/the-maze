@@ -27,9 +27,9 @@ def dfs(maze, route, steps, x=1, y=1, first_run=0):
         dfs(maze, route=route, steps=steps, x=x, y=y + 1)
     #  Check down
     elif (
-        x < len(maze) - 1  #
+        x < len(maze) - 1
         and maze[x + 1][y] == "0"
-        or x < len(maze) - 1  #
+        or x < len(maze) - 1
         and maze[x + 1][y] == "2"
     ):
         maze[x][y] = "3"
@@ -83,7 +83,7 @@ def is_in_visited_cells(visited_cells, x, y):
 # change list of cell to cords
 def cell_to_cords(route_of_cells):
     coords = [(cell.x, cell.y) for cell in route_of_cells]
-    print(coords)
+    return coords
 
 
 # A* search af en maze
@@ -121,7 +121,6 @@ def a_star_search(maze):
         if pretty_maze[x][y] == "2":
             route = backtrace_route(visited_cells)
             steps = cell_to_cords(visited_cells)
-            print(route)
             return {"route": route, "steps": steps}
 
         #  Check cell right
