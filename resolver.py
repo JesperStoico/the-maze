@@ -1,9 +1,9 @@
 import copy
 from time import process_time
-
 from model import Cell
 
 
+# DFS resolver
 def dfs(maze, route, steps, x=1, y=1, first_run=0):
     """Returns: {'route': [], 'steps': []}"""
     if first_run == 1:
@@ -17,9 +17,9 @@ def dfs(maze, route, steps, x=1, y=1, first_run=0):
         route.append([x, y])
     # Check right
     elif (
-        y < len(maze) - 1
+        y < len(maze[0]) - 1
         and maze[x][y + 1] == "0"
-        or y < len(maze) - 1
+        or y < len(maze[0]) - 1
         and maze[x][y + 1] == "2"
     ):
         maze[x][y] = "3"
@@ -27,7 +27,7 @@ def dfs(maze, route, steps, x=1, y=1, first_run=0):
         dfs(maze, route=route, steps=steps, x=x, y=y + 1)
     #  Check down
     elif (
-        x < len(maze[0]) - 1
+        x < len(maze) - 1
         and maze[x + 1][y] == "0"
         or x < len(maze) - 1
         and maze[x + 1][y] == "2"
@@ -54,7 +54,7 @@ def dfs(maze, route, steps, x=1, y=1, first_run=0):
     return solution
 
 
-# backtrace route
+# backtrace route on astar
 def backtrace_route(visited_cells):
     """
     Backtrace from the cell you are in and back to start and\n
@@ -67,16 +67,23 @@ def backtrace_route(visited_cells):
             if cell.x == cur_obj.prev_x and cell.y == cur_obj.prev_y:
                 route.append([cell.x, cell.y])
                 cur_obj = cell
+    route.reverse()
     return route
 
 
-# Tjek if object is in visited_cells list
+# Tjek if object is in visited_cells list on astar
 def is_in_visited_cells(visited_cells, x, y):
     """Checks if cords are already in the visited_cells"""
     for cell in visited_cells:
         if cell.x == x and cell.y == y:
             return True
     return False
+
+
+# change list of cell to cords
+def cell_to_cords(route_of_cells):
+    coords = [(cell.x, cell.y) for cell in route_of_cells]
+    return coords
 
 
 # A* search af en maze
@@ -113,22 +120,12 @@ def a_star_search(maze):
         # Check if this cell is the final cell
         if pretty_maze[x][y] == "2":
             route = backtrace_route(visited_cells)
-            #  TODO - Change prints to return data to statistics
-            #  print("You reached goal, the route is:")
-            #  print(route)
-            #  print("you used this many steps:")
-            #  print(len(visited_cells))
-            #  print("Route is this many steps:")
-            #  print(len(route))
-            #  print("Start cords are:")
-            #  print(maze.start_coords)
-            #  print("End cords are:")
-            #  print(maze.end_coords)
-            return {"route": route, "steps": visited_cells}
+            steps = cell_to_cords(visited_cells)
+            return {"route": route, "steps": steps}
 
         #  Check cell right
         if (
-            y < len(pretty_maze) - 1
+            y < len(pretty_maze[0]) - 1
             and is_in_visited_cells(visited_cells, x, y + 1) is False
             and (pretty_maze[x][y + 1] == "0" or pretty_maze[x][y + 1] == "2")
         ):
@@ -137,7 +134,7 @@ def a_star_search(maze):
 
         #  Check cell down
         if (
-            x < len(pretty_maze[0]) - 1
+            x < len(pretty_maze) - 1
             and is_in_visited_cells(visited_cells, x + 1, y) is False
             and (pretty_maze[x + 1][y] == "0" or pretty_maze[x + 1][y] == "2")
         ):
@@ -169,7 +166,7 @@ def a_star_search(maze):
 def resolve_maze(maze_obj, amount=1, solver="dfs"):
     """
     Resolves a maze\n
-    maze: maze object\n 
+    maze: maze object\n
     amount: How many times should the maze be resolved, default=1\n
     solver: Which algoritm to use, default=dfs\n
     """
