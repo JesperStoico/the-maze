@@ -12,6 +12,12 @@ class Window(tk.Frame):
         self.window_height = self.master.winfo_screenheight()
         self.window_width = self.master.winfo_screenwidth()
 
+        # Add listbox woth button
+        self.lb = tk.Listbox(self.master, selectmode="SINGLE", width=40)
+        self.lb.grid(row=0, column=2, sticky="ns")
+        #btn = tk.button(self.master, text="Load")
+        self.get_maze_files()
+
         # Add menu bar
         menu = tk.Menu(self.master)
         self.master.config(menu=menu)
@@ -25,7 +31,7 @@ class Window(tk.Frame):
 
         menu.add_cascade(label="Maze", menu=maze_menu)
         maze_menu.add_command(label="Create new maze", command=self.create_new_maze)
-        maze_menu.add_command(label="Run DFS on maze", command=self.run_DFS)
+        maze_menu.add_command(label="Run solver on maze", command=self.run_DFS)
         maze_menu.add_command(label="Show rute", command=self.draw_route)
         maze_menu.add_command(label="Save maze", command=self.save_maze)
         maze_menu.add_command(label="Load maze", command=self.load_maze)
@@ -39,21 +45,22 @@ class Window(tk.Frame):
         controller.create_new_maze(width, height)
         self.draw_maze(controller.get_current_maze())
 
-    # Run DFS on current maze
+    # Run solver on current maze
     def run_DFS(self):
+        solver = self.ask_for_solver()
         run_X_times = simpledialog.askinteger(
             "Running times", "How many times you want to run it"
         )
-        controller.run_DFS_on_maze(run_X_times)
+        controller.run_DFS_on_maze(run_X_times, solver)
 
     # Saves current maze
     def save_maze(self):
         controller.save_maze()
+        self.get_maze_files()
 
-    # Give you a list of mazes you can load and loads it
-    def load_maze(self):
-        # controller.get_file_names()
-        controller.load_maze("maze.json")
+    # Loads maze to be current maze
+    def load_maze(self, maze_name):
+        controller.load_maze(maze_name)
         self.draw_maze(controller.get_current_maze())
 
     # Creates and saves multiple mazes
@@ -70,10 +77,16 @@ class Window(tk.Frame):
             controller.create_new_maze(width, height)
             controller.run_DFS_on_maze(run_X_times)
             self.save_maze()
+        self.get_maze_files()
 
     # Draw route on maze
-    def draw_route(self, resolver_type="dfs"):
+    def draw_route(self):
         maze = controller.get_current_maze()
+        resolver_type = self.ask_for_solver()
+        if resolver_type == "dfs":
+            color = "orange"
+        else:
+            color = "blue"
         route = maze.Stats.get_solutions(resolver_type)[0]["route"]
         y = 15
         x = 25
@@ -89,7 +102,7 @@ class Window(tk.Frame):
                 y_next = y_next + 9
             elif route[count + 1][1] - route[count][1] == -1:
                 y_next = y_next - 9
-            self.maze_canvas.create_line(y, x, y_next, x_next, fill="orange", width=3)
+            self.maze_canvas.create_line(y, x, y_next, x_next, fill=color, width=3)
             y = y_next
             x = x_next
             count = count + 1
@@ -162,6 +175,18 @@ class Window(tk.Frame):
     # Close the app
     def close_window(self):
         self.master.destroy()
+
+    # Ask user for solver
+    def ask_for_solver(self):
+        solver = "empty"
+        while solver.lower() != 'dfs' and solver.lower() != 'astar':
+            solver = simpledialog.askstring("Reolver", "Choice resolving metode: dfs or astar")
+        return solver
+
+    def get_maze_files(self):
+        list = controller.get_file_names()
+        for count, maze in enumerate(list):
+            self.lb.insert(count, maze)
 
 
 def start():

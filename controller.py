@@ -29,11 +29,11 @@ def get_current_maze():
     return current_maze
 
 
-def run_DFS_on_maze(run_X_times):
+def run_DFS_on_maze(run_X_times, solver1):
     """Used to run a resolver x amunt of times on the current maze"""
     global current_maze
     # model.Resolver(current_maze).solve(run_X_times)
-    resolve_maze(current_maze, amount=run_X_times, solver="dfs")
+    resolve_maze(current_maze, amount=run_X_times, solver=solver1)
 
 
 def save_maze():
@@ -48,7 +48,17 @@ def load_maze(filename):
 
 def get_file_names():
     files = get_files_in_dir.get_files_in_dir("json", True)
-    print(files)
+    return files
+
+
+# TODO remove again
+def pretty_print(maze):
+    for a in maze.maze:
+        string = ""
+        for b in a:
+            string += b
+        print(string)
+    print("")
 
 
 if __name__ == "__main__":
