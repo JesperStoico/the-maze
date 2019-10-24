@@ -1,8 +1,9 @@
 import model
 import view
-import get_files_in_dir
+# import get_files_in_dir
 from resolver import resolve_maze
-
+import glob
+import os
 # from file_creation import create_csv_files
 
 current_maze = []
@@ -10,7 +11,6 @@ current_maze = []
 
 def start():
     view.start()
-    # print(maze1.Stats.get_solutions())
     # print("Times:", maze1.Stats.get_times())
     # print("Min time: {}".format(maze1.Stats.time_min()))
     # print("Max time: {}".format(maze1.Stats.time_max()))
@@ -40,13 +40,17 @@ def save_maze():
     model.MazeSerializer(current_maze, "json").save()
 
 
-def load_maze(filename):
+def load_maze(filename, data_type):
     global current_maze
-    current_maze = model.MazeDeserializer().load(filename, "json")
+    current_maze = model.MazeDeserializer().load(filename, data_type)
 
 
-def get_file_names():
-    files = get_files_in_dir.get_files_in_dir("json", True)
+def get_files_in_dir(fileformat: str) -> list:
+    files = [f for f in glob.glob("mazes/" + "*." + fileformat)]
+    if os.name == "nt":
+        files = list(map(lambda x: x.split("mazes\\")[1], files))
+    else:
+        files = list(map(lambda x: x.split("mazes/")[1], files))
     return files
 
 

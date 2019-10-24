@@ -15,7 +15,10 @@ class Window(tk.Frame):
         # Add listbox woth button
         self.lb = tk.Listbox(self.master, selectmode="SINGLE", width=40)
         self.lb.grid(row=0, column=2, sticky="ns")
-        #btn = tk.button(self.master, text="Load")
+        self.btn = tk.Button(self.master, text="Load",
+                                width=30, activebackground='green',
+                                command=self.load_maze)
+        self.btn.grid(row=1, column=2, sticky="ns")
         self.get_maze_files()
 
         # Add menu bar
@@ -34,8 +37,8 @@ class Window(tk.Frame):
         maze_menu.add_command(label="Run solver on maze", command=self.run_DFS)
         maze_menu.add_command(label="Show rute", command=self.draw_route)
         maze_menu.add_command(label="Save maze", command=self.save_maze)
-        maze_menu.add_command(label="Load maze", command=self.load_maze)
         maze_menu.add_command(label="Mass creation", command=self.mass_creation)
+        maze_menu.add_command(label="Show stats")
 
     # Maze menu funktions
     # create and display a new maze
@@ -59,8 +62,9 @@ class Window(tk.Frame):
         self.get_maze_files()
 
     # Loads maze to be current maze
-    def load_maze(self, maze_name):
-        controller.load_maze(maze_name)
+    def load_maze(self):
+        selection = self.lb.get(self.lb.curselection())
+        controller.load_maze(selection, "json")
         self.draw_maze(controller.get_current_maze())
 
     # Creates and saves multiple mazes
@@ -86,7 +90,7 @@ class Window(tk.Frame):
         if resolver_type == "dfs":
             color = "orange"
         else:
-            color = "blue"
+            color = "cyan"
         route = maze.Stats.get_solutions(resolver_type)[0]["route"]
         y = 15
         x = 25
@@ -181,10 +185,16 @@ class Window(tk.Frame):
         solver = "empty"
         while solver.lower() != 'dfs' and solver.lower() != 'astar':
             solver = simpledialog.askstring("Reolver", "Choice resolving metode: dfs or astar")
+        # var1 = "dfs"
+        # var2 = "astar"
+        # tk.Checkbutton(self.master, text="DFS", variable=var1).grid(row=2, column=0, sticky="n")
+        # tk.Checkbutton(self.master, text="A-Star", variable=var2).grid(row=2, column=0, sticky="n")
         return solver
 
+    # Updates listbox with files
     def get_maze_files(self):
-        list = controller.get_file_names()
+        list = controller.get_files_in_dir("json")
+        list.sort(key=len)
         for count, maze in enumerate(list):
             self.lb.insert(count, maze)
 
