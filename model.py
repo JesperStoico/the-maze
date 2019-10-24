@@ -378,7 +378,7 @@ class Stats:
                 return self.solutions
         else:
             # lambda function filters the list based on the algo input
-            # algo = 'dfg' will return all solutions for dfg solver
+            # algo = 'dfs' will return all solutions for dfs solver
             result = list(filter(lambda x: algo in x["algo"], self.solutions))
             return result
 
