@@ -14,10 +14,10 @@ This repo contains a python code to generate and solve random mazes using variou
 * refactor MazeGenerator to facade pattern
 * ~~Implement AStar resolver~~ __done!__
 * Controller functions
-  * get list of files
-  * load maze and stats from file 
-  * generate new maze
-* Refactor A-start to return tuples instead of cells to solution
+  * get list of __done!__
+  * load maze and stats from file __done!__
+  * generate new maze __done!__
+* Refactor A-start to return tuples instead of cells to solution __done!__
 * Rewrite overloading of __str__, so we can see what object it is
 * MazeGenerator - generate - User typed start/finish?
 * Simplify MazeSerializer/Deserializer

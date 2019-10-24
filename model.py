@@ -132,9 +132,10 @@ class MazeDeserializer:
             raise Exception
 
     def _load_from_json(self, filename):
-        maze_dir = "mazes/"
-        maze_base_name = "maze"
-        stat_base_name = "stats"
+        if os.name == "nt":
+            maze_dir = "mazes\\"
+        else:
+            maze_dir = "mazes/"
 
         if os.path.isfile(maze_dir + filename):
             with open(maze_dir + filename, "r") as file:
@@ -214,7 +215,11 @@ class MazeSerializer:
         # returns a list of files in mazes folder
         files = [f for f in glob.glob(path + "*.*", recursive=False)]
         # lambda function splits the files string by dot and slash returning just the filename
-        filenames = list(map(lambda x: x.split(".")[0].split("/")[1], files))
+        if os.name == "nt":
+            filenames = list(map(lambda x: x.split(".")[0].split("\\")[1], files))
+        else:
+            filenames = list(map(lambda x: x.split(".")[0].split("/")[1], files))
+
         # lambda function returns just the digits after 'maze' in the filename
         numbers = list(
             filter(
@@ -248,7 +253,10 @@ class MazeSerializer:
 
     def _save_as_json(self):
         data = self.output
-        path = "mazes/"
+        if os.name == "nt":
+            path = "mazes\\"
+        else:
+            path = "mazes/"
         filename = "{}maze{}_{}x{}.{}".format(
             path,
             self._new_file_num(path),
@@ -262,7 +270,10 @@ class MazeSerializer:
 
     def _save_as_csv(self):
         data = self.output
-        path = "mazes/"
+        if os.name == "nt":
+            path = "mazes\\"
+        else:
+            path = "mazes/"
         filenumber = self._new_file_num(path)
         filename = "{}maze{}_{}x{}.{}".format(
             path,
