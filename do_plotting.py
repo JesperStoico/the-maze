@@ -1,6 +1,8 @@
 import glob
 import matplotlib.pyplot as plt
-import pandas as pd
+import jsbeautifier
+import json
+
 
 def get_files_in_dir(fileformat: str, recursive: bool) -> list:
     path = "mazes/"
@@ -8,77 +10,124 @@ def get_files_in_dir(fileformat: str, recursive: bool) -> list:
     return files
 
 
-files = get_files_in_dir("*", False)
+# files = get_files_in_dir("*", False)
 
 data = []
-data.append(["5x5", "dfs", 10, 0.22])
-data.append(["5x5", "dfs", 10, 0.24])
-data.append(["10x10", "dfs", 15, 0.32])
-data.append(["10x10", "dfs", 15, 0.27])
-data.append(["15x15", "dfs", 26, 0.12])
-data.append(["15x15", "dfs", 26, 0.21])
-data.append(["20x20", "dfs", 34, 0.16])
-data.append(["20x20", "dfs", 34, 0.45])
-data.append(["25x25", "dfs", 56, 0.33])
-data.append(["25x25", "dfs", 56, 0.11])
-data.append(["5x5", "astar", 10, 0.22])
-data.append(["5x5", "astar", 10, 0.24])
-data.append(["10x10", "astar", 10, 0.32])
-data.append(["10x10", "astar", 10, 0.27])
-data.append(["15x15", "astar", 10, 0.12])
-data.append(["15x15", "astar", 10, 0.21])
-data.append(["20x20", "astar", 10, 0.16])
-data.append(["20x20", "astar", 10, 0.45])
-data.append(["25x25", "astar", 10, 0.33])
-data.append(["25x25", "astar", 10, 0.11])
+data.append([(5, 5), "dfs", 10, 0.22, 0.33, 0.24])
+data.append([(10, 10), "dfs", 15, 0.32, 0.33, 0.24])
+data.append([(15, 15), "dfs", 26, 0.12, 0.33, 0.24])
+data.append([(20, 20), "dfs", 34, 0.16, 0.33, 0.24])
+data.append([(25, 25), "dfs", 56, 0.33, 0.33, 0.24])
+data.append([(5, 5), "astar", 10, 0.22, 0.33, 0.24])
+data.append([(10, 10), "astar", 13, 0.32, 0.33, 0.24])
+data.append([(15, 15), "astar", 21, 0.12, 0.33, 0.24])
+data.append([(20, 20), "astar", 29, 0.16, 0.33, 0.24])
+data.append([(25, 25), "astar", 40, 0.11, 0.33, 0.24])
 
 
-def prepare_data_for_plotting(data: list):
-    # data_point = ['maze size', 'algo', 'steps', 'time']
+def _label(size: tuple) -> str:
+    return "{}x{}".format(size[0], size[1])
+
+
+def prepare_data_for_plotting(data: list) -> dict:
+    # data_point = [size, solver, steps, avg time, min time, max time]
 
     # labels = ['5x5', '10x10', '15x15', '20x20', '25x25', '30x30']
-    # print(data)
+    # print('data\n',data)
 
-    data_astar = [data_point for data_point in data if data_point[1] == 'astar']
+    # labels = []
+    # for data_point in data:
+    #     if _label(data_point[0]) not in labels:
+    #         labels.append(_label(data_point[0]))
 
-    # labels = list(set([data_point[0] for data_point in data]))
-    # print("labels:", labels)
+    labels = [_label(data_point[0]) for data_point in data if data_point[1] == "dfs"]
+
+    dfs_steps = [data_point[2] for data_point in data if data_point[1] == "dfs"]
+    astar_steps = [data_point[2] for data_point in data if data_point[1] == "astar"]
+
+    dfs_avg_time = [data_point[3] for data_point in data if data_point[1] == "dfs"]
+    astar_avg_time = [data_point[3] for data_point in data if data_point[1] == "astar"]
+
+    dfs_min_time = [data_point[4] for data_point in data if data_point[1] == "dfs"]
+    astar_min_time = [data_point[4] for data_point in data if data_point[1] == "astar"]
+
+    dfs_max_time = [data_point[5] for data_point in data if data_point[1] == "dfs"]
+    astar_max_time = [data_point[5] for data_point in data if data_point[1] == "astar"]
+
+    plotting_data = {}
+    plotting_data["labels"] = labels
+    plotting_data["dfs_steps"] = dfs_steps
+    plotting_data["astar_steps"] = astar_steps
+    plotting_data["dfs_avg_time"] = dfs_avg_time
+    plotting_data["astar_avg_time"] = astar_avg_time
+    plotting_data["dfs_min_time"] = dfs_min_time
+    plotting_data["astar_min_time"] = astar_min_time
+    plotting_data["dfs_max_time"] = dfs_max_time
+    plotting_data["astar_max_time"] = astar_max_time
+
+    print(jsbeautifier.beautify(json.dumps(plotting_data)))
+    return plotting_data
 
 
-    # steps_dfs = [[data_point[0], data_point[2]] for data_point in data if data_point[1] == "dfs"]
-    # steps_astar = [[data_point[0], data_point[2]] for data_point in data if data_point[1] == "astar"]
+# tutorial: https://towardsdatascience.com/matplotlib-tutorial-learn-basics-of-pythons-powerful-plotting-library-b5d1b8f67596
 
-    # steps_dfs = []
 
-    # times_dfs = [
-    #     [data_point[0], data_point[3]] for data_point in data if data_point[1] == "dfs"
-    # ]
-    # times_astar = [
-    #     [data_point[0], data_point[3]]
-    #     for data_point in data
-    #     if data_point[1] == "astar"
-    # ]
+def prepare_steps_plot(plotting_data: dict) -> plt:
 
-    # print("steps dfs:", steps_dfs)
-    # print("steps astar:", steps_astar)
+    plt.plot(plotting_data["labels"], plotting_data["dfs_steps"], label="dfs steps")
+    plt.plot(plotting_data["labels"], plotting_data["astar_steps"], label="astar steps")
 
-    # print(times_dfs, times_astar)
-    # steps_dfs = [3, 10, 23, 35, 56, 97]
-    # steps_astar = [2, 9, 16, 27, 40, 60]
+    plt.xlabel("maze sizes")
+    plt.ylabel("time")
 
-    # plt.plot(labels, steps_dfs, label='dfs')
-    # plt.plot(labels, steps_astar, label='astar')
+    plt.title("Maze solutions by algorithm")
 
-    # plt.xlabel('maze sizes')
-    # plt.ylabel('steps')
-
-    # plt.title("Maze solutions by algorithm")
-
-    # plt.legend()
+    plt.legend()
 
     # plt.show()
-    # return plt
+    return plt
 
 
-plot = prepare_data_for_plotting(data)
-# plot.show()
+def prepare_times_plot(plotting_data: dict) -> plt:
+    plt.plot(
+        plotting_data["labels"], plotting_data["dfs_avg_time"], label="dfs avg. time"
+    )
+    plt.plot(
+        plotting_data["labels"],
+        plotting_data["astar_avg_time"],
+        label="astar avg. time",
+    )
+    plt.plot(
+        plotting_data["labels"], plotting_data["dfs_min_time"], label="dfs min. time"
+    )
+    plt.plot(
+        plotting_data["labels"],
+        plotting_data["astar_min_time"],
+        label="astar min. time",
+    )
+    plt.plot(
+        plotting_data["labels"], plotting_data["dfs_max_time"], label="dfs max. time"
+    )
+    plt.plot(
+        plotting_data["labels"],
+        plotting_data["astar_max_time"],
+        label="astar max. time",
+    )
+
+    plt.xlabel("maze sizes")
+    plt.ylabel("steps")
+
+    plt.title("Maze solutions by algorithm")
+
+    plt.legend()
+
+    # plt.show()
+    return plt
+
+
+plotting_data = prepare_data_for_plotting(data)
+# plot_steps = prepare_steps_plot(plotting_data)
+plot_times = prepare_times_plot(plotting_data)
+
+# plot_steps.show()
+plot_times.show()
