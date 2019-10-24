@@ -21,6 +21,7 @@ This repo contains a python code to generate and solve random mazes using variou
 * Rewrite overloading of __str__, so we can see what object it is
 * MazeGenerator - generate - User typed start/finish?
 * Simplify MazeSerializer/Deserializer
+* Create function to create plot data __done!__
 
 ### Optional
 * ~~Extend file save/load methods to allow for other filenames than maze.json~~ __done!__
