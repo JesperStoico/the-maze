@@ -4,6 +4,7 @@ import re
 import sys
 import copy
 import json
+import csv
 import glob
 import jsbeautifier
 
@@ -146,8 +147,20 @@ class MazeDeserializer:
             raise Exception
 
     def _load_from_csv(self, filename):
-        # TODO implement this method
-        pass
+        if os.name == "nt":
+            maze_dir = "mazes\\"
+        else:
+            maze_dir = "mazes/"
+        filepath = maze_dir + filename
+        data = {}
+        with open(filepath, mode='r') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                data = row
+            return self.deserialize(data, datatype="dict")  # returns Maze
+        else:
+            raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
+
 
     def deserialize(self, data, datatype) -> Maze:
         # determines which deserilizer to use
