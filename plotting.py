@@ -46,6 +46,9 @@ def create_plot_data():
             # update avg time value
             data_list[idx][3] = (data_list[idx][3] + row[3]) / 2
 
+            # Update steps
+            data_list[idx][2] = (data_list[idx][2] + row[2]) / 2
+
     print(sorted(data_list))
     return sorted(data_list)
 
