@@ -56,10 +56,17 @@ def _load_from_csv(filename):
         reader = csv.DictReader(csv_file)
         for row in reader:
             data = row
-        return convert_data(data, datatype="dict")  # returns Maze
     else:
         raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
-
+    filename = filename.split('maze')[1]
+    filepath = maze_dir + 'maze_stats_' + filename
+    with open(filepath, mode='r') as csv_file:
+        reader = csv.DictReader(csv_file)
+        for row in reader:
+            data.join(row)
+    else:
+        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
+    return convert_data(data, datatype="dict")  # returns Maze
 
 def convert_data(data, datatype) -> Maze:
     """
@@ -173,12 +180,12 @@ def _save_as_csv(data):
         )
     maze_file.close()
 
-    filename = "{}maze_stats{}_{}x{}.{}".format(
-        path,
-        filenumber,
-        (self.maze.width - 1) // 2,
-        (self.maze.height - 1) // 2,
-        self.datatype,
+    filename = "{path}maze_stats_{number}_{width}x{height}.{fileformat}".format(
+        path=path,
+        number=_new_file_num(path),
+        width=(maze.width - 1) // 2,
+        height=(maze.height - 1) // 2,
+        fileformat='csv',
     )
     with open(filename, mode="w") as stats_file:
         fieldnames = ["algo", "route", "steps", "time"]

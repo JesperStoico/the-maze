@@ -185,8 +185,9 @@ class Cell:
         self.f = self.g + self.h
 
 
-# returns dict version of maze (default)
+
 def convert_to_dict(maze):
+    """returns dict version of maze"""
     data = {
         "maze": maze.maze,
         "width": maze.width,
