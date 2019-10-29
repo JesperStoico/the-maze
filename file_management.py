@@ -1,3 +1,11 @@
+"""
+You should only be calling the functions\n
+load and save, directly from this file.\n
+All other functions are just help functions for these calls.
+"""
+from model import convert_to_dict
+
+
 def load(filename, datatype) -> Maze:
     """open filename from disk - must provide datatype"""
     loader = _get_loader(datatype)
@@ -111,7 +119,7 @@ def _new_file_num(self, path: str) -> int:
 
 def save(maze, datatype) -> Maze:
     """save maze to disk in datatype format"""
-    data = _convert_to_dict(maze)
+    data = convert_to_dict(maze)
     if datatype == "json":        
         return _save_as_json(data)
     elif datatype == "csv":        
@@ -188,19 +196,3 @@ def _save_as_csv(data):
                 }
             )
     stats_file.close()
-
-
-# returns dict version of maze (default)
-def _convert_to_dict(maze):
-    data = {
-        "maze": maze.maze,
-        "width": maze.width,
-        "height": maze.height,
-        "start_coords": maze.start_coords,
-        "end_coords": maze.end_coords,
-    }
-    if maze.Stats:  # if maze has stats - add them
-        data["stats"] = []
-        for solution in maze.Stats.solutions:
-            data["stats"].append(solution)
-    return data
