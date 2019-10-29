@@ -52,11 +52,11 @@ print("Bulk generating, solving and saving mazes for plotting".center(80))
 print("#" * 80)
 
 script_start = process_time()
-for i in range(5, 31, 5):
+for i in range(20, 31, 5):
     start_time = process_time()
     mazes = generate_mazes(i, 10)
-    mazes = solve_mazes(mazes, 10, 'dfs')
-    mazes = solve_mazes(mazes, 10, 'astar')
+    mazes = solve_mazes(mazes, 10, "dfs")
+    mazes = solve_mazes(mazes, 10, "astar")
     save_mazes(mazes)
     proc_time = round(Decimal(process_time()) - Decimal(start_time), 2)
     print("Processing time: {} seconds".format(proc_time), end="\n\n")
