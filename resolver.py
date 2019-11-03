@@ -1,3 +1,8 @@
+"""
+Call resolve_maze to resolve the maze with the\n
+avaible resolvers
+"""
+
 import copy
 from time import process_time
 from model import Cell

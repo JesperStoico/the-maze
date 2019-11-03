@@ -1,11 +1,6 @@
 from random import shuffle
-import os
-import re
 import sys
-import copy
 import json
-import csv
-import glob
 import jsbeautifier
 
 # needed for dfg...
@@ -28,7 +23,9 @@ class Maze:
     # Overloaded __str__ method so we can use print(maze)
     # outputs json version of maze
     def __str__(self):
-        ms = convert_to_dict(self)
+        data = convert_to_dict(self)
+        data['info'] = 'This is a maze Object'
+        del data['stats']
         data = json.dumps(data)
         data = jsbeautifier.beautify(data)
         return data
@@ -40,7 +37,6 @@ class MazeGenerator:
         pass
 
     def generate(self, width: int, height: int) -> Maze:
-
         self.empty_maze = [[[] for b in range(width)] for a in range(height)]
         self.raw_maze = self._dfg(self.empty_maze)
         self.pretty_maze = self._convert(self.raw_maze)

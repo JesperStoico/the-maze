@@ -3,48 +3,62 @@ You should only be calling the functions\n
 load and save, directly from this file.\n
 All other functions are just help functions for these calls.
 """
-from model import convert_to_dict
+from collections import OrderedDict
+import json
+import csv
+import os
+import glob
+import jsbeautifier
+
+from model import convert_to_dict, Maze, Stats
 
 
-def load(filename, datatype) -> Maze:
-    """open filename from disk - must provide datatype"""
-    loader = _get_loader(datatype)
-    return loader(filename)  # returns maze
+def load(filename) -> Maze:
+    """
+    Open filename from disk\n
+    Returns : Maze object
+    """
+    filetype = filename.split('.')[1]
+    if filetype == "json":
+        return _load_from_json(filename)
+    if filetype == "csv":
+        return _load_from_csv(filename)
+    raise Exception('We do currently not support {filetype}, sorry'.format(filetype=filetype))
 
 
-def _get_loader(datatype):
-    """returns loader method based on datatype"""
+def save(maze, datatype) -> Maze:
+    """save maze to disk in datatype format"""
+    data = convert_to_dict(maze)
     if datatype == "json":
-        return _load_from_json
-    elif datatype == "csv":
-        return _load_from_csv
-    else:
-        raise Exception('We do currently not support {datatype}, sorry'.format(datatype=datatype))
+        return _save_as_json(data)
+    if datatype == "csv":
+        return _save_as_csv(data)
+    raise Exception('We do currently not support {datatype}, sorry'.format(datatype=datatype))
 
 
 def _load_from_json(filename):
     """
     Load json file\n
-    returns: Maze object
+    Returns: Maze object
     """
     if os.name == "nt":
         maze_dir = "mazes\\"
     else:
         maze_dir = "mazes/"
-
-    if os.path.isfile(maze_dir + filename):
-        with open(maze_dir + filename, "r") as file:
-            data = json.load(file)  # returns dict
-
-        return convert_data(data, datatype="dict")  # returns Maze
-    else:
+    filepath = maze_dir + filename
+    try:
+        if os.path.isfile(maze_dir + filename):
+            with open(maze_dir + filename, "r") as file:
+                data = json.load(file)  # returns dict
+        return convert_from_dict_to_maze(data)  # returns Maze
+    except IOError:
         raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
 
 
 def _load_from_csv(filename):
     """
     Load csv file\n
-    returns: Maze object
+    Returns: Maze object
     """
     if os.name == "nt":
         maze_dir = "mazes\\"
@@ -52,39 +66,37 @@ def _load_from_csv(filename):
         maze_dir = "mazes/"
     filepath = maze_dir + filename
     data = {}
-    with open(filepath, mode='r') as csv_file:
-        reader = csv.DictReader(csv_file)
-        for row in reader:
-            data = row
-    else:
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
-    filename = filename.split('maze')[1]
-    filepath = maze_dir + 'maze_stats_' + filename
-    with open(filepath, mode='r') as csv_file:
-        reader = csv.DictReader(csv_file)
-        for row in reader:
-            data.join(row)
-    else:
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
-    return convert_data(data, datatype="dict")  # returns Maze
+    try:
+        with open(filepath, mode='r') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                data = row
+    except IOError:
+        print('Fail in loading file {filepath}'.format(filepath=filepath))
+    finally:
+        csv_file.close()
+    data = dict(OrderedDict(data))
+    filetype = filename.split('.')[1]
+    filename = filename.split('.')[0]
+    filepath = '{dir}{filename}-stats.{filetype}'.format(dir=maze_dir, filename=filename, filetype=filetype)
+    try:
+        with open(filepath, mode='r') as csv_file:
+            reader = csv.DictReader(csv_file)
+            for row in reader:
+                print(row[0])
+                data['stats'].append(dict(OrderedDict(row)))
+    except IOError:
+        print('Fail in loading file {filepath}'.format(filepath=filepath))
+    finally:
+        csv_file.close()
 
-def convert_data(data, datatype) -> Maze:
+    return convert_from_dict_to_maze(data)
+
+def convert_from_dict_to_maze(data) -> Maze:
     """
-    Choose converter via datatype\n
-    Converts data from datatype to Maze object
+    Convert dict data to maze object\n
     Returns: Maze object
     """
-    deserializer = _get_converter(datatype)
-    return deserializer(data)
-
-
-def _get_converter(datatype):
-    """returns deserializer method based on datatype"""
-    if datatype.lower() == "dict":
-        return _convert_from_dict
-
-
-def _convert_from_dict(data):
     maze = Maze(
         data["maze"],
         data["width"],
@@ -98,23 +110,15 @@ def _convert_from_dict(data):
             maze.Stats.solutions.append(stat)
     return maze
 
-
-def _new_file_num(self, path: str) -> int:
+def _new_file_num(path: str) -> int:
     path = path
     # returns a list of files in mazes folder
     files = [f for f in glob.glob(path + "*.*", recursive=False)]
-    # lambda function splits the files string by dot and slash returning just the filename
+    # lambda function splits the files string down to just the number
     if os.name == "nt":
-        filenames = list(map(lambda x: x.split(".")[0].split("\\")[1], files))
+        numbers = list(map(lambda x: x.split("_")[0].split("\\maze")[1], files))
     else:
-        filenames = list(map(lambda x: x.split(".")[0].split("/")[1], files))
-    # lambda function returns just the digits after 'maze' in the filename
-    numbers = list(
-        filter(
-            lambda x: x.isdigit(),
-            map(lambda x: x.split("maze")[1].split("_")[0], filenames),
-        )
-    )
+        numbers = list(map(lambda x: x.split("_")[0].split("/maze")[1], files))
     if numbers:
         # find the highest number in the list
         highest_num = max(int(num) for num in numbers)
@@ -123,18 +127,6 @@ def _new_file_num(self, path: str) -> int:
     new_file_num = highest_num + 1
     return new_file_num
 
-
-def save(maze, datatype) -> Maze:
-    """save maze to disk in datatype format"""
-    data = convert_to_dict(maze)
-    if datatype == "json":        
-        return _save_as_json(data)
-    elif datatype == "csv":        
-        return _save_as_csv(data)
-    else:
-        raise Exception
-
-    
 def _save_as_json(data):
     if os.name == "nt":
         path = "mazes\\"
@@ -143,8 +135,8 @@ def _save_as_json(data):
     filename = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
         number=_new_file_num(path),
-        width=(maze.width - 1) // 2,
-        height=(maze.height - 1) // 2,
+        width=(data['width'] - 1) // 2,
+        height=(data['height'] - 1) // 2,
         fileformat='json',
     )
     data = json.dumps(data)
@@ -152,20 +144,22 @@ def _save_as_json(data):
     with open(filename, "w") as file:
         file.writelines(data)
 
-def _save_as_csv(data):    
+
+def _save_as_csv(data):
     if os.name == "nt":
         path = "mazes\\"
     else:
-        path = "mazes/"    
+        path = "mazes/"
+    filenumber = _new_file_num(path)
     filename = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
-        number=_new_file_num(path),
-        width=(maze.width - 1) // 2,
-        height=(maze.height - 1) // 2,
+        number=filenumber,
+        width=(data['width'] - 1) // 2,
+        height=(data['height'] - 1) // 2,
         fileformat='csv',
     )
     with open(filename, mode="w") as maze_file:
-        fieldnames = ["width", "height", "start_coord", "end_coord", "maze"]
+        fieldnames = ["width", "height", "start_coords", "end_coords", "maze"]
         writer = csv.DictWriter(maze_file, fieldnames=fieldnames)
 
         writer.writeheader()
@@ -173,18 +167,18 @@ def _save_as_csv(data):
             {
                 "width": data["width"],
                 "height": data["height"],
-                "start_coord": data["start_coord"],
-                "end_coord": data["end_coord"],
+                "start_coords": data["start_coords"],
+                "end_coords": data["end_coords"],
                 "maze": data["maze"],
             }
         )
     maze_file.close()
-
-    filename = "{path}maze_stats_{number}_{width}x{height}.{fileformat}".format(
+    #  Save stats file
+    filename = "{path}maze{number}_{width}x{height}-stats.{fileformat}".format(
         path=path,
-        number=_new_file_num(path),
-        width=(maze.width - 1) // 2,
-        height=(maze.height - 1) // 2,
+        number=filenumber,
+        width=(data['width'] - 1) // 2,
+        height=(data['height'] - 1) // 2,
         fileformat='csv',
     )
     with open(filename, mode="w") as stats_file:
