@@ -181,7 +181,7 @@ class Cell:
         self.f = self.g + self.h
 
 
-class Singelton_maze:
+class Singelton_maze(object):
     instance = None
 
     def __new__(self):
