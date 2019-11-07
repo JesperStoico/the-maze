@@ -26,18 +26,17 @@ def get_current_maze():
 
 def run_DFS_on_maze(run_X_times, solver1):
     """Used to run a resolver x amunt of times on the current maze"""
-    current_maze = Singelton_maze()
-    resolve_maze(current_maze.maze, amount=run_X_times, solver=solver1)
+    resolve_maze(get_current_maze, amount=run_X_times, solver=solver1)
 
 
 def save_maze():
-    current_maze = Singelton_maze()
-    save(current_maze.maze, "json")
+    save(get_current_maze, "json")
 
 
 def load_maze(filename, data_type):
     current_maze = Singelton_maze()
     current_maze.maze = load(filename)
+    return current_maze.maze
 
 
 def get_files_in_dir(fileformat: str) -> list:

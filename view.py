@@ -64,8 +64,7 @@ class Window(tk.Frame):
     # Loads maze to be current maze
     def load_maze(self):
         selection = self.lb.get(self.lb.curselection())
-        controller.load_maze(selection, "json")
-        self.draw_maze(controller.get_current_maze())
+        self.draw_maze(controller.load_maze(selection, "json"))
 
     # Creates and saves multiple mazes
     def mass_creation(self):
