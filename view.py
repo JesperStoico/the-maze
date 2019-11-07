@@ -195,6 +195,7 @@ class Window(tk.Frame):
     def get_maze_files(self):
         list = controller.get_files_in_dir("json")
         list.sort(key=len)
+        self.lb.delete(0, tk.END)
         for count, maze in enumerate(list):
             self.lb.insert(count, maze)
 
