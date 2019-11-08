@@ -12,7 +12,6 @@ def start():
 
 def create_new_maze(width, height):
     """Used to creates a new maze and return it"""
-    # global current_maze
     current_maze = Singelton_maze()
     current_maze.maze = MazeGenerator().generate(width, height)
     return current_maze.maze
@@ -26,11 +25,11 @@ def get_current_maze():
 
 def run_DFS_on_maze(run_X_times, solver1):
     """Used to run a resolver x amunt of times on the current maze"""
-    resolve_maze(get_current_maze, amount=run_X_times, solver=solver1)
+    resolve_maze(get_current_maze(), amount=run_X_times, solver=solver1)
 
 
 def save_maze():
-    save(get_current_maze, "json")
+    save(get_current_maze(), "json")
 
 
 def load_maze(filename, data_type):
