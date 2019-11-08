@@ -57,7 +57,7 @@ def _load_from_json(filename):
 
 def _load_from_csv(filename):
     """
-    Load csv file\n
+    Load csv files (Maze and stats)\n
     Returns: Maze object
     """
     if os.name == "nt":
@@ -83,8 +83,7 @@ def _load_from_csv(filename):
         with open(filepath, mode='r') as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                print(row[0])
-                data['stats'].append(dict(OrderedDict(row)))
+                data['stats'].append(dict(row['algo'], row['route'], row['steps'], row['time']))
     except IOError:
         print('Fail in loading file {filepath}'.format(filepath=filepath))
     finally:
@@ -150,6 +149,7 @@ def _save_as_csv(data):
         path = "mazes\\"
     else:
         path = "mazes/"
+    #  Saves filenumber to be able to use same on both files
     filenumber = _new_file_num(path)
     filename = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
@@ -159,9 +159,14 @@ def _save_as_csv(data):
         fileformat='csv',
     )
     with open(filename, mode="w") as maze_file:
-        fieldnames = ["width", "height", "start_coords", "end_coords", "maze"]
-        writer = csv.DictWriter(maze_file, fieldnames=fieldnames)
-
+        fieldnames = []
+        writer = csv.DictWriter(maze_file, fieldnames=[
+            "width",
+            "height",
+            "start_coords",
+            "end_coords",
+            "maze"
+        ])
         writer.writeheader()
         writer.writerow(
             {
@@ -182,12 +187,14 @@ def _save_as_csv(data):
         fileformat='csv',
     )
     with open(filename, mode="w") as stats_file:
-        fieldnames = ["algo", "route", "steps", "time"]
-        writer = csv.DictWriter(stats_file, fieldnames=fieldnames)
-        stat_data = data["stats"]
-
+        writer = csv.DictWriter(stats_file, fieldnames=[
+            "algo",
+            "route",
+            "steps",
+            "time"
+        ])
         writer.writeheader()
-        for row, data in enumerate(stat_data):
+        for row in data['stats']:
             writer.writerow(
                 {
                     "algo": stat_data[row]["algo"],
