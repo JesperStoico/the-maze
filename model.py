@@ -181,6 +181,15 @@ class Cell:
         self.f = self.g + self.h
 
 
+class Singelton_maze(object):
+    instance = None
+
+    def __new__(self):
+        if not self.instance:
+            self.instance = super(Singelton_maze, self).__new__(self)
+            self.maze = None
+        return self.instance
+
 
 def convert_to_dict(maze):
     """returns dict version of maze"""

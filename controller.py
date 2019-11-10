@@ -1,11 +1,9 @@
-import model
+from model import MazeGenerator, Singelton_maze
 import view
 from resolver import resolve_maze
 import glob
 import os
 from file_management import load, save
-
-current_maze = []
 
 
 def start():
@@ -14,32 +12,30 @@ def start():
 
 def create_new_maze(width, height):
     """Used to creates a new maze and return it"""
-    global current_maze
-    current_maze = model.MazeGenerator().generate(width, height)
-    return current_maze
+    current_maze = Singelton_maze()
+    current_maze.maze = MazeGenerator().generate(width, height)
+    return current_maze.maze
 
 
 def get_current_maze():
     """Used to getting the current maze that is shown"""
-    return current_maze
+    current_maze = Singelton_maze()
+    return current_maze.maze
 
 
 def run_DFS_on_maze(run_X_times, solver1):
     """Used to run a resolver x amunt of times on the current maze"""
-    global current_maze
-    resolve_maze(current_maze, amount=run_X_times, solver=solver1)
+    resolve_maze(get_current_maze(), amount=run_X_times, solver=solver1)
 
 
 def save_maze():
-    global current_maze
-    save(current_maze, "json")
-    # model.MazeSerializer(current_maze, "json").save()
+    save(get_current_maze(), "json")
 
 
 def load_maze(filename, data_type):
-    global current_maze
-    current_maze = load(filename)
-    # current_maze = model.MazeDeserializer().load(filename, data_type)
+    current_maze = Singelton_maze()
+    current_maze.maze = load(filename)
+    return current_maze.maze
 
 
 def get_files_in_dir(fileformat: str) -> list:
