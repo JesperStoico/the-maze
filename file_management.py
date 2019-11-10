@@ -74,21 +74,24 @@ def _load_from_csv(filename):
     except IOError:
         print('Fail in loading file {filepath}'.format(filepath=filepath))
     finally:
-        csv_file.close()
+        if maze:
+            print('Maze loaded succesfully')
     data = dict(OrderedDict(data))
     filetype = filename.split('.')[1]
     filename = filename.split('.')[0]
     filepath = '{dir}{filename}-stats.{filetype}'.format(dir=maze_dir, filename=filename, filetype=filetype)
+    data['stats'] = []
     try:
         with open(filepath, mode='r') as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                data['stats'].append(dict(row['algo'], row['route'], row['steps'], row['time']))
+                row = dict(OrderedDict(row))
+                data['stats'].append(row)
     except IOError:
         print('Fail in loading file {filepath}'.format(filepath=filepath))
     finally:
-        csv_file.close()
-
+        if maze:
+            print('Maze stats loaded succesfully')
     return convert_from_dict_to_maze(data)
 
 def convert_from_dict_to_maze(data) -> Maze:
@@ -159,7 +162,6 @@ def _save_as_csv(data):
         fileformat='csv',
     )
     with open(filename, mode="w") as maze_file:
-        fieldnames = []
         writer = csv.DictWriter(maze_file, fieldnames=[
             "width",
             "height",
@@ -197,10 +199,10 @@ def _save_as_csv(data):
         for row in data['stats']:
             writer.writerow(
                 {
-                    "algo": stat_data[row]["algo"],
-                    "route": stat_data[row]["route"],
-                    "steps": stat_data[row]["steps"],
-                    "time": stat_data[row]["time"],
+                    "algo": row["algo"],
+                    "route": row["route"],
+                    "steps": row["steps"],
+                    "time": row["time"],
                 }
             )
     stats_file.close()
