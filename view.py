@@ -58,13 +58,13 @@ class Window(tk.Frame):
 
     # Saves current maze
     def save_maze(self):
-        controller.save_maze()
+        controller.save_maze(self.ask_for_format())
         self.get_maze_files()
 
     # Loads maze to be current maze
     def load_maze(self):
         selection = self.lb.get(self.lb.curselection())
-        self.draw_maze(controller.load_maze(selection, "json"))
+        self.draw_maze(controller.load_maze(selection))
 
     # Creates and saves multiple mazes
     def mass_creation(self):
@@ -184,15 +184,20 @@ class Window(tk.Frame):
         solver = "empty"
         while solver.lower() != 'dfs' and solver.lower() != 'astar':
             solver = simpledialog.askstring("Reolver", "Choice resolving metode: dfs or astar")
-        # var1 = "dfs"
-        # var2 = "astar"
-        # tk.Checkbutton(self.master, text="DFS", variable=var1).grid(row=2, column=0, sticky="n")
-        # tk.Checkbutton(self.master, text="A-Star", variable=var2).grid(row=2, column=0, sticky="n")
         return solver
+
+    # Ask user for format
+    def ask_for_format(self):
+        format = "empty"
+        while format.lower() != 'json' and format.lower() != 'csv':
+            format = simpledialog.askstring("Format", "Choice format: json or csv")
+        return format
 
     # Updates listbox with files
     def get_maze_files(self):
-        list = controller.get_files_in_dir("json")
+        list_csv = controller.get_files_in_dir("csv")
+        list_json = controller.get_files_in_dir("json")
+        list = list_csv + list_json
         list.sort(key=len)
         self.lb.delete(0, tk.END)
         for count, maze in enumerate(list):

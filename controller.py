@@ -28,11 +28,11 @@ def run_DFS_on_maze(run_X_times, solver1):
     resolve_maze(get_current_maze(), amount=run_X_times, solver=solver1)
 
 
-def save_maze():
-    save(get_current_maze(), "json")
+def save_maze(format):
+    save(get_current_maze(), format)
 
 
-def load_maze(filename, data_type):
+def load_maze(filename):
     current_maze = Singelton_maze()
     current_maze.maze = load(filename)
     return current_maze.maze
