@@ -7,21 +7,26 @@ This repo contains a python code to generate and solve random mazes using variou
 
 ### TODO
 * ~~Write comments in model.py~~ __done!__
-* Implement CSV methods for se-/deserializing mazes
+* ~~Implement CSV methods for se-/deserializing mazes~~__done__
 * ~~Test se-/deserializing mazes with stats~~ __done!__
 * Refactor timing method in Resolver to output more readable numbers
 * ~~Refactor resolver class to methods in separate file~~ __done!__
 * ~~refactor MazeGenerator to facade pattern~~
 * ~~Implement AStar resolver~~ __done!__
 * Controller functions
-  * get list of __done!__
-  * load maze and stats from file __done!__
-  * generate new maze __done!__
-* Refactor A-start to return tuples instead of cells to solution __done!__
-* Rewrite overloading of __str__, so we can see what object it is
-* MazeGenerator - generate - User typed start/finish?
-* Simplify MazeSerializer/Deserializer
-* Create function to create plot data __done!__
+  * ~~get list of~~ __done!__
+  * ~~load maze and stats from file~~ __done!__
+  * ~~generate new maze~~ __done!__
+* ~~Refactor A-start to return tuples instead of cells to solution~~ __done!__
+* ~~Rewrite overloading of __str__, so we can see what object it is~~__done!__
+* ~~MazeGenerator - generate - User typed start/finish?~~__won't fix__
+* ~~Simplify MazeSerializer/Deserializer~~__done refactored__
+* ~~Create function to create plot data~~ __done!__
+* Rewrite get_files function to not retrieve stats files
+* Consolidate plotting files to one file
+* Plotting in view
+* Handle mazes with only one resolver type
+* Run mass generation from view
 
 ### Optional
 * ~~Extend file save/load methods to allow for other filenames than maze.json~~ __done!__
