@@ -1,4 +1,4 @@
-from model import MazeGenerator, MazeSerializer
+from model import MazeFactory, MazeSerializer
 from model import Maze
 from resolver import resolve_maze
 from time import process_time
@@ -13,8 +13,7 @@ def generate_mazes(size: int, amount: int) -> list:
     mazes = []
     for i in range(amount):
         print("Generating Maze {} of size {}x{}..".format(i + 1, size, size))
-        mg = MazeGenerator()
-        maze = mg.generate(size, size)
+        maze = MazeFactory.generate(size, size)
         mazes.append(maze)
 
     return mazes

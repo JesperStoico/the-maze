@@ -11,7 +11,7 @@ This repo contains a python code to generate and solve random mazes using variou
 * ~~Test se-/deserializing mazes with stats~~ __done!__
 * Refactor timing method in Resolver to output more readable numbers
 * ~~Refactor resolver class to methods in separate file~~ __done!__
-* refactor MazeGenerator to facade pattern
+* ~~refactor MazeGenerator to facade pattern~~
 * ~~Implement AStar resolver~~ __done!__
 * Controller functions
   * get list of __done!__

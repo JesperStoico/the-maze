@@ -1,8 +1,9 @@
-from model import MazeGenerator, Singelton_maze
-import view
-from resolver import resolve_maze
-import glob
 import os
+import glob
+
+import view
+from model import MazeFactory, Singelton_maze
+from resolver import resolve_maze
 from file_management import load, save
 
 
@@ -13,7 +14,7 @@ def start():
 def create_new_maze(width, height):
     """Used to creates a new maze and return it"""
     current_maze = Singelton_maze()
-    current_maze.maze = MazeGenerator().generate(width, height)
+    current_maze.maze = MazeFactory.generate(width, height)
     return current_maze.maze
 
 
