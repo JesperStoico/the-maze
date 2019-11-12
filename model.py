@@ -24,40 +24,36 @@ class Maze:
     # outputs json version of maze
     def __str__(self):
         data = convert_to_dict(self)
-        data['info'] = 'This is a maze Object'
-        del data['stats']
+        data["info"] = "This is a maze Object"
+        del data["stats"]
         data = json.dumps(data)
         data = jsbeautifier.beautify(data)
         return data
 
 
-# MazeGenerator outputs new mazes based on width/height input
-class MazeGenerator:
-    def __init__(self):
-        pass
+class MazeFactory:
+    @classmethod
+    def generate(cls, width: int, height: int) -> Maze:
+        empty_maze = [[[] for b in range(width)] for a in range(height)]
+        raw_maze = cls._dfg(empty_maze)
+        pretty_maze = cls._convert(raw_maze)
+        start_coords = (1, 1)
+        end_coords = (len(pretty_maze) - 2, len(pretty_maze[0]) - 2)
 
-    def generate(self, width: int, height: int) -> Maze:
-        self.empty_maze = [[[] for b in range(width)] for a in range(height)]
-        self.raw_maze = self._dfg(self.empty_maze)
-        self.pretty_maze = self._convert(self.raw_maze)
-        self.start_coords = (1, 1)
-        # self.end_coords = ((width * 2) - 1, (height * 2) - 1)
-        self.end_coords = (len(self.pretty_maze) - 2, len(self.pretty_maze[0]) - 2)
+        # set entrace on maze
+        pretty_maze[start_coords[0]][start_coords[1]] = "3"
 
-        self._set_entrance()
-        self._set_exit()
+        # awr exit on maze
+        pretty_maze[end_coords[0]][end_coords[1]] = "2"
 
         return Maze(
-            self.pretty_maze,
-            len(self.pretty_maze[0]),
-            len(self.pretty_maze),
-            self.start_coords,
-            self.end_coords,
+            pretty_maze, len(pretty_maze[0]), len(pretty_maze), start_coords, end_coords
         )
 
     # Recursive backtracker.
     # Looks at its neighbors randomly, if unvisitied, visit and recurse
-    def _dfg(self, maze, coords=(0, 0)):
+    @classmethod
+    def _dfg(cls, maze, coords=(0, 0)):
         #  0,1 = right, 1,0 = down, 0,-1 = left, -1,0 = up
         directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         shuffle(directions)
@@ -72,37 +68,22 @@ class MazeGenerator:
                 maze[new_coords[0]][new_coords[1]].append(
                     (-direction[0], -direction[1])
                 )
-                self._dfg(maze, new_coords)
+                cls._dfg(maze, new_coords)
         return maze
 
-    def _convert(self, maze):
-        self.pretty_maze = [
+    @classmethod
+    def _convert(cls, maze):
+        cls.pretty_maze = [
             ["1"] * (2 * len(maze[0]) + 1) for a in range(2 * len(maze) + 1)
         ]
         for y, row in enumerate(maze):
             for x, col in enumerate(row):
-                self.pretty_maze[2 * y + 1][2 * x + 1] = "0"
+                cls.pretty_maze[2 * y + 1][2 * x + 1] = "0"
                 for direction in col:
-                    self.pretty_maze[2 * y + 1 + direction[0]][
+                    cls.pretty_maze[2 * y + 1 + direction[0]][
                         2 * x + 1 + direction[1]
                     ] = "0"
-        return self.pretty_maze
-
-    def _set_entrance(self):
-        self.pretty_maze[self.start_coords[0]][self.start_coords[1]] = "3"
-
-    def _set_exit(self):
-        self.pretty_maze[self.end_coords[0]][self.end_coords[1]] = "2"
-
-    def _convert_data_to_json(self):
-        data = {
-            "maze": self.pretty_maze,
-            "width": len(self.pretty_maze[0]),
-            "height": len(self.pretty_maze),
-            "start_coords": self.start_coords,
-            "end_coords": self.end_coords,
-        }
-        return data
+        return cls.pretty_maze
 
 
 class Stats:
