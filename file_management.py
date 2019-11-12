@@ -67,16 +67,16 @@ def _load_from_csv(filename):
     filepath = maze_dir + filename
     data = {}
     try:
-        with open(filepath, mode='r') as csv_file:
+        with open(filepath) as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                data = row
+                data["maze"] = eval(row['maze'])
+                data['width'] = int(row['width'])
+                data["height"] = int(row['height'])
+                data["start_coords"] = eval(row['start_coords'])
+                data["end_coords"] = eval(row['end_coords'])
     except IOError:
         print('Fail in loading file {filepath}'.format(filepath=filepath))
-    finally:
-        if maze:
-            print('Maze loaded succesfully')
-    data = dict(OrderedDict(data))
     filetype = filename.split('.')[1]
     filename = filename.split('.')[0]
     filepath = '{dir}{filename}-stats.{filetype}'.format(dir=maze_dir, filename=filename, filetype=filetype)
@@ -85,13 +85,14 @@ def _load_from_csv(filename):
         with open(filepath, mode='r') as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                row = dict(OrderedDict(row))
-                data['stats'].append(row)
+                stat_data = {}
+                stat_data['algo'] = str(row['algo'])
+                stat_data['route'] = eval(row['route'])
+                stat_data['steps'] = eval(row['steps'])
+                stat_data['time'] = float(row['time'])
+                data['stats'].append(stat_data)
     except IOError:
         print('Fail in loading file {filepath}'.format(filepath=filepath))
-    finally:
-        if maze:
-            print('Maze stats loaded succesfully')
     return convert_from_dict_to_maze(data)
 
 def convert_from_dict_to_maze(data) -> Maze:
