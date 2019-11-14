@@ -4,11 +4,15 @@ import glob
 import view
 from model import MazeFactory, Singelton_maze
 from resolver import resolve_maze
-from file_management import load, save
+from file_management import load, save, get_files_in_dir
 
 
 def start():
     view.start()
+
+
+def get_files():
+    return get_files_in_dir('*')
 
 
 def create_new_maze(width, height):
@@ -39,13 +43,6 @@ def load_maze(filename):
     return current_maze.maze
 
 
-def get_files_in_dir(fileformat: str) -> list:
-    files = [f for f in glob.glob("mazes/" + "*." + fileformat)]
-    if os.name == "nt":
-        files = list(map(lambda x: x.split("mazes\\")[1], files))
-    else:
-        files = list(map(lambda x: x.split("mazes/")[1], files))
-    return files
 
 
 if __name__ == "__main__":

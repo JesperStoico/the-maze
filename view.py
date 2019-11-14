@@ -3,6 +3,7 @@ from tkinter import simpledialog
 import controller
 import time
 
+from controller import get_files
 
 class Window(tk.Frame):
     def __init__(self, master):
@@ -195,12 +196,10 @@ class Window(tk.Frame):
 
     # Updates listbox with files
     def get_maze_files(self):
-        list_csv = controller.get_files_in_dir("csv")
-        list_json = controller.get_files_in_dir("json")
-        list = list_csv + list_json
-        list.sort(key=len)
+        file_list = get_files()
+        file_list.sort(key=len)
         self.lb.delete(0, tk.END)
-        for count, maze in enumerate(list):
+        for count, maze in enumerate(file_list):
             self.lb.insert(count, maze)
 
 

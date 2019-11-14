@@ -207,3 +207,13 @@ def _save_as_csv(data):
                 }
             )
     stats_file.close()
+
+
+def get_files_in_dir(fileformat: str) -> list:
+    files = [f for f in glob.glob("mazes/" + "*." + fileformat)]
+    files = list(filter(lambda file: "-stats" not in file,files))
+    if os.name == "nt":
+        files = list(map(lambda x: x.split("mazes\\")[1], files))
+    else:
+        files = list(map(lambda x: x.split("mazes/")[1], files))
+    return files
