@@ -1,10 +1,8 @@
-import os
-import glob
-
 import view
 from model import MazeFactory, Singelton_maze
 from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
+from plotting import get_step_plot, get_time_plot
 
 
 def start():
@@ -43,6 +41,12 @@ def load_maze(filename):
     return current_maze.maze
 
 
+def get_time_graph():
+    return get_time_plot
+
+
+def get_step_graph():
+    return get_step_plot
 
 
 if __name__ == "__main__":
