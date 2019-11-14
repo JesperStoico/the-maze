@@ -1,5 +1,7 @@
-# Project Maze
+# Project The Maze
 ## Advanced Programming course project
+
+![My image](http://coursesite.uhcl.edu/HSH/Whitec/LITR/4232/images/Poe/lab4.bmp)
 
 This repo contains a python code to generate and solve random mazes using various algorithms.
 
