@@ -1,9 +1,8 @@
 """
 You should only be calling the functions\n
-load and save, directly from this file.\n
+load, save and get_files_in_dir, directly from this file.\n
 All other functions are just help functions for these calls.
 """
-from collections import OrderedDict
 import json
 import csv
 import os
@@ -95,6 +94,7 @@ def _load_from_csv(filename):
         print('Fail in loading file {filepath}'.format(filepath=filepath))
     return convert_from_dict_to_maze(data)
 
+
 def convert_from_dict_to_maze(data) -> Maze:
     """
     Convert dict data to maze object\n
@@ -113,6 +113,7 @@ def convert_from_dict_to_maze(data) -> Maze:
             maze.Stats.solutions.append(stat)
     return maze
 
+
 def _new_file_num(path: str) -> int:
     path = path
     # returns a list of files in mazes folder
@@ -129,6 +130,7 @@ def _new_file_num(path: str) -> int:
         highest_num = 0
     new_file_num = highest_num + 1
     return new_file_num
+
 
 def _save_as_json(data):
     if os.name == "nt":
