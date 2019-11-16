@@ -42,11 +42,11 @@ def load_maze(filename):
 
 
 def get_time_graph():
-    return get_time_plot
+    return get_time_plot()
 
 
 def get_step_graph():
-    return get_step_plot
+    return get_step_plot()
 
 
 if __name__ == "__main__":

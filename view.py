@@ -1,15 +1,18 @@
 import tkinter as tk
 from tkinter import simpledialog
-import controller
-import time
+from time import sleep
+from matplotlib import use
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
-from controller import get_files
+from controller import get_files, get_time_graph, get_step_graph
+from controller import create_new_maze, get_current_maze
+from controller import run_DFS_on_maze, save_maze, load_maze
+
 
 class Window(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         self.master = master
-        self.maze_canvas = tk.Canvas(self.master, background="black")
         self.window_height = self.master.winfo_screenheight()
         self.window_width = self.master.winfo_screenwidth()
 
@@ -39,15 +42,16 @@ class Window(tk.Frame):
         maze_menu.add_command(label="Show rute", command=self.draw_route)
         maze_menu.add_command(label="Save maze", command=self.save_maze)
         maze_menu.add_command(label="Mass creation", command=self.mass_creation)
-        maze_menu.add_command(label="Show stats")
+        maze_menu.add_command(label="Show_time_graph (error)", comman=self.draw_time_graf)
+        maze_menu.add_command(label="Show_step_graph", comman=self.draw_step_graf)
 
     # Maze menu funktions
     # create and display a new maze
     def create_new_maze(self):
         width = simpledialog.askinteger("width", "How wide you want you maze")
         height = simpledialog.askinteger("height", "How high you want you maze")
-        controller.create_new_maze(width, height)
-        self.draw_maze(controller.get_current_maze())
+        create_new_maze(width, height)
+        self.draw_maze(get_current_maze())
 
     # Run solver on current maze
     def run_DFS(self):
@@ -55,17 +59,17 @@ class Window(tk.Frame):
         run_X_times = simpledialog.askinteger(
             "Running times", "How many times you want to run it"
         )
-        controller.run_DFS_on_maze(run_X_times, solver)
+        run_DFS_on_maze(run_X_times, solver)
 
     # Saves current maze
     def save_maze(self):
-        controller.save_maze(self.ask_for_format())
+        save_maze(self.ask_for_format())
         self.get_maze_files()
 
     # Loads maze to be current maze
     def load_maze(self):
         selection = self.lb.get(self.lb.curselection())
-        self.draw_maze(controller.load_maze(selection))
+        self.draw_maze(load_maze(selection))
 
     # Creates and saves multiple mazes
     def mass_creation(self):
@@ -78,14 +82,33 @@ class Window(tk.Frame):
             "Running times", "How many times you want to run DFS"
         )
         for x in range(Number_of_mazes):
-            controller.create_new_maze(width, height)
-            controller.run_DFS_on_maze(run_X_times)
+            create_new_maze(width, height)
+            run_DFS_on_maze(run_X_times)
             self.save_maze()
         self.get_maze_files()
 
+        # Draw graf on canvas
+
+    # Show graph in existing wondow
+    def draw_time_graf(self):
+        use("TkAgg")
+        self.fig = get_time_graph().gcf()
+        self.graph_canvas = FigureCanvasTkAgg(self.fig, self.master)
+        self.graph_canvas.draw()
+        self.graph_canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+        self.toolbar = NavigationToolbar2Tk(self.graph_canvas, self)
+        self.toolbar.update()
+        self.graph_canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+
+    # Show graf in new window
+    def draw_step_graf(self):
+        use("TkAgg")
+        plt = get_step_graph()
+        plt.show()
+
     # Draw route on maze
     def draw_route(self):
-        maze = controller.get_current_maze()
+        maze = get_current_maze()
         resolver_type = self.ask_for_solver()
         if resolver_type == "dfs":
             color = "orange"
@@ -111,7 +134,7 @@ class Window(tk.Frame):
             x = x_next
             count = count + 1
             self.master.update()
-            time.sleep(0.05)
+            sleep(0.05)
 
     # Draw current maze
     def draw_maze(self, maze):
@@ -120,7 +143,7 @@ class Window(tk.Frame):
         ajusting the canvas\n
         drawing the maze
         """
-        self.maze_canvas.delete("all")
+        # self.maze_canvas.delete("all")
         self.maze_canvas = tk.Canvas(
             self.master,
             background="black",
@@ -161,7 +184,6 @@ class Window(tk.Frame):
                 self.start_y = self.start_y + 9
                 self.slut_y = self.slut_y + 9
             self.count = self.count + 1
-        # TODO få scroll til at virke ved store mazes
         ver_scroll = tk.Scrollbar(self.master, orient=tk.VERTICAL)
         ver_scroll.grid(row=0, column=1, sticky="ns")
         ver_scroll.config(command=self.maze_canvas.yview)
@@ -205,7 +227,7 @@ class Window(tk.Frame):
 
 def start():
     root = tk.Tk()
-    root.title("My maze solver")
+    root.title("The Maze")
     window_height = root.winfo_screenheight()
     window_width = root.winfo_screenwidth()
     root.geometry("%dx%d+0+0" % (window_width, window_height))
