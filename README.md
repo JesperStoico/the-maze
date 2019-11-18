@@ -24,7 +24,7 @@ This repo contains a python code to generate and solve random mazes using variou
 * ~~MazeGenerator - generate - User typed start/finish?~~ __won't fix__
 * ~~Simplify MazeSerializer/Deserializer~~ __done refactored__
 * ~~Create function to create plot data~~ __done!__
-* Rewrite get_files function to not retrieve stats files
+* ~~Rewrite get_files function to not retrieve stats files~~ __done!__
 * Consolidate plotting files to one file
 * Plotting in view
 * Handle mazes with only one resolver type
