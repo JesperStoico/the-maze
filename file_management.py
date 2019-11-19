@@ -9,7 +9,10 @@ import os
 import glob
 import jsbeautifier
 
-from model import convert_to_dict, Maze, Stats
+from model import convert_to_dict, Maze, Stats, Logging
+
+
+logger = Logging()
 
 
 def load(filename) -> Maze:
@@ -145,6 +148,7 @@ def _save_as_json(data):
     try:
         with open(filepath, "w") as file:
             file.writelines(data)
+        logger.dispatch('Your file is saved {}'.format(filepath))
     except IOError:
         raise Exception('Cannot save file, {filepath}'.format(filepath=filepath))
 

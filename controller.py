@@ -1,5 +1,6 @@
 import view
-from model import MazeFactory, Singelton_maze
+# from view import update_logger_label
+from model import MazeFactory, Singelton_maze, Logging, Log_subcriber
 from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
 from plotting import get_step_plot, get_time_plot
@@ -50,4 +51,10 @@ def get_step_graph():
 
 
 if __name__ == "__main__":
+    logger = Logging()
+    log_view = Log_subcriber('view')
+    logger.register(log_view)
+    log_file = Log_subcriber('file')
+    logger.register(log_file, log_file.save_to_file)
+    logger.dispatch('Test tekst')
     start()
