@@ -42,8 +42,8 @@ class Window(tk.Frame):
         maze_menu.add_command(label="Show rute", command=self.draw_route)
         maze_menu.add_command(label="Save maze", command=self.save_maze)
         maze_menu.add_command(label="Mass creation", command=self.mass_creation)
-        maze_menu.add_command(label="Show_time_graph (error)", comman=self.draw_time_graf)
-        maze_menu.add_command(label="Show_step_graph", comman=self.draw_step_graf)
+        maze_menu.add_command(label="Show graph with time", comman=self.draw_time_graf)
+        maze_menu.add_command(label="Show graph with steps", comman=self.draw_step_graf)
 
     # Maze menu funktions
     # create and display a new maze
@@ -89,16 +89,11 @@ class Window(tk.Frame):
 
         # Draw graf on canvas
 
-    # Show graph in existing wondow
+    # Show graph in existing window
     def draw_time_graf(self):
         use("TkAgg")
-        self.fig = get_time_graph().gcf()
-        self.graph_canvas = FigureCanvasTkAgg(self.fig, self.master)
-        self.graph_canvas.draw()
-        self.graph_canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
-        self.toolbar = NavigationToolbar2Tk(self.graph_canvas, self)
-        self.toolbar.update()
-        self.graph_canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        plt = get_time_graph()
+        plt.show()
 
     # Show graf in new window
     def draw_step_graf(self):
