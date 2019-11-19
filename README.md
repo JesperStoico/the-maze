@@ -30,6 +30,7 @@ This repo contains a python code to generate and solve random mazes using variou
 * Handle mazes with only one resolver type
 * Run mass generation from view
 * Threading
+* Show current maze name in UI
 
 ### Optional
 * ~~Extend file save/load methods to allow for other filenames than maze.json~~ __done!__
