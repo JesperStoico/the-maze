@@ -5,7 +5,6 @@ All other functions are just help functions for these calls.
 """
 from matplotlib import pyplot as plt
 
-
 from file_management import get_files_in_dir, load
 
 
