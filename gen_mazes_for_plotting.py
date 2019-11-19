@@ -1,9 +1,10 @@
-from model import MazeFactory, MazeSerializer
-from model import Maze
-from resolver import resolve_maze
 from time import process_time
 from decimal import Decimal
 
+from model import MazeFactory
+from model import Maze
+from resolver import resolve_maze
+from file_management import save
 #############################################################################
 #  Bulk generating, solving and saving mazes for plotting
 #############################################################################
@@ -41,8 +42,7 @@ def save_mazes(mazes: list):
             ),
             end=" ",
         )
-        maze_export = MazeSerializer(maze, datatype="json")
-        maze_export.save()
+        save(maze, 'json')
         print("Done!")
 
 
