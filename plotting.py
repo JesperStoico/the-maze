@@ -51,6 +51,16 @@ def merge_data_for_plotting(data):
 
             # Update steps
             data_list[idx][2] = (data_list[idx][2] + row[2]) / 2
+        # Sorting away any maze size witout both solvers
+    for data in data_list:
+        count = 0
+        for data2 in data_list:
+            if data[0] == data2[0]:
+                count = count+1
+        if count == 2:
+            pass
+        else:
+            data_list.remove(data)
     return sorted(data_list)
 
 
@@ -65,17 +75,6 @@ def prepare_data_for_plotting(data: list) -> dict:
 
     def label(size: tuple) -> str:
         return "{}x{}".format(size[0], size[1])
-
-    # Sorting away any maze size witout both solvers
-    for data_point in data:
-        count = 0
-        for data_point2 in data:
-            if data_point[0] == data_point2[0]:
-                count = count+1
-        if count == 2:
-            pass
-        else:
-            data.remove(data_point)
 
     labels = set([label(data_point[0]) for data_point in data])
     labels = sorted(set(labels), key=lambda x: int(x.split("x")[0]) * int(x.split("x")[1]))
@@ -140,3 +139,6 @@ def get_time_plot():
     preped_data = prepare_data_for_plotting(merge_data)
     plot = prepare_times_plot(preped_data)
     return plot
+
+
+print(merge_data_for_plotting(get_stats_data()))
