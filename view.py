@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import simpledialog
 from time import sleep
 from matplotlib import use
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
 from controller import get_files, get_time_graph, get_step_graph
 from controller import create_new_maze, get_current_maze
@@ -214,7 +213,7 @@ class Window(tk.Frame):
     # Updates listbox with files
     def get_maze_files(self):
         file_list = get_files()
-        file_list.sort(key=len)
+        file_list = sorted(set(file_list), key=lambda x: int(x.split("x")[0].split("_")[1]) * int(x.split("x")[1].split(".")[0]))
         self.lb.delete(0, tk.END)
         for count, maze in enumerate(file_list):
             self.lb.insert(count, maze)
