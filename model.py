@@ -34,7 +34,7 @@ class Maze:
 class MazeFactory:
     @classmethod
     def generate(cls, width: int, height: int) -> Maze:
-        empty_maze = [[[] for b in range(width)] for a in range(height)]
+        empty_maze = generate_empty_maze(width, height)
         raw_maze = cls._dfg(empty_maze)
         pretty_maze = cls._convert(raw_maze)
         start_coords = (1, 1)
@@ -49,6 +49,13 @@ class MazeFactory:
         return Maze(
             pretty_maze, len(pretty_maze[0]), len(pretty_maze), start_coords, end_coords
         )
+
+
+    @classmethod
+    def generate_empty_maze(cls, width, height):
+        empty_maze = [[[] for b in range(width)] for a in range(height)]
+        return empty_maze
+
 
     # Recursive backtracker.
     # Looks at its neighbors randomly, if unvisitied, visit and recurse
@@ -69,6 +76,7 @@ class MazeFactory:
                     (-direction[0], -direction[1])
                 )
                 cls._dfg(maze, new_coords)
+        print('Udprint af maze', maze)
         return maze
 
     @classmethod
