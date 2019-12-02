@@ -216,7 +216,8 @@ def _save_as_csv(data):
 
 def get_files_in_dir(fileformat: str) -> list:
     """Returns a list of the files in the mazes dir"""
-    files = [f for f in glob.glob("mazes/" + "*." + fileformat)]
+    path = check_os_path()
+    files = [f for f in glob.glob(path + "*." + fileformat)]
     files = list(filter(lambda file: "-stats" not in file, files))
     if os.name == "nt":
         files = list(map(lambda x: x.split("mazes\\")[1], files))
