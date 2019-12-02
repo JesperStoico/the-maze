@@ -62,6 +62,16 @@ class TestFileManagement(unittest.TestCase):
 
         del_test_file(path, filenames)
 
+    def test_get_files_in_dir(self):
+        path = file_management.check_os_path()
+        filenames = ["maze1_15x15.json", "maze2_20x20.json", "maze3_30x30.json"]
+        write_test_file(path, filenames)
+
+        files = file_management.get_files_in_dir(path)
+        self.assertEqual(files, filenames, "should be {}".format(filenames))
+
+        del_test_file(path, filenames)
+
 
 if __name__ == "__main__":
     unittest.main()
