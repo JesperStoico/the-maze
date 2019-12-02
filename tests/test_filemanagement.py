@@ -40,11 +40,11 @@ class TestFileManagement(unittest.TestCase):
     def test_check_os_path(self):
         if os.name == "nt":
             self.assertEqual(
-                file_management.check_os_path(), "mazes\\", "Should be " "mazes\\"
+                file_management.check_os_path(), "mazes\\", "Should be 'mazes\\'"
             )
         else:
             self.assertEqual(
-                file_management.check_os_path(), "mazes/", "Should be " "mazes/"
+                file_management.check_os_path(), "mazes/", "Should be 'mazes/'"
             )
 
     def test_load_unsupported_file_fails(self):
@@ -56,21 +56,38 @@ class TestFileManagement(unittest.TestCase):
         maze_json = '{"maze": [["1", "1", "1", "1", "1"],["1", "3", "1", "0", "1"],["1", "0", "1", "0", "1"],["1", "0", "0", "2", "1"],["1", "1", "1", "1", "1"]],"width": 5,"height": 5,"start_coords": [1, 1],"end_coords": [3, 3],"stats": []}'
         write_test_file(path, filenames, maze_json)
 
-        self.assertEqual(
-            type(file_management.load(filenames[0])), Maze, "Should return type Maze"
+        self.assertIsInstance(
+            file_management.load(filenames[0]),
+            Maze,
+            "Should return instance of Maze class",
         )
 
         del_test_file(path, filenames)
 
-    def test_get_files_in_dir(self):
+    def test_get_files_in_dir_returns_expected_files(self):
         path = file_management.check_os_path()
+
         filenames = ["maze1_15x15.json", "maze2_20x20.json", "maze3_30x30.json"]
         write_test_file(path, filenames)
 
-        files = file_management.get_files_in_dir(path)
-        self.assertEqual(files, filenames, "should be {}".format(filenames))
-
+        files = file_management.get_files_in_dir("json")
         del_test_file(path, filenames)
+
+        # check if the list contains expected elements, regardsless of order
+        self.assertCountEqual(files, filenames, "should contain {}".format(filenames))
+
+    def test_get_files_in_dir_only_return_expected_file_types(self):
+        path = file_management.check_os_path()
+
+        filenames = ["maze1_15x15.json", "maze2_20x20.json", "maze3_30x30.csv"]
+        write_test_file(path, filenames)
+
+        files = file_management.get_files_in_dir("csv")
+        del_test_file(path, filenames)
+
+        self.assertCountEqual(
+            files, ["maze3_30x30.csv"], "should contain {}".format("maze3_30x30.csv")
+        )
 
 
 if __name__ == "__main__":
