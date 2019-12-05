@@ -139,6 +139,3 @@ def get_time_plot():
     preped_data = prepare_data_for_plotting(merge_data)
     plot = prepare_times_plot(preped_data)
     return plot
-
-
-print(merge_data_for_plotting(get_stats_data()))
