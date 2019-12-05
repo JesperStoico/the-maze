@@ -3,6 +3,7 @@ from model import MazeFactory, Singelton_maze
 from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
 from plotting import get_step_plot, get_time_plot
+from model_utility import Logging, Log_subcriber
 
 
 def start():
@@ -50,4 +51,12 @@ def get_step_graph():
 
 
 if __name__ == "__main__":
+    # Initializing logger module publisher and subscriber
+    logger = Logging()
+    # View subscriber, displaying log in view statusline
+    log_view = Log_subcriber('view')
+    logger.register(log_view, log_view.update_view)
+    # File subscriber, saving log lines to log file.
+    log_file = Log_subcriber('file')
+    logger.register(log_file, log_file.save_to_file)
     start()
