@@ -51,6 +51,16 @@ def merge_data_for_plotting(data):
 
             # Update steps
             data_list[idx][2] = (data_list[idx][2] + row[2]) / 2
+        # Sorting away any maze size witout both solvers
+    for data in data_list:
+        count = 0
+        for data2 in data_list:
+            if data[0] == data2[0]:
+                count = count+1
+        if count == 2:
+            pass
+        else:
+            data_list.remove(data)
     return sorted(data_list)
 
 
@@ -63,10 +73,10 @@ def prepare_data_for_plotting(data: list) -> dict:
     # data_point = [size, solver, steps, avg time, min time, max time]
     # labels = ['5x5', '10x10', '15x15', '20x20', '25x25', '30x30']
 
-    def _label(size: tuple) -> str:
+    def label(size: tuple) -> str:
         return "{}x{}".format(size[0], size[1])
 
-    labels = set([_label(data_point[0]) for data_point in data])
+    labels = set([label(data_point[0]) for data_point in data])
     labels = sorted(set(labels), key=lambda x: int(x.split("x")[0]) * int(x.split("x")[1]))
 
     dfs_steps = [data_point[2] for data_point in data if data_point[1] == "dfs"]
@@ -75,11 +85,11 @@ def prepare_data_for_plotting(data: list) -> dict:
     dfs_avg_time = [data_point[3] for data_point in data if data_point[1] == "dfs"]
     astar_avg_time = [data_point[3] for data_point in data if data_point[1] == "astar"]
 
-    dfs_min_time = [data_point[4] for data_point in data if data_point[1] == "dfs"]
-    astar_min_time = [data_point[4] for data_point in data if data_point[1] == "astar"]
+    # dfs_min_time = [data_point[4] for data_point in data if data_point[1] == "dfs"]
+    # astar_min_time = [data_point[4] for data_point in data if data_point[1] == "astar"]
 
-    dfs_max_time = [data_point[5] for data_point in data if data_point[1] == "dfs"]
-    astar_max_time = [data_point[5] for data_point in data if data_point[1] == "astar"]
+    # dfs_max_time = [data_point[5] for data_point in data if data_point[1] == "dfs"]
+    # astar_max_time = [data_point[5] for data_point in data if data_point[1] == "astar"]
 
     plotting_data = {}
     plotting_data["labels"] = labels
@@ -87,10 +97,10 @@ def prepare_data_for_plotting(data: list) -> dict:
     plotting_data["astar_steps"] = astar_steps
     plotting_data["dfs_avg_time"] = dfs_avg_time
     plotting_data["astar_avg_time"] = astar_avg_time
-    plotting_data["dfs_min_time"] = dfs_min_time
-    plotting_data["astar_min_time"] = astar_min_time
-    plotting_data["dfs_max_time"] = dfs_max_time
-    plotting_data["astar_max_time"] = astar_max_time
+    # plotting_data["dfs_min_time"] = dfs_min_time
+    # plotting_data["astar_min_time"] = astar_min_time
+    # plotting_data["dfs_max_time"] = dfs_max_time
+    # plotting_data["astar_max_time"] = astar_max_time
 
     return plotting_data
 
@@ -108,6 +118,8 @@ def prepare_steps_plot(plotting_data: dict) -> plt:
 def prepare_times_plot(plotting_data: dict) -> plt:
     plt.plot(plotting_data["labels"], plotting_data["dfs_avg_time"], label="dfs avg. time")
     plt.plot(plotting_data["labels"], plotting_data["astar_avg_time"], label="astar avg. time",)
+    plt.xlabel("maze sizes")
+    plt.ylabel("time")
     plt.title("Maze solutions by algorithm")
     plt.legend()
     return plt
@@ -127,3 +139,6 @@ def get_time_plot():
     preped_data = prepare_data_for_plotting(merge_data)
     plot = prepare_times_plot(preped_data)
     return plot
+
+
+print(merge_data_for_plotting(get_stats_data()))

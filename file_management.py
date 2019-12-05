@@ -42,6 +42,7 @@ def check_os_path():
     else:
         return "mazes/"
 
+
 def _load_from_json(filename):
     """
     Load json file\n
