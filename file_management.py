@@ -17,12 +17,14 @@ def load(filename) -> Maze:
     Open filename from disk\n
     Returns : Maze object
     """
-    filetype = filename.split('.')[1]
+    filetype = filename.split(".")[1]
     if filetype == "json":
         return _load_from_json(filename)
     if filetype == "csv":
         return _load_from_csv(filename)
-    raise Exception('We do currently not support {filetype}, sorry'.format(filetype=filetype))
+    raise TypeError(
+        "We do currently not support {filetype}, sorry".format(filetype=filetype)
+    )
 
 
 def save(maze, datatype) -> Maze:
@@ -32,7 +34,9 @@ def save(maze, datatype) -> Maze:
         return _save_as_json(data)
     if datatype == "csv":
         return _save_as_csv(data)
-    raise Exception('We do currently not support {datatype}, sorry'.format(datatype=datatype))
+    raise Exception(
+        "We do currently not support {datatype}, sorry".format(datatype=datatype)
+    )
 
 
 def check_os_path():
@@ -55,7 +59,7 @@ def _load_from_json(filename):
                 data = json.load(file)  # returns dict
         return convert_from_dict_to_maze(data)  # returns Maze
     except IOError:
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
+        raise Exception("Fail in loading file {filepath}".format(filepath=filepath))
 
 
 def _load_from_csv(filename):
@@ -69,29 +73,31 @@ def _load_from_csv(filename):
         with open(filepath) as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
-                data["maze"] = eval(row['maze'])
-                data['width'] = int(row['width'])
-                data["height"] = int(row['height'])
-                data["start_coords"] = eval(row['start_coords'])
-                data["end_coords"] = eval(row['end_coords'])
+                data["maze"] = eval(row["maze"])
+                data["width"] = int(row["width"])
+                data["height"] = int(row["height"])
+                data["start_coords"] = eval(row["start_coords"])
+                data["end_coords"] = eval(row["end_coords"])
     except IOError:
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
-    filetype = filename.split('.')[1]
-    filename = filepath.split('.')[0]
-    filepath = '{filename}-stats.{filetype}'.format(filename=filename, filetype=filetype)
-    data['stats'] = []
+        raise Exception("Fail in loading file {filepath}".format(filepath=filepath))
+    filetype = filename.split(".")[1]
+    filename = filepath.split(".")[0]
+    filepath = "{filename}-stats.{filetype}".format(
+        filename=filename, filetype=filetype
+    )
+    data["stats"] = []
     try:
-        with open(filepath, mode='r') as csv_file:
+        with open(filepath, mode="r") as csv_file:
             reader = csv.DictReader(csv_file)
             for row in reader:
                 stat_data = {}
-                stat_data['algo'] = str(row['algo'])
-                stat_data['route'] = eval(row['route'])
-                stat_data['steps'] = eval(row['steps'])
-                stat_data['time'] = float(row['time'])
-                data['stats'].append(stat_data)
+                stat_data["algo"] = str(row["algo"])
+                stat_data["route"] = eval(row["route"])
+                stat_data["steps"] = eval(row["steps"])
+                stat_data["time"] = float(row["time"])
+                data["stats"].append(stat_data)
     except IOError:
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
+        raise Exception("Fail in loading file {filepath}".format(filepath=filepath))
     return convert_from_dict_to_maze(data)
 
 
@@ -137,9 +143,9 @@ def _save_as_json(data):
     filepath = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
         number=_new_file_num(path),
-        width=(data['width'] - 1) // 2,
-        height=(data['height'] - 1) // 2,
-        fileformat='json',
+        width=(data["width"] - 1) // 2,
+        height=(data["height"] - 1) // 2,
+        fileformat="json",
     )
     data = json.dumps(data)
     data = jsbeautifier.beautify(data)
@@ -147,7 +153,7 @@ def _save_as_json(data):
         with open(filepath, "w") as file:
             file.writelines(data)
     except IOError:
-        raise Exception('Cannot save file, {filepath}'.format(filepath=filepath))
+        raise Exception("Cannot save file, {filepath}".format(filepath=filepath))
 
 
 def _save_as_csv(data):
@@ -157,19 +163,16 @@ def _save_as_csv(data):
     filepath = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
         number=filenumber,
-        width=(data['width'] - 1) // 2,
-        height=(data['height'] - 1) // 2,
-        fileformat='csv',
+        width=(data["width"] - 1) // 2,
+        height=(data["height"] - 1) // 2,
+        fileformat="csv",
     )
     try:
         with open(filepath, mode="w") as maze_file:
-            writer = csv.DictWriter(maze_file, fieldnames=[
-                "width",
-                "height",
-                "start_coords",
-                "end_coords",
-                "maze"
-            ])
+            writer = csv.DictWriter(
+                maze_file,
+                fieldnames=["width", "height", "start_coords", "end_coords", "maze"],
+            )
             writer.writeheader()
             writer.writerow(
                 {
@@ -182,25 +185,22 @@ def _save_as_csv(data):
             )
         maze_file.close()
     except IOError:
-        raise Exception('Cannot save file, {filepath}'.format(filepath=filepath))
+        raise Exception("Cannot save file, {filepath}".format(filepath=filepath))
     #  Save stats file
     filepath = "{path}maze{number}_{width}x{height}-stats.{fileformat}".format(
         path=path,
         number=filenumber,
-        width=(data['width'] - 1) // 2,
-        height=(data['height'] - 1) // 2,
-        fileformat='csv',
+        width=(data["width"] - 1) // 2,
+        height=(data["height"] - 1) // 2,
+        fileformat="csv",
     )
     try:
         with open(filepath, mode="w") as stats_file:
-            writer = csv.DictWriter(stats_file, fieldnames=[
-                "algo",
-                "route",
-                "steps",
-                "time"
-            ])
+            writer = csv.DictWriter(
+                stats_file, fieldnames=["algo", "route", "steps", "time"]
+            )
             writer.writeheader()
-            for row in data['stats']:
+            for row in data["stats"]:
                 writer.writerow(
                     {
                         "algo": row["algo"],
@@ -211,12 +211,13 @@ def _save_as_csv(data):
                 )
         stats_file.close()
     except IOError:
-        raise Exception('Cannot save file, {filepath}'.format(filepath=filepath))
+        raise Exception("Cannot save file, {filepath}".format(filepath=filepath))
 
 
 def get_files_in_dir(fileformat: str) -> list:
     """Returns a list of the files in the mazes dir"""
-    files = [f for f in glob.glob("mazes/" + "*." + fileformat)]
+    path = check_os_path()
+    files = [f for f in glob.glob(path + "*." + fileformat)]
     files = list(filter(lambda file: "-stats" not in file, files))
     if os.name == "nt":
         files = list(map(lambda x: x.split("mazes\\")[1], files))
