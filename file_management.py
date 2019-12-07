@@ -136,7 +136,7 @@ def _new_file_num(path: str) -> int:
 
 
 def _save_as_json(data):
-    path = 'mazes{path}'.format(check_os_path())
+    path = 'mazes{path}'.format(path=check_os_path())
     filepath = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
         number=_new_file_num(path),
