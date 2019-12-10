@@ -4,7 +4,7 @@ from time import sleep
 from matplotlib import use
 
 from controller import get_files, get_time_graph, get_step_graph
-from controller import create_new_maze, get_current_maze
+from controller import create_new_maze, get_current_maze, mass_generate_mazes
 from controller import run_DFS_on_maze, save_maze, load_maze
 
 
@@ -40,18 +40,13 @@ def view_load_maze():
 
 # Creates and saves multiple mazes
 def mass_creation():
-    Number_of_mazes = simpledialog.askinteger(
-        "Running times", "How many mazes you want to make"
-    )
-    width = simpledialog.askinteger("width", "How wide you want you maze")
-    height = simpledialog.askinteger("height", "How high you want you maze")
-    run_X_times = simpledialog.askinteger(
-        "Running times", "How many times you want to run DFS"
-    )
-    for x in range(Number_of_mazes):
-        create_new_maze(width, height)
-        run_DFS_on_maze(run_X_times)
-        save_maze()
+    Start_size = simpledialog.askinteger("Start size", "smallest size labyrant you want", minvalue=5, maxvalue=50)
+    end_size = simpledialog.askinteger("End size", "Biggest size labyrant you want", minvalue=5, maxvalue=50)
+    jumps = simpledialog.askinteger("Jumps", "Jump between start and end size", minvalue=1, maxvalue=10)
+    mazes_pr_size = simpledialog.askinteger("Mazes pr size", "amount of mazes pr size", minvalue=1, maxvalue=10)
+    dfs_runs = simpledialog.askinteger("DFS runs", "times to run DFS resolver", minvalue=1, maxvalue=10)
+    astar_runs = simpledialog.askinteger("A-star runs", "times to run A-star resolver", minvalue=1, maxvalue=10)
+    mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs)
     get_maze_files()
 
     # Draw graf on canvas

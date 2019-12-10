@@ -4,6 +4,7 @@ from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
 from plotting import get_step_plot, get_time_plot
 from model_utility import Logging, Log_subcriber
+from gen_mazes_for_plotting import mass_gen_mazes
 
 
 def start():
@@ -48,6 +49,10 @@ def get_time_graph():
 
 def get_step_graph():
     return get_step_plot()
+
+
+def mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs):
+    mass_gen_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs)
 
 
 if __name__ == "__main__":
