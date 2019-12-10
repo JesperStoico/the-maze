@@ -1,3 +1,6 @@
+# This file is just to show the JSON format we have been working around
+# so we all had the same data format to work from
+
 {
     "maze": 
         [[0, 0, 0, 0, 0, 1], 

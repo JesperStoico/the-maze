@@ -5,10 +5,12 @@ from model import MazeFactory
 from model import Maze
 from resolver import resolve_maze
 from file_management import save
+
+"""
 #############################################################################
 #  Bulk generating, solving and saving mazes for plotting
 #############################################################################
-
+"""
 
 def generate_mazes(size: int, amount: int) -> list:
     mazes = []
@@ -46,11 +48,6 @@ def save_mazes(mazes: list):
         print("Done!")
 
 
-print("#" * 80)
-print("Bulk generating, solving and saving mazes for plotting".center(80))
-print("#" * 80)
-
-
 def mass_gen_mazes(Start_size=5, end_size=30, jumps=5, mazes_pr_size=10, dfs_runs=10, astar_runs=10):
     """
     Used to mass generate mazes\n
@@ -61,6 +58,9 @@ def mass_gen_mazes(Start_size=5, end_size=30, jumps=5, mazes_pr_size=10, dfs_run
     dfs_runs - How many times to solve each size with dfs\n
     astar_runs - How many times to solve each size with astar\n
     """
+    print("#" * 80)
+    print("Bulk generating, solving and saving mazes for plotting".center(80))
+    print("#" * 80)
     script_start = process_time()
     for i in range(Start_size, end_size+1, jumps):
         start_time = process_time()

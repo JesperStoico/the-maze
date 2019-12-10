@@ -1,7 +1,8 @@
 """
 You should only be calling the functions\n
 load, save and get_files_in_dir, directly from this file.\n
-All other functions are just help functions for these calls.
+All other functions are just help functions for these calls.\n
+We have in this file used facade pattern as an approach to file management.
 """
 import json
 import csv
@@ -9,8 +10,8 @@ import os
 import glob
 import jsbeautifier
 
-from model import convert_to_dict, Maze, Stats
-from model_utility import Logging, check_os_path
+from model import convert_to_dict, Maze, Stats, Logging
+from utility import check_os_path
 
 # Initializing logging object
 logger = Logging()
@@ -38,7 +39,7 @@ def save(maze, datatype) -> Maze:
     if datatype == "csv":
         return _save_as_csv(data)
     logger.dispatch('We do currently not support {datatype}, sorry'.format(datatype=datatype))
-    raise Exception('We do currently not support {datatype}, sorry'.format(datatype=datatype))
+    raise TypeError('We do currently not support {datatype}, sorry'.format(datatype=datatype))
 
 
 def _load_from_json(filename):
@@ -55,7 +56,7 @@ def _load_from_json(filename):
         return convert_from_dict_to_maze(data)  # returns Maze
     except IOError:
         logger.dispatch('Error in loading file {filepath}'.format(filepath=filepath))
-        raise Exception('Fail in loading file {filepath}'.format(filepath=filepath))
+        raise TypeError('Fail in loading file {filepath}'.format(filepath=filepath))
 
 
 def _load_from_csv(filename):
@@ -76,7 +77,7 @@ def _load_from_csv(filename):
                 data["end_coords"] = eval(row['end_coords'])
     except IOError:
         logger.dispatch('Error in loading file {filepath}'.format(filepath=filepath))
-        raise Exception('Error in loading file {filepath}'.format(filepath=filepath))
+        raise TypeError('Error in loading file {filepath}'.format(filepath=filepath))
     filetype = filename.split('.')[1]
     filename = filepath.split('.')[0]
     filepath = '{filename}-stats.{filetype}'.format(filename=filename, filetype=filetype)
@@ -87,14 +88,15 @@ def _load_from_csv(filename):
             for row in reader:
                 stat_data = {}
                 stat_data['algo'] = str(row['algo'])
-                stat_data['route'] = eval(row['route'])
-                stat_data['steps'] = eval(row['steps'])
+                stat_data['route'] = eval(row['route']) # This hack is not needed in python 3.8
+                stat_data['steps'] = eval(row['steps']) # Returns list instead of string
                 stat_data['time'] = float(row['time'])
                 data['stats'].append(stat_data)
         logger.dispatch('Your file is loaded {filepath}'.format(filepath=filepath))
     except IOError:
-        logger.dispatch('Error in loading file {filepath}'.format(filepath=filepath))
-        raise Exception('Error in loading file {filepath}'.format(filepath=filepath))
+        error_message = 'Error in loading file {filepath}'.format(filepath=filepath)
+        logger.dispatch(error_message)
+        raise TypeError(error_message)
     return convert_from_dict_to_maze(data)
 
 
@@ -152,7 +154,7 @@ def _save_as_json(data):
         logger.dispatch('Your file is saved {filepath}'.format(filepath=filepath))
     except IOError:
         logger.dispatch('Error in saving file {filepath}'.format(filepath=filepath))
-        raise Exception('Error in saving file {filepath}'.format(filepath=filepath))
+        raise TypeError('Error in saving file {filepath}'.format(filepath=filepath))
 
 
 def _save_as_csv(data):
@@ -187,7 +189,7 @@ def _save_as_csv(data):
         maze_file.close()
     except IOError:
         logger.dispatch('Error in saving file {filepath}'.format(filepath=filepath))
-        raise Exception('Error in saving file {filepath}'.format(filepath=filepath))
+        raise TypeError('Error in saving file {filepath}'.format(filepath=filepath))
     #  Save stats file
     filepath = "{path}maze{number}_{width}x{height}-stats.{fileformat}".format(
         path=path,
@@ -218,7 +220,7 @@ def _save_as_csv(data):
         logger.dispatch('Your file is saved {filepath}'.format(filepath=filepath))
     except IOError:
         logger.dispatch('Error in saving file {filepath}'.format(filepath=filepath))
-        raise Exception('Error in saving file {filepath}'.format(filepath=filepath))
+        raise TypeError('Error in saving file {filepath}'.format(filepath=filepath))
 
 
 def get_files_in_dir(fileformat: str) -> list:

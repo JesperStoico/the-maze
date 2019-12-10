@@ -1,17 +1,21 @@
 import view
-from model import MazeFactory, Singelton_maze
+
+from model import MazeFactory, Singelton_maze, Logging, Log_subcriber
 from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
 from plotting import get_step_plot, get_time_plot
-from model_utility import Logging, Log_subcriber
 from gen_mazes_for_plotting import mass_gen_mazes
 
+
+# Initializing logging object
+logger = Logging()
 
 def start():
     view.start()
 
 
 def get_files():
+    # Always returns all files(mazes) in the directory
     return get_files_in_dir('*')
 
 
@@ -28,13 +32,14 @@ def get_current_maze():
     return current_maze.maze
 
 
-def run_DFS_on_maze(run_X_times, solver1):
+def run_DFS_on_maze(run_X_times, solver):
     """Used to run a resolver x amunt of times on the current maze"""
-    resolve_maze(get_current_maze(), amount=run_X_times, solver=solver1)
+    resolve_maze(get_current_maze(), amount=run_X_times, solver=solver)
+    logger.dispatch('You have resolved your maze with {resolver} {amount} times'.format(resolver=solver, amount=run_X_times))
 
 
-def save_maze(format):
-    save(get_current_maze(), format)
+def save_maze(filetype):
+    save(get_current_maze(), filetype)
 
 
 def load_maze(filename):
@@ -52,8 +57,9 @@ def get_step_graph():
 
 
 def mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs):
+    logger.dispatch('Your mass generation is now started...')
     mass_gen_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs)
-
+    logger.dispatch('You have created {amount} mazes'.format(amount=int((((end_size - Start_size) / jumps) + 1) * mazes_pr_size)))
 
 if __name__ == "__main__":
     # Initializing logger module publisher and subscriber

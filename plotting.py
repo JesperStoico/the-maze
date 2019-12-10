@@ -9,8 +9,10 @@ from file_management import get_files_in_dir, load
 
 
 def get_stats_data():
-    """Takes all files in our mazes data folder\n
-    Return : [[(width, height), 'solver', steps, time]]"""
+    """
+    Takes all files in our mazes data folder\n
+    Returns all data : [[(width, height), 'solver', steps, time]]
+    """
     files = get_files_in_dir("*")
     data = []
     for file in files:
@@ -27,9 +29,11 @@ def get_stats_data():
 
 
 def merge_data_for_plotting(data):
-    """Take in a list of lists : [[(width, height), 'solver', steps, time]]\n
+    """
+    Take in a list of lists : [[(width, height), 'solver', steps, time]]\n
     Returns : [[(width, height), 'solver', steps lengt, Avg. time, Min. time, Max. time]]\n
-    1 list pr solver"""
+    1 list pr solver
+    """
     data_list = []
     for row in data:
         if row[0:2] not in list(map(lambda x: x[0:2], data_list)):

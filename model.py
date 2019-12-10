@@ -1,7 +1,12 @@
-from random import shuffle
 import sys
 import json
 import jsbeautifier
+
+from datetime import datetime
+from random import shuffle
+
+import view
+from utility import check_os_path
 
 # needed for dfg...
 sys.setrecursionlimit(10000)
@@ -9,11 +14,12 @@ sys.setrecursionlimit(10000)
 
 class Maze:
     def __init__(self, maze, width, height, start_coords, end_coords):
+        """
+        maze holds a clean copy of the maze\n
+        needed for DFS recursive method when\n
+        generating multiple solutions
+        """
         self.maze = maze  # this used to be pretty_maze
-        # holds a clean copy of maze
-        # needed for DFS recursive method when
-        # generating multiple solutions
-
         self.width = width
         self.height = height
         self.start_coords = start_coords
@@ -32,6 +38,10 @@ class Maze:
 
 
 class MazeFactory:
+    """
+    We have used classmethod so we can call the methods without\n
+    instantiate an object. (Reason for using cls instead of self)
+    """
     @classmethod
     def generate(cls, width: int, height: int) -> Maze:
         empty_maze = [[[] for b in range(width)] for a in range(height)]
@@ -50,6 +60,7 @@ class MazeFactory:
             pretty_maze, len(pretty_maze[0]), len(pretty_maze), start_coords, end_coords
         )
 
+    # This function creates the routes for the maze
     # Recursive backtracker.
     # Looks at its neighbors randomly, if unvisitied, visit and recurse
     @classmethod
@@ -71,6 +82,7 @@ class MazeFactory:
                 cls._dfg(maze, new_coords)
         return maze
 
+    # This function converts the maze to a more visual maze
     @classmethod
     def _convert(cls, maze):
         cls.pretty_maze = [
@@ -142,7 +154,7 @@ class Stats:
 
 class Cell:
     """
-    Represent X,Y cordinate in the maze (used in astar)
+    Represent X,Y cordinate in the maze (only used in astar)
     Contains:\n
     x, y = Own cords\n
     prex_x, prex_y = previus cell cords\n
@@ -170,6 +182,45 @@ class Singelton_maze(object):
             self.instance = super(Singelton_maze, self).__new__(self)
             self.maze = None
         return self.instance
+
+
+class Logging(object):
+    instance = None
+
+    def __new__(self):
+        if not self.instance:
+            self.instance = super(Logging, self).__new__(self)
+            self.subscribers = dict()
+        return self.instance
+
+    def register(self, who, callback=None):
+        if callback is None:
+            callback = getattr(who, 'update_view')
+        self.subscribers[who] = callback
+
+    def unregister(self, who):
+        del self.subscribers[who]
+
+    def dispatch(self, message):
+        for subscriber, callback in self.subscribers.items():
+            callback(message)
+
+
+class Log_subcriber(object):
+    def __init__(self, name):
+        self.name = name
+
+    def update_view(self, message):
+        view.update_logger_label(message)
+
+    def save_to_file(self, message):
+        print('Saving to file ' + message)
+        filepath = 'logs{path}{filename}'.format(path=check_os_path(), filename='log.txt')
+        try:
+            with open(filepath, "a+") as file:
+                file.write('{datetime} -- {message}\n'.format(datetime=datetime.now(), message=message))
+        except IOError:
+            raise TypeError('Error in writing to log - {filepath}'.format(filepath=filepath))
 
 
 def convert_to_dict(maze):
