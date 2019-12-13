@@ -56,9 +56,8 @@ class MazeFactory:
         # awr exit on maze
         pretty_maze[end_coords[0]][end_coords[1]] = "2"
 
-        return Maze(
-            pretty_maze, len(pretty_maze[0]), len(pretty_maze), start_coords, end_coords
-        )
+        return Maze(pretty_maze, len(pretty_maze[0]), len(pretty_maze),
+                    start_coords, end_coords)
 
     # This function creates the routes for the maze
     # Recursive backtracker.
@@ -70,31 +69,27 @@ class MazeFactory:
         shuffle(directions)
         for direction in directions:
             new_coords = (coords[0] + direction[0], coords[1] + direction[1])
-            if (
-                (0 <= new_coords[0] < len(maze))
-                and (0 <= new_coords[1] < len(maze[0]))
-                and not maze[new_coords[0]][new_coords[1]]
-            ):
+            if ((0 <= new_coords[0] < len(maze))
+                    and (0 <= new_coords[1] < len(maze[0]))
+                    and not maze[new_coords[0]][new_coords[1]]):
                 maze[coords[0]][coords[1]].append(direction)
                 maze[new_coords[0]][new_coords[1]].append(
-                    (-direction[0], -direction[1])
-                )
+                    (-direction[0], -direction[1]))
                 cls._dfg(maze, new_coords)
         return maze
 
     # This function converts the maze to a more visual maze
     @classmethod
     def _convert(cls, maze):
-        cls.pretty_maze = [
-            ["1"] * (2 * len(maze[0]) + 1) for a in range(2 * len(maze) + 1)
-        ]
+        cls.pretty_maze = [["1"] * (2 * len(maze[0]) + 1)
+                           for a in range(2 * len(maze) + 1)]
         for y, row in enumerate(maze):
             for x, col in enumerate(row):
                 cls.pretty_maze[2 * y + 1][2 * x + 1] = "0"
                 for direction in col:
-                    cls.pretty_maze[2 * y + 1 + direction[0]][
-                        2 * x + 1 + direction[1]
-                    ] = "0"
+                    cls.pretty_maze[2 * y + 1 +
+                                    direction[0]][2 * x + 1 +
+                                                  direction[1]] = "0"
         return cls.pretty_maze
 
 
@@ -103,14 +98,12 @@ class Stats:
         self.solutions = []  # list of dictionaries with solution stats
 
     def add_solution(self, algo, route, steps, time):
-        self.solutions.append(
-            {
-                "algo": algo,  # strig - algorithm used to solve maze
-                "route": route,  # list - route (solution) through maze
-                "steps": steps,  # list - steps taken to achieve solution
-                "time": time,  # decimal - solution time
-            }
-        )
+        self.solutions.append({
+            "algo": algo,  # strig - algorithm used to solve maze
+            "route": route,  # list - route (solution) through maze
+            "steps": steps,  # list - steps taken to achieve solution
+            "time": time,  # decimal - solution time
+        })
 
     def get_solutions(self, algo="all"):
         if algo == "all":
@@ -138,8 +131,7 @@ class Stats:
                 map(
                     lambda x: x["time"],
                     filter(lambda x: algo in x["algo"], self.solutions),
-                )
-            )
+                ))
             return result
 
     def time_avg(self, algo="all"):
@@ -163,7 +155,6 @@ class Cell:
     h = Length from cell to goal if there was no walls\n
     f = Weight value on this cell for selcetion(g+h)
     """
-
     def __init__(self, x, y, prev_x, prev_y, end_x, end_y, g):
         self.x = x
         self.y = y
@@ -215,12 +206,15 @@ class Log_subcriber(object):
 
     def save_to_file(self, message):
         print('Saving to file ' + message)
-        filepath = 'logs{path}{filename}'.format(path=check_os_path(), filename='log.txt')
+        filepath = 'logs{path}{filename}'.format(path=check_os_path(),
+                                                 filename='log.txt')
         try:
             with open(filepath, "a+") as file:
-                file.write('{datetime} -- {message}\n'.format(datetime=datetime.now(), message=message))
+                file.write('{datetime} -- {message}\n'.format(
+                    datetime=datetime.now(), message=message))
         except IOError:
-            raise TypeError('Error in writing to log - {filepath}'.format(filepath=filepath))
+            raise TypeError('Error in writing to log - {filepath}'.format(
+                filepath=filepath))
 
 
 def convert_to_dict(maze):

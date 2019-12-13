@@ -1,10 +1,10 @@
 import view
 
-from model import MazeFactory, Singelton_maze, Logging, Log_subcriber
 from resolver import resolve_maze
 from file_management import load, save, get_files_in_dir
 from plotting import get_step_plot, get_time_plot
 import gen_mazes_for_plotting
+from model import MazeFactory, Singelton_maze, Logging, Log_subcriber
 
 # Initializing logging object
 logger = Logging()
@@ -50,8 +50,8 @@ def load_maze(filename):
     return current_maze.maze
 
 
-def get_time_graph():
-    return get_time_plot()
+def get_time_graph(algo):
+    return get_time_plot(algo)
 
 
 def get_step_graph():

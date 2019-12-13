@@ -29,7 +29,7 @@ def run_DFS():
 # Saves current maze
 def view_save_maze():
     save_maze(ask_for_format())
-    get_maze_files()
+    update_files_listbox()
 
 
 # Loads maze to be current maze
@@ -66,18 +66,26 @@ def mass_creation():
                                          maxvalue=10)
     mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs,
                         astar_runs)
-    get_maze_files()
+
+    # update listbox with content of mazes folders
+    update_files_listbox()
 
 
 def mass_creation_thread():
     mass_generate_mazes_threading()
-    get_maze_files()
+    update_files_listbox()
 
 
 # Show graph in existing window
-def draw_time_graf():
-    use("TkAgg")
-    plt = get_time_graph()
+def draw_time_graf_dfs():
+    use("TkAgg")  # use Tkinter GUI framework to render matplotlib graph data
+    plt = get_time_graph(algo='dfs')
+    plt.show()
+
+
+def draw_time_graf_astar():
+    use("TkAgg")  # use Tkinter GUI framework to render matplotlib graph data
+    plt = get_time_graph(algo='astar')
     plt.show()
 
 
@@ -96,13 +104,17 @@ def draw_route():
         color = "orange"
     else:
         color = "cyan"
+
+    # always return first route as they are all the same
     route = maze.Stats.get_solutions(resolver_type)[0]["route"]
     y = 15
     x = 25
     y_next = y
     x_next = x
     count = 0
-    while count < len(route) - 1:
+    length_route = len(route) - 1
+
+    while count < length_route:
         if route[count + 1][0] - route[count][0] == 1:
             x_next = x_next + 9
         elif route[count + 1][0] - route[count][0] == -1:
@@ -129,12 +141,14 @@ def draw_maze(maze):
     maze_canvas.delete("all")
     start_x = 2
     slut_x = 10
-    count = 0
-    for cords in maze.maze:
+
+    # iterating through all rows to draw maze one cell at the time
+    for count in range(len(maze.maze)):
         start_x = start_x + 9
         slut_x = slut_x + 9
         start_y = 2
         slut_y = 10
+
         for cords in maze.maze[count]:
             if cords == "1":
                 maze_canvas.create_rectangle(
@@ -161,12 +175,18 @@ def draw_maze(maze):
                                         fill="red")
             start_y = start_y + 9
             slut_y = slut_y + 9
-        count = count + 1
+
+            # can be enabled for slower rendering of maze
+            # master.update()
+
+    # Create vertical scrollbar on canvas
     ver_scroll = tk.Scrollbar(master, orient=tk.VERTICAL)
     ver_scroll.grid(row=0, column=1, sticky="ns")
     ver_scroll.config(command=maze_canvas.yview)
     maze_canvas.config(yscrollcommand=ver_scroll.set,
                        scrollregion=maze_canvas.bbox("all"))
+
+    # Create horisontal scrollbar on canvas
     hor_scroll = tk.Scrollbar(master, orient=tk.HORIZONTAL)
     hor_scroll.grid(row=1, column=0, sticky="we")
     hor_scroll.config(command=maze_canvas.xview)
@@ -198,7 +218,7 @@ def ask_for_format():
 
 
 # Updates listbox with files
-def get_maze_files():
+def update_files_listbox():
     file_list = get_files()
     file_list.sort(key=len)
     lb.delete(0, tk.END)
@@ -211,28 +231,28 @@ def update_logger_label(message):
 
 
 def start():
-    root.mainloop()
+    master.mainloop()
 
 
-root = tk.Tk()
-root.title("The Maze")
-window_height = root.winfo_screenheight()
-window_width = root.winfo_screenwidth()
-root.geometry("%dx%d+0+0" % (window_width, window_height))
-master = root
+master = tk.Tk()
+master.title("The Maze")
 window_height = master.winfo_screenheight()
 window_width = master.winfo_screenwidth()
+master.geometry("{width}x{height}".format(width=window_width,
+                                          height=window_height))
 
-# Draw canvas
+# Create canvas and insert in master object
 maze_canvas = tk.Canvas(
     master,
     background="black",
     width=window_width - 300,
     height=window_height - 150,
 )
+
+# Add canvas to grid
 maze_canvas.grid(row=0, column=0)
 
-# Add listbox woth button
+# Add listbox with button to grid
 lb = tk.Listbox(master, selectmode="SINGLE", width=40)
 lb.grid(row=0, column=2, sticky="ns")
 btn = tk.Button(master,
@@ -241,7 +261,6 @@ btn = tk.Button(master,
                 activebackground='green',
                 command=view_load_maze)
 btn.grid(row=1, column=2, sticky="ns")
-get_maze_files()
 
 # Add menu bar
 menu = tk.Menu(master)
@@ -262,9 +281,15 @@ maze_menu.add_command(label="Save maze", command=view_save_maze)
 maze_menu.add_command(label="Mass creation", command=mass_creation)
 maze_menu.add_command(label="Mass creation (threading)",
                       command=mass_creation_thread)
-maze_menu.add_command(label="Show graph with time", comman=draw_time_graf)
-maze_menu.add_command(label="Show graph with steps", comman=draw_step_graf)
+maze_menu.add_command(label="Show graph with time (DFS)",
+                      command=draw_time_graf_dfs)
+maze_menu.add_command(label="Show graph with time (Astar)",
+                      command=draw_time_graf_astar)
+maze_menu.add_command(label="Show graph with steps", command=draw_step_graf)
 
 # Add label for logging
 logger_label = tk.Label(master, text='', bd=1, relief=tk.SUNKEN, anchor=tk.W)
 logger_label.grid(row=2, column=0, columnspan=3, sticky='we')
+
+# Populate listbox with files in mazes folder
+update_files_listbox()
