@@ -8,6 +8,8 @@ from controller import create_new_maze, get_current_maze
 from controller import mass_generate_mazes, mass_generate_mazes_threading
 from controller import run_DFS_on_maze, save_maze, load_maze
 
+from logging_tool import Logging, Log_subcriber
+
 
 # Maze menu funktions
 # create and display a new maze
@@ -231,6 +233,14 @@ def update_logger_label(message):
 
 
 def start():
+    # Initializing logger module publisher and subscriber
+    logger = Logging()
+
+    # View subscriber, displaying log in view statusline
+    view_subscriber = Log_subcriber('view', update_logger_label)
+
+    logger.register(view_subscriber)
+
     master.mainloop()
 
 

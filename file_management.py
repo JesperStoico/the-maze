@@ -9,15 +9,14 @@ import csv
 import os
 import glob
 import jsbeautifier
+from datetime import datetime
 
 from utility import check_os_path
-from model import convert_to_dict, Maze, Stats, Logging
-
-# Initializing logging object
-logger = Logging()
+from model import convert_to_dict, Maze, Stats
+from logging_tool import Logging, Log_subcriber
 
 
-def load(filename) -> Maze:
+def load(filename, logging=True) -> Maze:
     """
     Open filename from disk\n
     Returns : Maze object
@@ -27,8 +26,10 @@ def load(filename) -> Maze:
         return _load_from_json(filename)
     if filetype == "csv":
         return _load_from_csv(filename)
-    logger.dispatch('We do currently not support {filetype}, sorry'.format(
-        filetype=filetype))
+
+    if (logging):
+        logger.dispatch('We do currently not support {filetype}, sorry'.format(
+            filetype=filetype))
     raise TypeError('We do currently not support {filetype}, sorry'.format(
         filetype=filetype))
 
@@ -46,22 +47,25 @@ def save(maze, datatype) -> Maze:
         datatype=datatype))
 
 
-def _load_from_json(filename):
+def _load_from_json(filename, logging=True):
     """
     Load json file\n
     Returns: Maze object
     """
     filepath = 'mazes{path}{filename}'.format(path=check_os_path(),
                                               filename=filename)
+
     try:
         if os.path.isfile(filepath):
             with open(filepath, "r") as file:
                 data = json.load(file)  # returns dict
-        logger.dispatch('File loaded {filepath}'.format(filepath=filepath))
+        if (logging):
+            logger.dispatch('File loaded {filepath}'.format(filepath=filepath))
         return convert_from_dict_to_maze(data)  # returns Maze
     except IOError:
-        logger.dispatch(
-            'Error in loading file {filepath}'.format(filepath=filepath))
+        if (logging):
+            logger.dispatch(
+                'Error in loading file {filepath}'.format(filepath=filepath))
         raise TypeError(
             'Fail in loading file {filepath}'.format(filepath=filepath))
 
@@ -246,3 +250,24 @@ def get_files_in_dir(fileformat: str) -> list:
     else:
         files = list(map(lambda x: x.split("mazes/")[1], files))
     return files
+
+
+def log_to_file(message):
+    print(message)
+    filepath = 'logs{path}{filename}'.format(path=check_os_path(),
+                                             filename='log.txt')
+    try:
+        with open(filepath, "a+") as file:
+            file.write('{datetime} -- {message}\n'.format(
+                datetime=datetime.now(), message=message))
+    except IOError:
+        raise TypeError(
+            'Error in writing to log - {filepath}'.format(filepath=filepath))
+
+
+# Initializing logger module publisher and subscriber
+logger = Logging()
+
+# View subscriber, displaying log in view statusline
+subscriber = Log_subcriber('file', log_to_file)
+logger.register(subscriber)
