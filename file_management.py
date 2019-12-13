@@ -183,9 +183,10 @@ def _save_as_json(data):
 def _save_as_csv(data):
     #  Saves filenumber to be able to use same on both files
     path = 'mazes{path}'.format(path=check_os_path())
+    file_num = _new_file_num(path)
     filepath = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
-        number=_new_file_num(path),
+        number=file_num,
         width=(data['width'] - 1) // 2,
         height=(data['height'] - 1) // 2,
         fileformat='csv',
@@ -214,7 +215,7 @@ def _save_as_csv(data):
     #  Save stats file
     filepath = "{path}maze{number}_{width}x{height}-stats.{fileformat}".format(
         path=path,
-        number=_new_file_num(path),
+        number=file_num,
         width=(data['width'] - 1) // 2,
         height=(data['height'] - 1) // 2,
         fileformat='csv',
