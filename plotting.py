@@ -20,7 +20,8 @@ def get_stats_data():
         stats_data = file_data.Stats.get_solutions()
         for stats in stats_data:
             temp_data = []
-            temp_data.append(((file_data.width - 1) // 2, (file_data.height - 1) // 2))
+            temp_data.append(
+                ((file_data.width - 1) // 2, (file_data.height - 1) // 2))
             temp_data.append(stats["algo"])
             temp_data.append(len(stats["steps"]))
             temp_data.append(stats["time"])
@@ -60,7 +61,7 @@ def merge_data_for_plotting(data):
         count = 0
         for data2 in data_list:
             if data[0] == data2[0]:
-                count = count+1
+                count = count + 1
         if count == 2:
             pass
         else:
@@ -74,6 +75,7 @@ def prepare_data_for_plotting(data: list) -> dict:
     "dfs_avg_time", "astar_avg_time",\n
     "dfs_min_time", "astar_min_time",\n
     "dfs_max_time", "astar_max_time"}"""
+
     # data_point = [size, solver, steps, avg time, min time, max time]
     # labels = ['5x5', '10x10', '15x15', '20x20', '25x25', '30x30']
 
@@ -81,19 +83,36 @@ def prepare_data_for_plotting(data: list) -> dict:
         return "{}x{}".format(size[0], size[1])
 
     labels = set([label(data_point[0]) for data_point in data])
-    labels = sorted(set(labels), key=lambda x: int(x.split("x")[0]) * int(x.split("x")[1]))
+    labels = sorted(set(labels),
+                    key=lambda x: int(x.split("x")[0]) * int(x.split("x")[1]))
 
-    dfs_steps = [data_point[2] for data_point in data if data_point[1] == "dfs"]
-    astar_steps = [data_point[2] for data_point in data if data_point[1] == "astar"]
+    dfs_steps = [
+        data_point[2] for data_point in data if data_point[1] == "dfs"
+    ]
+    astar_steps = [
+        data_point[2] for data_point in data if data_point[1] == "astar"
+    ]
 
-    dfs_avg_time = [data_point[3] for data_point in data if data_point[1] == "dfs"]
-    astar_avg_time = [data_point[3] for data_point in data if data_point[1] == "astar"]
+    dfs_avg_time = [
+        data_point[3] for data_point in data if data_point[1] == "dfs"
+    ]
+    astar_avg_time = [
+        data_point[3] for data_point in data if data_point[1] == "astar"
+    ]
 
-    # dfs_min_time = [data_point[4] for data_point in data if data_point[1] == "dfs"]
-    # astar_min_time = [data_point[4] for data_point in data if data_point[1] == "astar"]
+    dfs_min_time = [
+        data_point[4] for data_point in data if data_point[1] == "dfs"
+    ]
+    astar_min_time = [
+        data_point[4] for data_point in data if data_point[1] == "astar"
+    ]
 
-    # dfs_max_time = [data_point[5] for data_point in data if data_point[1] == "dfs"]
-    # astar_max_time = [data_point[5] for data_point in data if data_point[1] == "astar"]
+    dfs_max_time = [
+        data_point[5] for data_point in data if data_point[1] == "dfs"
+    ]
+    astar_max_time = [
+        data_point[5] for data_point in data if data_point[1] == "astar"
+    ]
 
     plotting_data = {}
     plotting_data["labels"] = labels
@@ -101,17 +120,21 @@ def prepare_data_for_plotting(data: list) -> dict:
     plotting_data["astar_steps"] = astar_steps
     plotting_data["dfs_avg_time"] = dfs_avg_time
     plotting_data["astar_avg_time"] = astar_avg_time
-    # plotting_data["dfs_min_time"] = dfs_min_time
-    # plotting_data["astar_min_time"] = astar_min_time
-    # plotting_data["dfs_max_time"] = dfs_max_time
-    # plotting_data["astar_max_time"] = astar_max_time
+    plotting_data["dfs_min_time"] = dfs_min_time
+    plotting_data["astar_min_time"] = astar_min_time
+    plotting_data["dfs_max_time"] = dfs_max_time
+    plotting_data["astar_max_time"] = astar_max_time
 
     return plotting_data
 
 
 def prepare_steps_plot(plotting_data: dict) -> plt:
-    plt.plot(plotting_data["labels"], plotting_data["dfs_steps"], label="dfs steps")
-    plt.plot(plotting_data["labels"], plotting_data["astar_steps"], label="astar steps")
+    plt.plot(plotting_data["labels"],
+             plotting_data["dfs_steps"],
+             label="dfs steps")
+    plt.plot(plotting_data["labels"],
+             plotting_data["astar_steps"],
+             label="astar steps")
     plt.xlabel("maze sizes")
     plt.ylabel("steps")
     plt.title("Maze solutions by algorithm")
@@ -119,9 +142,38 @@ def prepare_steps_plot(plotting_data: dict) -> plt:
     return plt
 
 
-def prepare_times_plot(plotting_data: dict) -> plt:
-    plt.plot(plotting_data["labels"], plotting_data["dfs_avg_time"], label="dfs avg. time")
-    plt.plot(plotting_data["labels"], plotting_data["astar_avg_time"], label="astar avg. time",)
+def prepare_times_plot(plotting_data: dict, algo: str) -> plt:
+    if algo == 'dfs':
+
+        plt.plot(plotting_data["labels"],
+                 plotting_data["dfs_avg_time"],
+                 label="dfs avg. time")
+        plt.plot(plotting_data["labels"],
+                 plotting_data["dfs_min_time"],
+                 label="dfs min. time",
+                 linestyle='dotted')
+        plt.plot(plotting_data["labels"],
+                 plotting_data["dfs_max_time"],
+                 label="dfs max time",
+                 linestyle='dashed')
+
+    if algo == 'astar':
+        plt.plot(
+            plotting_data["labels"],
+            plotting_data["astar_avg_time"],
+            label="astar avg. time",
+        )
+        plt.plot(plotting_data["labels"],
+                 plotting_data["astar_min_time"],
+                 label="astar min. time",
+                 linestyle='dotted')
+        plt.plot(plotting_data["labels"],
+                 plotting_data["astar_max_time"],
+                 label="astar max time",
+                 linestyle='dashed')
+
+    # plt.scatter(plotting_data['labels'], plotting_data['dfs_min_time'], s=100)
+
     plt.xlabel("maze sizes")
     plt.ylabel("time")
     plt.title("Maze solutions by algorithm")
@@ -137,9 +189,9 @@ def get_step_plot():
     return plot
 
 
-def get_time_plot():
+def get_time_plot(algo):
     data = get_stats_data()
     merge_data = merge_data_for_plotting(data)
     preped_data = prepare_data_for_plotting(merge_data)
-    plot = prepare_times_plot(preped_data)
+    plot = prepare_times_plot(preped_data, algo)
     return plot

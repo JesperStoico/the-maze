@@ -1,8 +1,9 @@
-from os import name
+import os
+
 
 def is_win() -> bool:
     """ Return True if OS is Windows """
-    return True if name == "nt" else False
+    return True if os.name == "nt" else False
 
 
 def check_os_path():
@@ -11,5 +12,3 @@ def check_os_path():
         return "\\"
     else:
         return "/"
-
-
