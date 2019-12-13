@@ -6,12 +6,13 @@ import logging
 from time import process_time
 from decimal import Decimal
 
-# custom imports
+# project imports
 from model import MazeFactory
 from resolver import resolve_maze
 from file_management import save, _new_file_num
 
-logging.basicConfig(level=logging.DEBUG, format="(%(threadName)-9s) %(message)s")
+logging.basicConfig(level=logging.DEBUG,
+                    format="(%(threadName)-9s) %(message)s")
 
 
 class ThreadPool(object):
@@ -40,7 +41,8 @@ def create_maze(s, pool, size, solve_times=10):
     with s:
         pool.makeActive(name)
 
-        logging.info("Generating Maze of size {x}x{y}..".format(x=size, y=size))
+        logging.info("Generating Maze of size {x}x{y}..".format(x=size,
+                                                                y=size))
         maze = MazeFactory.generate(size, size)
         logging.info("Solving Maze of size {x}x{y}..".format(x=size, y=size))
         for solver in resolvers:

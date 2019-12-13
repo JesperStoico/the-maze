@@ -4,7 +4,8 @@ from time import sleep
 from matplotlib import use
 
 from controller import get_files, get_time_graph, get_step_graph
-from controller import create_new_maze, get_current_maze, mass_generate_mazes
+from controller import create_new_maze, get_current_maze
+from controller import mass_generate_mazes, mass_generate_mazes_threading
 from controller import run_DFS_on_maze, save_maze, load_maze
 
 
@@ -20,9 +21,8 @@ def view_create_new_maze():
 # Run solver on current maze
 def run_DFS():
     solver = ask_for_solver()
-    run_X_times = simpledialog.askinteger(
-        "Running times", "How many times you want to run it"
-    )
+    run_X_times = simpledialog.askinteger("Running times",
+                                          "How many times you want to run it")
     run_DFS_on_maze(run_X_times, solver)
 
 
@@ -40,16 +40,38 @@ def view_load_maze():
 
 # Creates and saves multiple mazes
 def mass_creation():
-    Start_size = simpledialog.askinteger("Start size", "smallest size labyrant you want", minvalue=5, maxvalue=50)
-    end_size = simpledialog.askinteger("End size", "Biggest size labyrant you want", minvalue=5, maxvalue=50)
-    jumps = simpledialog.askinteger("Jumps", "Jump between start and end size", minvalue=1, maxvalue=10)
-    mazes_pr_size = simpledialog.askinteger("Mazes pr size", "amount of mazes pr size", minvalue=1, maxvalue=10)
-    dfs_runs = simpledialog.askinteger("DFS runs", "times to run DFS resolver", minvalue=1, maxvalue=10)
-    astar_runs = simpledialog.askinteger("A-star runs", "times to run A-star resolver", minvalue=1, maxvalue=10)
-    mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs, astar_runs)
+    Start_size = simpledialog.askinteger("Start size",
+                                         "smallest size labyrant you want",
+                                         minvalue=5,
+                                         maxvalue=50)
+    end_size = simpledialog.askinteger("End size",
+                                       "Biggest size labyrant you want",
+                                       minvalue=5,
+                                       maxvalue=50)
+    jumps = simpledialog.askinteger("Jumps",
+                                    "Jump between start and end size",
+                                    minvalue=1,
+                                    maxvalue=10)
+    mazes_pr_size = simpledialog.askinteger("Mazes pr size",
+                                            "amount of mazes pr size",
+                                            minvalue=1,
+                                            maxvalue=10)
+    dfs_runs = simpledialog.askinteger("DFS runs",
+                                       "times to run DFS resolver",
+                                       minvalue=1,
+                                       maxvalue=10)
+    astar_runs = simpledialog.askinteger("A-star runs",
+                                         "times to run A-star resolver",
+                                         minvalue=1,
+                                         maxvalue=10)
+    mass_generate_mazes(Start_size, end_size, jumps, mazes_pr_size, dfs_runs,
+                        astar_runs)
     get_maze_files()
 
-    # Draw graf on canvas
+
+def mass_creation_thread():
+    mass_generate_mazes_threading()
+    get_maze_files()
 
 
 # Show graph in existing window
@@ -132,24 +154,24 @@ def draw_maze(maze):
                     fill="green",
                 )
             if cords == "2":
-                maze_canvas.create_oval(
-                    start_y, start_x, slut_y, slut_x, fill="red"
-                )
+                maze_canvas.create_oval(start_y,
+                                        start_x,
+                                        slut_y,
+                                        slut_x,
+                                        fill="red")
             start_y = start_y + 9
             slut_y = slut_y + 9
         count = count + 1
     ver_scroll = tk.Scrollbar(master, orient=tk.VERTICAL)
     ver_scroll.grid(row=0, column=1, sticky="ns")
     ver_scroll.config(command=maze_canvas.yview)
-    maze_canvas.config(
-        yscrollcommand=ver_scroll.set, scrollregion=maze_canvas.bbox("all")
-    )
+    maze_canvas.config(yscrollcommand=ver_scroll.set,
+                       scrollregion=maze_canvas.bbox("all"))
     hor_scroll = tk.Scrollbar(master, orient=tk.HORIZONTAL)
     hor_scroll.grid(row=1, column=0, sticky="we")
     hor_scroll.config(command=maze_canvas.xview)
-    maze_canvas.config(
-        xscrollcommand=hor_scroll.set, scrollregion=maze_canvas.bbox("all")
-    )
+    maze_canvas.config(xscrollcommand=hor_scroll.set,
+                       scrollregion=maze_canvas.bbox("all"))
     master.update()
 
 
@@ -162,7 +184,8 @@ def close_window():
 def ask_for_solver():
     solver = "empty"
     while solver.lower() != 'dfs' and solver.lower() != 'astar':
-        solver = simpledialog.askstring("Reolver", "Choice resolving metode: dfs or astar")
+        solver = simpledialog.askstring(
+            "Reolver", "Choice resolving metode: dfs or astar")
     return solver
 
 
@@ -212,9 +235,11 @@ maze_canvas.grid(row=0, column=0)
 # Add listbox woth button
 lb = tk.Listbox(master, selectmode="SINGLE", width=40)
 lb.grid(row=0, column=2, sticky="ns")
-btn = tk.Button(master, text="Load",
-                        width=30, activebackground='green',
-                        command=view_load_maze)
+btn = tk.Button(master,
+                text="Load",
+                width=30,
+                activebackground='green',
+                command=view_load_maze)
 btn.grid(row=1, column=2, sticky="ns")
 get_maze_files()
 
@@ -235,6 +260,8 @@ maze_menu.add_command(label="Run solver on maze", command=run_DFS)
 maze_menu.add_command(label="Show rute", command=draw_route)
 maze_menu.add_command(label="Save maze", command=view_save_maze)
 maze_menu.add_command(label="Mass creation", command=mass_creation)
+maze_menu.add_command(label="Mass creation (threading)",
+                      command=mass_creation_thread)
 maze_menu.add_command(label="Show graph with time", comman=draw_time_graf)
 maze_menu.add_command(label="Show graph with steps", comman=draw_step_graf)
 
