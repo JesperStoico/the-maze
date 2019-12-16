@@ -141,7 +141,7 @@ def mass_gen_mazes_threading():
 
     # defining pools and semaphore
     pool = ThreadPool()
-    semaphore_count = 4
+    semaphore_count = cpu_count()
     s = threading.Semaphore(semaphore_count)
     lock = threading.Lock()
     thread_count = 0
