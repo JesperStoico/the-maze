@@ -7,7 +7,7 @@ import os
 import unittest
 
 import file_management
-from model import Maze
+from model import Maze, MazeFactory
 
 
 def write_test_file(path: str, filenames: list, content="test"):
@@ -27,6 +27,11 @@ def del_test_file(path: str, filenames: list):
 
 
 class TestFileManagement(unittest.TestCase):
+
+    ##############################
+    # Unit tests
+    ##############################
+
     def test_check_os_path(self):
         # Windows
         if os.name == "nt":
@@ -108,6 +113,36 @@ class TestFileManagement(unittest.TestCase):
 
         self.assertCountEqual(files, ["maze3_30x30.csv"],
                               "should contain {}".format("maze3_30x30.csv"))
+
+    ##############################
+    # Integration tests
+    ##############################
+
+    def test_integration_generate_save_check_file_count(self):
+        if os.name == 'nt':
+            path = 'mazes\\'
+        else:
+            path = 'mazes/'
+
+        filenames = ["maze1_5x5.json", "maze2_5x5.json", "maze3_5x5.json"]
+        write_test_file(path, filenames)
+
+        new_maze = MazeFactory.generate(5, 5)
+        file_management.save(new_maze, "json", logging=False)
+
+        files = file_management.get_files_in_dir("json")
+
+        self.assertCountEqual(
+            files, [
+                "maze1_5x5.json", "maze2_5x5.json", "maze3_5x5.json",
+                "maze4_5x5.json"
+            ],
+            'Should be ["maze1_5x5.json", "maze2_5x5.json", "maze3_5x5.json", "maze4_5x5.json"]'
+        )
+
+        # cleanup test files
+        filenames.append('maze4_5x5.json')
+        del_test_file(path, filenames)
 
 
 unittest.main()
