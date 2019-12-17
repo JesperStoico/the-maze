@@ -1680,3 +1680,67 @@
 2019-12-13 22:11:05.523501 -- File loaded mazes/maze46_25x25.json
 2019-12-13 22:11:05.526048 -- File loaded mazes/maze12_10x10.json
 2019-12-13 22:11:05.533953 -- File loaded mazes/maze37_20x20.json
+2019-12-17 16:42:30.815017 -- Your mass generation is now started...
+2019-12-17 16:42:31.519166 -- Your file is saved mazes/maze1_5x5.json
+2019-12-17 16:42:31.672599 -- All mazes created!
+2019-12-17 16:42:31.958082 -- Your file is saved mazes/maze2_5x5.json
+2019-12-17 16:42:32.297139 -- Your file is saved mazes/maze3_5x5.json
+2019-12-17 16:42:32.689142 -- Your file is saved mazes/maze4_5x5.json
+2019-12-17 16:42:33.042875 -- Your file is saved mazes/maze5_5x5.json
+2019-12-17 16:42:33.491326 -- Your file is saved mazes/maze6_5x5.json
+2019-12-17 16:42:33.753484 -- Your file is saved mazes/maze7_5x5.json
+2019-12-17 16:42:34.183471 -- Your file is saved mazes/maze8_5x5.json
+2019-12-17 16:42:34.471406 -- Your file is saved mazes/maze9_5x5.json
+2019-12-17 16:42:34.772164 -- Your file is saved mazes/maze10_5x5.json
+2019-12-17 16:42:35.712823 -- Your file is saved mazes/maze11_10x10.json
+2019-12-17 16:42:37.323488 -- Your file is saved mazes/maze12_10x10.json
+2019-12-17 16:42:38.102036 -- Your file is saved mazes/maze13_10x10.json
+2019-12-17 16:42:39.351257 -- Your file is saved mazes/maze14_10x10.json
+2019-12-17 16:42:40.695193 -- Your file is saved mazes/maze15_10x10.json
+2019-12-17 16:42:41.781347 -- Your file is saved mazes/maze16_10x10.json
+2019-12-17 16:42:43.194987 -- Your file is saved mazes/maze17_10x10.json
+2019-12-17 16:42:44.236196 -- Your file is saved mazes/maze18_10x10.json
+2019-12-17 16:42:45.058457 -- Your file is saved mazes/maze19_10x10.json
+2019-12-17 16:42:46.098297 -- Your file is saved mazes/maze20_10x10.json
+2019-12-17 16:42:48.540863 -- Your file is saved mazes/maze21_15x15.json
+2019-12-17 16:42:51.331220 -- Your file is saved mazes/maze22_15x15.json
+2019-12-17 16:42:54.058435 -- Your file is saved mazes/maze23_15x15.json
+2019-12-17 16:42:56.345489 -- Your file is saved mazes/maze24_15x15.json
+2019-12-17 16:42:58.978443 -- Your file is saved mazes/maze25_15x15.json
+2019-12-17 16:43:01.881125 -- Your file is saved mazes/maze26_15x15.json
+2019-12-17 16:43:03.782796 -- Your file is saved mazes/maze27_15x15.json
+2019-12-17 16:43:05.959197 -- Your file is saved mazes/maze28_15x15.json
+2019-12-17 16:43:08.529442 -- Your file is saved mazes/maze29_15x15.json
+2019-12-17 16:43:10.141112 -- Your file is saved mazes/maze30_15x15.json
+2019-12-17 16:43:12.546936 -- Your file is saved mazes/maze31_20x20.json
+2019-12-17 16:43:17.800868 -- Your file is saved mazes/maze32_20x20.json
+2019-12-17 16:43:21.255863 -- Your file is saved mazes/maze33_20x20.json
+2019-12-17 16:43:24.503995 -- Your file is saved mazes/maze34_20x20.json
+2019-12-17 16:43:29.370169 -- Your file is saved mazes/maze35_20x20.json
+2019-12-17 16:43:32.383752 -- Your file is saved mazes/maze36_20x20.json
+2019-12-17 16:43:37.758223 -- Your file is saved mazes/maze37_20x20.json
+2019-12-17 16:43:41.086289 -- Your file is saved mazes/maze38_20x20.json
+2019-12-17 16:43:44.575465 -- Your file is saved mazes/maze39_20x20.json
+2019-12-17 16:43:50.712704 -- Your file is saved mazes/maze40_20x20.json
+2019-12-17 16:43:57.884752 -- Your file is saved mazes/maze41_25x25.json
+2019-12-17 16:44:03.097482 -- Your file is saved mazes/maze42_25x25.json
+2019-12-17 16:44:09.903955 -- Your file is saved mazes/maze43_25x25.json
+2019-12-17 16:44:13.693512 -- Your file is saved mazes/maze44_25x25.json
+2019-12-17 16:44:23.140222 -- Your file is saved mazes/maze45_25x25.json
+2019-12-17 16:44:32.913971 -- Your file is saved mazes/maze46_25x25.json
+2019-12-17 16:44:35.359751 -- Your file is saved mazes/maze47_25x25.json
+2019-12-17 16:44:43.954495 -- Your file is saved mazes/maze48_25x25.json
+2019-12-17 16:44:52.291762 -- Your file is saved mazes/maze49_25x25.json
+2019-12-17 16:44:57.162999 -- Your file is saved mazes/maze50_25x25.json
+2019-12-17 16:45:02.180608 -- Your file is saved mazes/maze51_30x30.json
+2019-12-17 16:45:09.778294 -- Your file is saved mazes/maze52_30x30.json
+2019-12-17 16:45:12.397497 -- Your file is saved mazes/maze53_30x30.json
+2019-12-17 16:45:17.377342 -- Your file is saved mazes/maze54_30x30.json
+2019-12-17 16:45:25.216739 -- Your file is saved mazes/maze55_30x30.json
+2019-12-17 16:45:31.956867 -- Your file is saved mazes/maze56_30x30.json
+2019-12-17 16:45:38.319036 -- Your file is saved mazes/maze57_30x30.json
+2019-12-17 16:45:41.061100 -- Your file is saved mazes/maze58_30x30.json
+2019-12-17 16:45:47.834195 -- Your file is saved mazes/maze59_30x30.json
+2019-12-17 16:45:53.631191 -- Your file is saved mazes/maze60_30x30.json
+2019-12-17 16:50:01.855509 -- File loaded mazes/maze1_5x5.json
+2019-12-17 20:54:13.154800 -- You have resolved your maze with dfs 1 times

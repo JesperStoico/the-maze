@@ -296,6 +296,7 @@ maze_menu.add_command(label="Show graph with time (DFS)",
 maze_menu.add_command(label="Show graph with time (Astar)",
                       command=draw_time_graf_astar)
 maze_menu.add_command(label="Show graph with steps", command=draw_step_graf)
+maze_menu.add_command(label="Refresh file view", command=update_files_listbox)
 
 # Add label for logging
 logger_label = tk.Label(master, text='', bd=1, relief=tk.SUNKEN, anchor=tk.W)
