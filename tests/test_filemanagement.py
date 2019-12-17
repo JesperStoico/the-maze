@@ -58,10 +58,7 @@ class TestFileManagement(unittest.TestCase):
         del_test_file(path, filenames)
 
     def test_load_unsupported_file_fails(self):
-        self.assertRaises(TypeError,
-                          file_management.load,
-                          "maze.xml",
-                          logging=False)
+        self.assertRaises(TypeError, file_management.load, "maze.xml")
 
     def test_load_returns_maze_object(self):
         if os.name == 'nt':
@@ -74,7 +71,7 @@ class TestFileManagement(unittest.TestCase):
         write_test_file(path, filename, maze_json)
 
         self.assertIsInstance(
-            file_management._load_from_json(filename[0], logging=False),
+            file_management._load_from_json(filename[0]),
             Maze,
             "Should return instance of Maze class",
         )
@@ -128,7 +125,7 @@ class TestFileManagement(unittest.TestCase):
         write_test_file(path, filenames)
 
         new_maze = MazeFactory.generate(5, 5)
-        file_management.save(new_maze, "json", logging=False)
+        file_management.save(new_maze, "json")
 
         files = file_management.get_files_in_dir("json")
 

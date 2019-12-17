@@ -16,7 +16,7 @@ from model import convert_to_dict, Maze, Stats
 from logging_tool import Logging, Log_subcriber
 
 
-def load(filename, logging=True) -> Maze:
+def load(filename) -> Maze:
     """
     Open filename from disk\n
     Returns : Maze object
@@ -27,29 +27,27 @@ def load(filename, logging=True) -> Maze:
     if filetype == "csv":
         return _load_from_csv(filename)
 
-    if (logging):
-        logger.dispatch('We do currently not support {filetype}, sorry'.format(
-            filetype=filetype))
+    logger.dispatch('We do currently not support {filetype}, sorry'.format(
+        filetype=filetype))
     raise TypeError('We do currently not support {filetype}, sorry'.format(
         filetype=filetype))
 
 
-def save(maze, datatype, logging=True) -> Maze:
+def save(maze, datatype) -> Maze:
     """save maze to disk in datatype format"""
     data = convert_to_dict(maze)
     if datatype == "json":
-        return _save_as_json(data, logging)
+        return _save_as_json(data)
     if datatype == "csv":
         return _save_as_csv(data)
 
-    if (logging):
-        logger.dispatch('We do currently not support {datatype}, sorry'.format(
-            datatype=datatype))
+    logger.dispatch('We do currently not support {datatype}, sorry'.format(
+        datatype=datatype))
     raise TypeError('We do currently not support {datatype}, sorry'.format(
         datatype=datatype))
 
 
-def _load_from_json(filename, logging=True):
+def _load_from_json(filename):
     """
     Load json file\n
     Returns: Maze object
@@ -61,13 +59,11 @@ def _load_from_json(filename, logging=True):
         if os.path.isfile(filepath):
             with open(filepath, "r") as file:
                 data = json.load(file)  # returns dict
-        if (logging):
-            logger.dispatch('File loaded {filepath}'.format(filepath=filepath))
+        logger.dispatch('File loaded {filepath}'.format(filepath=filepath))
         return convert_from_dict_to_maze(data)  # returns Maze
     except IOError:
-        if (logging):
-            logger.dispatch(
-                'Error in loading file {filepath}'.format(filepath=filepath))
+        logger.dispatch(
+            'Error in loading file {filepath}'.format(filepath=filepath))
         raise TypeError(
             'Fail in loading file {filepath}'.format(filepath=filepath))
 
@@ -159,7 +155,7 @@ def _new_file_num(path: str) -> int:
     return new_file_num
 
 
-def _save_as_json(data, logging=True):
+def _save_as_json(data):
     path = 'mazes{path}'.format(path=check_os_path())
     filepath = "{path}maze{number}_{width}x{height}.{fileformat}".format(
         path=path,
@@ -174,13 +170,11 @@ def _save_as_json(data, logging=True):
         with open(filepath, "w") as file:
             file.writelines(data)
 
-        if (logging):
-            logger.dispatch(
-                'Your file is saved {filepath}'.format(filepath=filepath))
+        logger.dispatch(
+            'Your file is saved {filepath}'.format(filepath=filepath))
     except IOError:
-        if (logging):
-            logger.dispatch(
-                'Error in saving file {filepath}'.format(filepath=filepath))
+        logger.dispatch(
+            'Error in saving file {filepath}'.format(filepath=filepath))
         raise TypeError(
             'Error in saving file {filepath}'.format(filepath=filepath))
 
