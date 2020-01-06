@@ -1744,3 +1744,609 @@
 2019-12-17 16:45:53.631191 -- Your file is saved mazes/maze60_30x30.json
 2019-12-17 16:50:01.855509 -- File loaded mazes/maze1_5x5.json
 2019-12-17 20:54:13.154800 -- You have resolved your maze with dfs 1 times
+2020-01-06 16:24:42.843817 -- Your mass generation is now started...
+2020-01-06 16:24:43.829085 -- Your file is saved mazes/maze1_5x5.json
+2020-01-06 16:24:43.830594 -- All mazes created!
+2020-01-06 16:24:44.229651 -- Your file is saved mazes/maze2_5x5.json
+2020-01-06 16:24:44.604598 -- Your file is saved mazes/maze3_5x5.json
+2020-01-06 16:24:44.921598 -- Your file is saved mazes/maze4_5x5.json
+2020-01-06 16:24:45.157856 -- Your file is saved mazes/maze5_5x5.json
+2020-01-06 16:24:45.574983 -- Your file is saved mazes/maze6_5x5.json
+2020-01-06 16:24:45.848199 -- Your file is saved mazes/maze7_5x5.json
+2020-01-06 16:24:46.226543 -- Your file is saved mazes/maze8_5x5.json
+2020-01-06 16:24:46.735841 -- Your file is saved mazes/maze9_5x5.json
+2020-01-06 16:24:47.363584 -- Your file is saved mazes/maze10_5x5.json
+2020-01-06 16:24:48.407709 -- Your file is saved mazes/maze11_10x10.json
+2020-01-06 16:24:49.342883 -- Your file is saved mazes/maze12_10x10.json
+2020-01-06 16:24:50.504619 -- Your file is saved mazes/maze13_10x10.json
+2020-01-06 16:24:51.496254 -- Your file is saved mazes/maze14_10x10.json
+2020-01-06 16:24:52.656615 -- Your file is saved mazes/maze15_10x10.json
+2020-01-06 16:24:53.400249 -- Your file is saved mazes/maze16_10x10.json
+2020-01-06 16:24:54.534873 -- Your file is saved mazes/maze17_10x10.json
+2020-01-06 16:24:55.563239 -- Your file is saved mazes/maze18_10x10.json
+2020-01-06 16:24:56.441115 -- Your file is saved mazes/maze19_10x10.json
+2020-01-06 16:24:58.412763 -- Your file is saved mazes/maze20_10x10.json
+2020-01-06 16:25:01.004992 -- Your file is saved mazes/maze21_15x15.json
+2020-01-06 16:25:02.790514 -- Your file is saved mazes/maze22_15x15.json
+2020-01-06 16:25:04.382691 -- Your file is saved mazes/maze23_15x15.json
+2020-01-06 16:25:07.025674 -- Your file is saved mazes/maze24_15x15.json
+2020-01-06 16:25:09.148447 -- Your file is saved mazes/maze25_15x15.json
+2020-01-06 16:25:12.198573 -- Your file is saved mazes/maze26_15x15.json
+2020-01-06 16:25:13.808115 -- Your file is saved mazes/maze27_15x15.json
+2020-01-06 16:25:15.869850 -- Your file is saved mazes/maze28_15x15.json
+2020-01-06 16:25:19.286632 -- Your file is saved mazes/maze29_15x15.json
+2020-01-06 16:25:21.259847 -- Your file is saved mazes/maze30_15x15.json
+2020-01-06 16:25:25.212849 -- Your file is saved mazes/maze31_20x20.json
+2020-01-06 16:25:28.188275 -- Your file is saved mazes/maze32_20x20.json
+2020-01-06 16:25:32.098452 -- Your file is saved mazes/maze33_20x20.json
+2020-01-06 16:25:36.538262 -- Your file is saved mazes/maze34_20x20.json
+2020-01-06 16:25:40.431456 -- Your file is saved mazes/maze35_20x20.json
+2020-01-06 16:25:44.808270 -- Your file is saved mazes/maze36_20x20.json
+2020-01-06 16:25:50.133371 -- Your file is saved mazes/maze37_20x20.json
+2020-01-06 16:25:52.181182 -- Your file is saved mazes/maze38_20x20.json
+2020-01-06 16:25:56.596438 -- Your file is saved mazes/maze39_20x20.json
+2020-01-06 16:26:02.229847 -- Your file is saved mazes/maze40_20x20.json
+2020-01-06 16:26:07.484232 -- Your file is saved mazes/maze41_25x25.json
+2020-01-06 16:26:13.226639 -- Your file is saved mazes/maze42_25x25.json
+2020-01-06 16:26:19.843694 -- Your file is saved mazes/maze43_25x25.json
+2020-01-06 16:26:27.340694 -- Your file is saved mazes/maze44_25x25.json
+2020-01-06 16:26:36.994492 -- Your file is saved mazes/maze45_25x25.json
+2020-01-06 16:26:42.260169 -- Your file is saved mazes/maze46_25x25.json
+2020-01-06 16:26:46.623979 -- Your file is saved mazes/maze47_25x25.json
+2020-01-06 16:26:53.254817 -- Your file is saved mazes/maze48_25x25.json
+2020-01-06 16:26:58.093526 -- Your file is saved mazes/maze49_25x25.json
+2020-01-06 16:27:02.217044 -- Your file is saved mazes/maze50_25x25.json
+2020-01-06 16:27:07.038170 -- Your file is saved mazes/maze51_30x30.json
+2020-01-06 16:27:13.257276 -- Your file is saved mazes/maze52_30x30.json
+2020-01-06 16:27:18.119459 -- Your file is saved mazes/maze53_30x30.json
+2020-01-06 16:27:23.675693 -- Your file is saved mazes/maze54_30x30.json
+2020-01-06 16:27:30.726291 -- Your file is saved mazes/maze55_30x30.json
+2020-01-06 16:27:37.237535 -- Your file is saved mazes/maze56_30x30.json
+2020-01-06 16:27:42.470920 -- Your file is saved mazes/maze57_30x30.json
+2020-01-06 16:27:45.573639 -- Your file is saved mazes/maze58_30x30.json
+2020-01-06 16:27:49.965691 -- Your file is saved mazes/maze59_30x30.json
+2020-01-06 16:27:55.677175 -- Your file is saved mazes/maze60_30x30.json
+2020-01-06 16:29:55.648251 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:29:55.654112 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:29:55.668535 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:29:55.684833 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:29:55.692280 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:29:55.693964 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:29:55.696090 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:29:55.707345 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:29:55.863663 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:29:55.870416 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:29:55.875650 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:29:55.885755 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:29:55.888551 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:29:55.914558 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:29:55.916797 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:29:55.923508 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:29:55.928632 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:29:55.945396 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:29:55.951935 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:29:55.971743 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:29:55.973337 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:29:55.982525 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:29:55.988236 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:29:55.995230 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:29:56.002005 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:29:56.009977 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:29:56.035822 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:29:56.039780 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:29:56.041881 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:29:56.042852 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:29:56.044795 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:29:56.051418 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:29:56.059141 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:29:56.061929 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:29:56.065570 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:29:56.096504 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:29:56.098194 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:29:56.100259 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:29:56.103203 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:29:56.109547 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:29:56.116498 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:29:56.128270 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:29:56.136958 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:29:56.156773 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:29:56.158552 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:29:56.160397 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:29:56.162913 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:29:56.165964 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:29:56.174486 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:29:56.184193 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:29:56.185907 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:29:56.187095 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:29:56.189607 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:29:56.216829 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:29:56.231336 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:29:56.244399 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:29:56.248223 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:29:56.272178 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:29:56.275378 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:29:56.283035 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:30:26.519772 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:30:26.525329 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:30:26.551500 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:30:26.565316 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:30:26.576977 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:30:26.578646 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:30:26.580558 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:30:26.603085 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:30:26.614435 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:30:26.620265 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:30:26.629730 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:30:26.638415 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:30:26.643554 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:30:26.666993 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:30:26.669170 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:30:26.675297 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:30:26.679684 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:30:26.694764 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:30:26.711935 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:30:26.725689 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:30:26.726848 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:30:26.735032 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:30:26.743894 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:30:26.745790 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:30:26.751815 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:30:26.759193 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:30:26.786699 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:30:26.790119 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:30:26.791962 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:30:26.792903 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:30:26.794575 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:30:26.800691 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:30:26.807178 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:30:26.809414 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:30:26.812646 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:30:26.841623 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:30:26.843322 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:30:26.845402 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:30:26.848315 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:30:26.854093 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:30:26.860518 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:30:26.885675 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:30:26.889640 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:30:26.898943 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:30:26.900280 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:30:26.902060 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:30:26.904444 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:30:26.907244 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:30:26.914912 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:30:26.924926 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:30:26.926376 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:30:26.927328 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:30:26.929638 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:30:26.954481 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:30:26.968188 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:30:26.995702 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:30:27.000698 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:30:27.008722 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:30:27.011389 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:30:27.019193 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:30:44.147846 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:30:44.152836 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:30:44.177712 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:30:44.191280 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:30:44.204310 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:30:44.205959 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:30:44.207992 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:30:44.230975 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:30:44.242281 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:30:44.247727 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:30:44.258199 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:30:44.266676 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:30:44.272064 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:30:44.296642 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:30:44.298732 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:30:44.304655 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:30:44.309239 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:30:44.338986 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:30:44.341793 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:30:44.350370 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:30:44.351505 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:30:44.359511 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:30:44.367153 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:30:44.368944 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:30:44.374898 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:30:44.396678 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:30:44.409522 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:30:44.412766 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:30:44.414720 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:30:44.420445 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:30:44.422265 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:30:44.428717 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:30:44.435283 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:30:44.438074 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:30:44.441766 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:30:44.470888 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:30:44.472577 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:30:44.474740 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:30:44.477628 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:30:44.483371 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:30:44.490014 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:30:44.515312 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:30:44.519501 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:30:44.527945 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:30:44.529221 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:30:44.530876 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:30:44.533251 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:30:44.536084 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:30:44.544016 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:30:44.554963 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:30:44.556498 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:30:44.557665 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:30:44.560121 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:30:44.586392 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:30:44.600094 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:30:44.629402 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:30:44.634422 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:30:44.642722 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:30:44.645514 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:30:44.652923 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:32:49.230886 -- Your mass generation is now started...
+2020-01-06 16:32:50.104492 -- Your file is saved mazes/maze1_5x5.json
+2020-01-06 16:32:50.123041 -- All mazes created!
+2020-01-06 16:32:50.443576 -- Your file is saved mazes/maze2_5x5.json
+2020-01-06 16:32:50.855284 -- Your file is saved mazes/maze3_5x5.json
+2020-01-06 16:32:51.154175 -- Your file is saved mazes/maze4_5x5.json
+2020-01-06 16:32:51.422180 -- Your file is saved mazes/maze5_5x5.json
+2020-01-06 16:32:51.797286 -- Your file is saved mazes/maze6_5x5.json
+2020-01-06 16:32:52.189855 -- Your file is saved mazes/maze7_5x5.json
+2020-01-06 16:32:52.474498 -- Your file is saved mazes/maze8_5x5.json
+2020-01-06 16:32:52.687160 -- Your file is saved mazes/maze9_5x5.json
+2020-01-06 16:32:53.010440 -- Your file is saved mazes/maze10_5x5.json
+2020-01-06 16:32:53.902252 -- Your file is saved mazes/maze11_10x10.json
+2020-01-06 16:32:55.190996 -- Your file is saved mazes/maze12_10x10.json
+2020-01-06 16:32:56.160745 -- Your file is saved mazes/maze13_10x10.json
+2020-01-06 16:32:57.456021 -- Your file is saved mazes/maze14_10x10.json
+2020-01-06 16:32:58.245565 -- Your file is saved mazes/maze15_10x10.json
+2020-01-06 16:32:59.614640 -- Your file is saved mazes/maze16_10x10.json
+2020-01-06 16:33:00.693776 -- Your file is saved mazes/maze17_10x10.json
+2020-01-06 16:33:01.899430 -- Your file is saved mazes/maze18_10x10.json
+2020-01-06 16:33:02.647717 -- Your file is saved mazes/maze19_10x10.json
+2020-01-06 16:33:03.242994 -- Your file is saved mazes/maze20_10x10.json
+2020-01-06 16:33:06.440825 -- Your file is saved mazes/maze21_15x15.json
+2020-01-06 16:33:07.652642 -- Your file is saved mazes/maze22_15x15.json
+2020-01-06 16:33:10.216408 -- Your file is saved mazes/maze23_15x15.json
+2020-01-06 16:33:11.875024 -- Your file is saved mazes/maze24_15x15.json
+2020-01-06 16:33:14.316923 -- Your file is saved mazes/maze25_15x15.json
+2020-01-06 16:33:17.143186 -- Your file is saved mazes/maze26_15x15.json
+2020-01-06 16:33:19.398020 -- Your file is saved mazes/maze27_15x15.json
+2020-01-06 16:33:21.070242 -- Your file is saved mazes/maze28_15x15.json
+2020-01-06 16:33:22.325816 -- Your file is saved mazes/maze29_15x15.json
+2020-01-06 16:33:25.069330 -- Your file is saved mazes/maze30_15x15.json
+2020-01-06 16:33:29.776984 -- Your file is saved mazes/maze31_20x20.json
+2020-01-06 16:33:34.397853 -- Your file is saved mazes/maze32_20x20.json
+2020-01-06 16:33:37.983041 -- Your file is saved mazes/maze33_20x20.json
+2020-01-06 16:33:43.012701 -- Your file is saved mazes/maze34_20x20.json
+2020-01-06 16:33:44.629559 -- Your file is saved mazes/maze35_20x20.json
+2020-01-06 16:33:47.404857 -- Your file is saved mazes/maze36_20x20.json
+2020-01-06 16:33:51.516615 -- Your file is saved mazes/maze37_20x20.json
+2020-01-06 16:33:53.663703 -- Your file is saved mazes/maze38_20x20.json
+2020-01-06 16:33:55.971186 -- Your file is saved mazes/maze39_20x20.json
+2020-01-06 16:33:58.426634 -- Your file is saved mazes/maze40_20x20.json
+2020-01-06 16:34:09.743208 -- Your file is saved mazes/maze41_25x25.json
+2020-01-06 16:34:14.177743 -- Your file is saved mazes/maze42_25x25.json
+2020-01-06 16:34:21.372630 -- Your file is saved mazes/maze43_25x25.json
+2020-01-06 16:34:26.708836 -- Your file is saved mazes/maze44_25x25.json
+2020-01-06 16:34:33.362458 -- Your file is saved mazes/maze45_25x25.json
+2020-01-06 16:34:35.982223 -- Your file is saved mazes/maze46_25x25.json
+2020-01-06 16:34:40.773153 -- Your file is saved mazes/maze47_25x25.json
+2020-01-06 16:34:47.824103 -- Your file is saved mazes/maze48_25x25.json
+2020-01-06 16:34:53.301617 -- Your file is saved mazes/maze49_25x25.json
+2020-01-06 16:34:55.916055 -- Your file is saved mazes/maze50_25x25.json
+2020-01-06 16:35:01.411871 -- Your file is saved mazes/maze51_30x30.json
+2020-01-06 16:35:08.963445 -- Your file is saved mazes/maze52_30x30.json
+2020-01-06 16:35:12.805429 -- Your file is saved mazes/maze53_30x30.json
+2020-01-06 16:35:19.348619 -- Your file is saved mazes/maze54_30x30.json
+2020-01-06 16:35:22.559054 -- Your file is saved mazes/maze55_30x30.json
+2020-01-06 16:35:27.215826 -- Your file is saved mazes/maze56_30x30.json
+2020-01-06 16:35:31.537218 -- Your file is saved mazes/maze57_30x30.json
+2020-01-06 16:35:34.290118 -- Your file is saved mazes/maze58_30x30.json
+2020-01-06 16:35:41.430100 -- Your file is saved mazes/maze59_30x30.json
+2020-01-06 16:35:46.144930 -- Your file is saved mazes/maze60_30x30.json
+2020-01-06 16:37:00.628021 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:37:00.757776 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:37:00.768354 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:37:00.786330 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:37:00.794084 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:37:00.796307 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:37:00.799713 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:37:00.829631 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:37:00.840172 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:37:00.844474 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:37:00.848826 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:37:00.868230 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:37:00.871165 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:37:00.885379 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:37:00.886934 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:37:00.891590 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:37:00.897011 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:37:00.921366 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:37:00.924181 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:37:00.933492 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:37:00.934553 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:37:00.939817 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:37:00.946242 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:37:00.948244 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:37:00.953026 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:37:00.956482 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:37:00.978235 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:37:00.983153 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:37:00.984654 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:37:00.985699 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:37:00.987160 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:37:00.997962 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:37:01.004071 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:37:01.007828 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:37:01.024110 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:37:01.032182 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:37:01.033383 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:37:01.035047 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:37:01.040663 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:37:01.045877 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:37:01.049647 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:37:01.060296 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:37:01.063664 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:37:01.082964 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:37:01.084680 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:37:01.085889 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:37:01.086949 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:37:01.089186 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:37:01.098366 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:37:01.106443 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:37:01.108005 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:37:01.109350 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:37:01.111152 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:37:01.142075 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:37:01.153827 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:37:01.165702 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:37:01.185482 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:37:01.189564 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:37:01.192940 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:37:01.200026 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:37:12.569960 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:37:12.573932 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:37:12.583646 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:37:12.615299 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:37:12.623215 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:37:12.625354 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:37:12.627763 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:37:12.658789 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:37:12.669876 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:37:12.674491 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:37:12.679307 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:37:12.686910 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:37:12.689549 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:37:12.716042 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:37:12.717593 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:37:12.722205 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:37:12.727776 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:37:12.738946 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:37:12.741492 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:37:12.762840 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:37:12.763822 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:37:12.768882 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:37:12.775896 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:37:12.778399 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:37:12.783497 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:37:12.787252 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:37:12.796667 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:37:12.801194 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:37:12.803293 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:37:12.815218 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:37:12.816704 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:37:12.828080 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:37:12.834695 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:37:12.839031 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:37:12.843432 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:37:12.850724 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:37:12.851899 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:37:12.853683 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:37:12.871410 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:37:12.876824 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:37:12.881009 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:37:12.892399 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:37:12.896088 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:37:12.903158 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:37:12.904355 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:37:12.905580 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:37:12.906478 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:37:12.908688 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:37:12.930136 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:37:12.938659 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:37:12.940321 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:37:12.941823 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:37:12.943746 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:37:12.960752 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:37:12.989614 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:37:13.002389 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:37:13.008982 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:37:13.013464 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:37:13.016111 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:37:13.035552 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:39:22.767337 -- Your mass generation is now started...
+2020-01-06 16:39:23.404599 -- Your file is saved mazes/maze1_5x5.json
+2020-01-06 16:39:23.537489 -- Your file is saved mazes/maze2_5x5.json
+2020-01-06 16:39:23.673084 -- Your file is saved mazes/maze3_5x5.json
+2020-01-06 16:39:23.856904 -- Your file is saved mazes/maze4_5x5.json
+2020-01-06 16:39:24.079235 -- Your file is saved mazes/maze5_5x5.json
+2020-01-06 16:39:24.222557 -- Your file is saved mazes/maze6_5x5.json
+2020-01-06 16:39:24.493017 -- Your file is saved mazes/maze7_5x5.json
+2020-01-06 16:39:24.630887 -- Your file is saved mazes/maze8_5x5.json
+2020-01-06 16:39:24.747301 -- Your file is saved mazes/maze9_5x5.json
+2020-01-06 16:39:24.937297 -- Your file is saved mazes/maze10_5x5.json
+2020-01-06 16:39:26.454680 -- Your file is saved mazes/maze11_10x10.json
+2020-01-06 16:39:27.165660 -- Your file is saved mazes/maze12_10x10.json
+2020-01-06 16:39:27.632454 -- Your file is saved mazes/maze13_10x10.json
+2020-01-06 16:39:28.368674 -- Your file is saved mazes/maze14_10x10.json
+2020-01-06 16:39:29.029492 -- Your file is saved mazes/maze15_10x10.json
+2020-01-06 16:39:29.490433 -- Your file is saved mazes/maze16_10x10.json
+2020-01-06 16:39:30.354686 -- Your file is saved mazes/maze17_10x10.json
+2020-01-06 16:39:30.652793 -- Your file is saved mazes/maze18_10x10.json
+2020-01-06 16:39:30.974914 -- Your file is saved mazes/maze19_10x10.json
+2020-01-06 16:39:31.606615 -- Your file is saved mazes/maze20_10x10.json
+2020-01-06 16:39:36.567978 -- Your file is saved mazes/maze21_15x15.json
+2020-01-06 16:39:38.206420 -- Your file is saved mazes/maze22_15x15.json
+2020-01-06 16:39:39.918409 -- Your file is saved mazes/maze23_15x15.json
+2020-01-06 16:39:40.950881 -- Your file is saved mazes/maze24_15x15.json
+2020-01-06 16:39:42.265446 -- Your file is saved mazes/maze25_15x15.json
+2020-01-06 16:39:43.633643 -- Your file is saved mazes/maze26_15x15.json
+2020-01-06 16:39:45.558594 -- Your file is saved mazes/maze27_15x15.json
+2020-01-06 16:39:47.703484 -- Your file is saved mazes/maze28_15x15.json
+2020-01-06 16:39:49.208748 -- Your file is saved mazes/maze29_15x15.json
+2020-01-06 16:39:50.259262 -- Your file is saved mazes/maze30_15x15.json
+2020-01-06 16:39:56.905400 -- Your file is saved mazes/maze31_20x20.json
+2020-01-06 16:39:57.789213 -- Your file is saved mazes/maze32_20x20.json
+2020-01-06 16:39:58.680255 -- Your file is saved mazes/maze33_20x20.json
+2020-01-06 16:39:59.663330 -- Your file is saved mazes/maze34_20x20.json
+2020-01-06 16:40:00.889098 -- Your file is saved mazes/maze35_20x20.json
+2020-01-06 16:40:03.174611 -- Your file is saved mazes/maze36_20x20.json
+2020-01-06 16:40:05.254968 -- Your file is saved mazes/maze37_20x20.json
+2020-01-06 16:40:08.311361 -- Your file is saved mazes/maze38_20x20.json
+2020-01-06 16:40:10.545143 -- Your file is saved mazes/maze39_20x20.json
+2020-01-06 16:40:12.787079 -- Your file is saved mazes/maze40_20x20.json
+2020-01-06 16:40:28.850395 -- Your file is saved mazes/maze41_25x25.json
+2020-01-06 16:40:31.160361 -- Your file is saved mazes/maze42_25x25.json
+2020-01-06 16:40:35.969982 -- Your file is saved mazes/maze43_25x25.json
+2020-01-06 16:40:39.774836 -- Your file is saved mazes/maze44_25x25.json
+2020-01-06 16:40:41.269097 -- Your file is saved mazes/maze45_25x25.json
+2020-01-06 16:40:43.603104 -- Your file is saved mazes/maze46_25x25.json
+2020-01-06 16:40:45.375205 -- Your file is saved mazes/maze47_25x25.json
+2020-01-06 16:40:50.253618 -- Your file is saved mazes/maze48_25x25.json
+2020-01-06 16:40:52.944348 -- Your file is saved mazes/maze49_25x25.json
+2020-01-06 16:40:58.123276 -- Your file is saved mazes/maze50_25x25.json
+2020-01-06 16:41:20.524474 -- Your file is saved mazes/maze51_30x30.json
+2020-01-06 16:41:25.790095 -- Your file is saved mazes/maze52_30x30.json
+2020-01-06 16:41:29.810526 -- Your file is saved mazes/maze53_30x30.json
+2020-01-06 16:41:31.509609 -- Your file is saved mazes/maze54_30x30.json
+2020-01-06 16:41:35.205633 -- Your file is saved mazes/maze55_30x30.json
+2020-01-06 16:41:40.288511 -- Your file is saved mazes/maze56_30x30.json
+2020-01-06 16:41:44.433573 -- Your file is saved mazes/maze57_30x30.json
+2020-01-06 16:41:48.254191 -- Your file is saved mazes/maze58_30x30.json
+2020-01-06 16:41:51.471846 -- Your file is saved mazes/maze59_30x30.json
+2020-01-06 16:41:56.052349 -- Your file is saved mazes/maze60_30x30.json
+2020-01-06 16:41:56.059954 -- You have created 60 mazes
+2020-01-06 16:42:10.233469 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:42:10.236691 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:42:10.250034 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:42:10.254372 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:42:10.257919 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:42:10.259060 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:42:10.260098 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:42:10.266970 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:42:10.270411 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:42:10.287829 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:42:10.291171 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:42:10.294488 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:42:10.296849 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:42:10.305600 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:42:10.306934 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:42:10.310262 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:42:10.313788 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:42:10.337651 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:42:10.339575 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:42:10.344965 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:42:10.345765 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:42:10.351787 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:42:10.357416 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:42:10.359108 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:42:10.361745 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:42:10.366729 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:42:10.388303 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:42:10.393762 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:42:10.395219 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:42:10.396544 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:42:10.398463 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:42:10.405326 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:42:10.417734 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:42:10.419377 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:42:10.437785 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:42:10.448416 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:42:10.449808 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:42:10.451365 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:42:10.454763 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:42:10.460993 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:42:10.464219 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:42:10.473110 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:42:10.490036 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:42:10.499926 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:42:10.501081 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:42:10.502692 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:42:10.504521 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:42:10.507167 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:42:10.517600 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:42:10.520282 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:42:10.521954 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:42:10.522779 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:42:10.526460 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:42:10.548206 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:42:10.558885 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:42:10.568947 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:42:10.584483 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:42:10.591012 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:42:10.593281 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:42:10.598654 -- File loaded mazes/maze37_20x20.json
+2020-01-06 16:42:18.363439 -- File loaded mazes/maze39_20x20.json
+2020-01-06 16:42:18.366690 -- File loaded mazes/maze24_15x15.json
+2020-01-06 16:42:18.390658 -- File loaded mazes/maze48_25x25.json
+2020-01-06 16:42:18.395124 -- File loaded mazes/maze54_30x30.json
+2020-01-06 16:42:18.399167 -- File loaded mazes/maze34_20x20.json
+2020-01-06 16:42:18.400469 -- File loaded mazes/maze1_5x5.json
+2020-01-06 16:42:18.401655 -- File loaded mazes/maze11_10x10.json
+2020-01-06 16:42:18.409404 -- File loaded mazes/maze59_30x30.json
+2020-01-06 16:42:18.414576 -- File loaded mazes/maze45_25x25.json
+2020-01-06 16:42:18.419456 -- File loaded mazes/maze29_15x15.json
+2020-01-06 16:42:18.423555 -- File loaded mazes/maze30_15x15.json
+2020-01-06 16:42:18.427705 -- File loaded mazes/maze31_20x20.json
+2020-01-06 16:42:18.430661 -- File loaded mazes/maze14_10x10.json
+2020-01-06 16:42:18.452934 -- File loaded mazes/maze51_30x30.json
+2020-01-06 16:42:18.455179 -- File loaded mazes/maze19_10x10.json
+2020-01-06 16:42:18.459290 -- File loaded mazes/maze21_15x15.json
+2020-01-06 16:42:18.463242 -- File loaded mazes/maze26_15x15.json
+2020-01-06 16:42:18.476054 -- File loaded mazes/maze56_30x30.json
+2020-01-06 16:42:18.478030 -- File loaded mazes/maze13_10x10.json
+2020-01-06 16:42:18.483228 -- File loaded mazes/maze47_25x25.json
+2020-01-06 16:42:18.484012 -- File loaded mazes/maze10_5x5.json
+2020-01-06 16:42:18.500319 -- File loaded mazes/maze36_20x20.json
+2020-01-06 16:42:18.506469 -- File loaded mazes/maze42_25x25.json
+2020-01-06 16:42:18.508390 -- File loaded mazes/maze16_10x10.json
+2020-01-06 16:42:18.511285 -- File loaded mazes/maze33_20x20.json
+2020-01-06 16:42:18.517307 -- File loaded mazes/maze40_20x20.json
+2020-01-06 16:42:18.527095 -- File loaded mazes/maze53_30x30.json
+2020-01-06 16:42:18.532188 -- File loaded mazes/maze23_15x15.json
+2020-01-06 16:42:18.533622 -- File loaded mazes/maze6_5x5.json
+2020-01-06 16:42:18.534782 -- File loaded mazes/maze7_5x5.json
+2020-01-06 16:42:18.536464 -- File loaded mazes/maze15_10x10.json
+2020-01-06 16:42:18.553798 -- File loaded mazes/maze41_25x25.json
+2020-01-06 16:42:18.566822 -- File loaded mazes/maze50_25x25.json
+2020-01-06 16:42:18.568830 -- File loaded mazes/maze18_10x10.json
+2020-01-06 16:42:18.576745 -- File loaded mazes/maze38_20x20.json
+2020-01-06 16:42:18.585125 -- File loaded mazes/maze55_30x30.json
+2020-01-06 16:42:18.586515 -- File loaded mazes/maze2_5x5.json
+2020-01-06 16:42:18.587641 -- File loaded mazes/maze3_5x5.json
+2020-01-06 16:42:18.601432 -- File loaded mazes/maze25_15x15.json
+2020-01-06 16:42:18.608246 -- File loaded mazes/maze49_25x25.json
+2020-01-06 16:42:18.611977 -- File loaded mazes/maze35_20x20.json
+2020-01-06 16:42:18.621423 -- File loaded mazes/maze44_25x25.json
+2020-01-06 16:42:18.626455 -- File loaded mazes/maze28_15x15.json
+2020-01-06 16:42:18.635478 -- File loaded mazes/maze58_30x30.json
+2020-01-06 16:42:18.636616 -- File loaded mazes/maze8_5x5.json
+2020-01-06 16:42:18.637771 -- File loaded mazes/maze9_5x5.json
+2020-01-06 16:42:18.649448 -- File loaded mazes/maze20_10x10.json
+2020-01-06 16:42:18.651918 -- File loaded mazes/maze17_10x10.json
+2020-01-06 16:42:18.663764 -- File loaded mazes/maze43_25x25.json
+2020-01-06 16:42:18.666460 -- File loaded mazes/maze32_20x20.json
+2020-01-06 16:42:18.668037 -- File loaded mazes/maze5_5x5.json
+2020-01-06 16:42:18.668916 -- File loaded mazes/maze4_5x5.json
+2020-01-06 16:42:18.672666 -- File loaded mazes/maze22_15x15.json
+2020-01-06 16:42:18.684367 -- File loaded mazes/maze52_30x30.json
+2020-01-06 16:42:18.708843 -- File loaded mazes/maze60_30x30.json
+2020-01-06 16:42:18.719517 -- File loaded mazes/maze57_30x30.json
+2020-01-06 16:42:18.725411 -- File loaded mazes/maze27_15x15.json
+2020-01-06 16:42:18.731866 -- File loaded mazes/maze46_25x25.json
+2020-01-06 16:42:18.734164 -- File loaded mazes/maze12_10x10.json
+2020-01-06 16:42:18.750739 -- File loaded mazes/maze37_20x20.json
